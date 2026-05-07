@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dh7ytx2cokvvo"]
+
+[ext_resource type="Script" uid="uid://c1caek403pv6t" path="res://scripts/Player.cs" id="1_v6fml"]
+[ext_resource type="SpriteFrames" uid="uid://dhofmy5dxhhoa" path="res://scenes/player_frames.tres" id="2_v6fml"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vlq"]
+size = Vector2(16, 27.5)
+
+[node name="Player" type="CharacterBody2D" unique_id=607596513]
+script = ExtResource("1_v6fml")
+
+[node name="Human" type="AnimatedSprite2D" parent="." unique_id=1756942527]
+position = Vector2(57, 42)
+sprite_frames = ExtResource("2_v6fml")
+animation = &"walk_down"
+frame_progress = 0.8874499
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=650420559]
+position = Vector2(52, 45.75)
+shape = SubResource("RectangleShape2D_p0vlq")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1771623877]
+zoom = Vector2(2, 2)

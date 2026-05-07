@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://buaqdlydwxucj"]
+
+[ext_resource type="Script" uid="uid://b5moys4jiwl6d" path="res://scripts/MainMenu.cs" id="1_yqorp"]
+
+[node name="MainMenu" type="Control" unique_id=76422148]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yqorp")
+
+[node name="GameTitle" type="Label" parent="." unique_id=1213933575]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Start" type="Button" parent="." unique_id=95432831]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 143.0
+offset_right = 139.0
+offset_bottom = 174.0
+text = "Start"
+
+[node name="Quit" type="Button" parent="." unique_id=2104295651]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 144.0
+offset_right = 265.0
+offset_bottom = 175.0
+text = "Quit"
