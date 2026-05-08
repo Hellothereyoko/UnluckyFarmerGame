@@ -28,10 +28,14 @@ public partial class House : StaticBody2D
 
 	private void OnBodyEntered(Node body)
 	{
-		if (body is Player)
-		{
-			playerNearby = true;
-			interactionLabel.Visible = true;
+		GD.Print("Something entered sleep area.");
+
+	if (body is Player)
+	{
+		GD.Print("Player entered sleep area.");
+
+		playerNearby = true;
+		interactionLabel.Visible = true;
 		}
 	}
 

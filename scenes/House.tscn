@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3vhl4f4liypx" path="res://assets/Woolly Lands FREE pack/House_Doors/Houses.png" id="1_d7po0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtlar"]
-size = Vector2(81.5, 44.125)
+size = Vector2(80.25, 47.0625)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfmfj"]
 size = Vector2(28.5, 21)
@@ -17,13 +17,13 @@ script = ExtResource("1_8twys")
 texture = ExtResource("1_d7po0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=386937679]
-position = Vector2(0, 30)
+position = Vector2(0.625, 31.46875)
 shape = SubResource("RectangleShape2D_qtlar")
 
 [node name="SleepArea" type="Area2D" parent="." unique_id=1607792010]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SleepArea" unique_id=1415950661]
-position = Vector2(1.5, 50.5)
+position = Vector2(1, 52)
 shape = SubResource("RectangleShape2D_bfmfj")
 debug_color = Color(0.9057299, 0.19126847, 0.59334266, 0.41960785)
 
@@ -35,12 +35,12 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 6.0
-offset_top = 60.5
-offset_right = 39.0
-offset_bottom = 72.5
+offset_left = 3.0
+offset_top = 25.0
+offset_right = 69.0
+offset_bottom = 37.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
-text = "[E] Sleep"
+text = "Press [E] to Sleep"
