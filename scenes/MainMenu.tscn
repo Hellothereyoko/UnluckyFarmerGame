@@ -9,21 +9,23 @@ script = ExtResource("1_yqorp")
 
 [node name="GameTitle" type="Label" parent="." unique_id=1213933575]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 165.0
+offset_top = 53.0
+offset_right = 321.0
+offset_bottom = 76.0
+text = "The Unlucky Farmer"
 
-[node name="Start" type="Button" parent="." unique_id=95432831]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=803120952]
 layout_mode = 0
-offset_left = 93.0
-offset_top = 143.0
-offset_right = 139.0
-offset_bottom = 174.0
-text = "Start"
+offset_left = 250.0
+offset_top = 215.0
+offset_right = 296.0
+offset_bottom = 281.0
 
-[node name="Quit" type="Button" parent="." unique_id=2104295651]
-layout_mode = 0
-offset_left = 223.0
-offset_top = 144.0
-offset_right = 265.0
-offset_bottom = 175.0
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=2104295651]
+layout_mode = 2
 text = "Quit"
+
+[node name="Start" type="Button" parent="VBoxContainer" unique_id=95432831]
+layout_mode = 2
+text = "Start"
