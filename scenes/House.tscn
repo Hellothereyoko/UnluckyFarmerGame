@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://y0q5pwdkjnfy" path="res://scripts/House.cs" id="1_8twys"]
 [ext_resource type="Texture2D" uid="uid://3vhl4f4liypx" path="res://assets/Woolly Lands FREE pack/House_Doors/Houses.png" id="1_d7po0"]
+[ext_resource type="FontFile" uid="uid://bpwt4sukyxelt" path="res://assets/Pixeloid_Font_1_0/Web Open Font Format (.woff)/PixeloidMono.woff" id="3_r2usd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtlar"]
-size = Vector2(80.25, 47.0625)
+size = Vector2(93, 47.5625)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfmfj"]
 size = Vector2(28.5, 21)
@@ -17,7 +18,7 @@ script = ExtResource("1_8twys")
 texture = ExtResource("1_d7po0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=386937679]
-position = Vector2(0.625, 31.46875)
+position = Vector2(-1, 31.71875)
 shape = SubResource("RectangleShape2D_qtlar")
 
 [node name="SleepArea" type="Area2D" parent="." unique_id=1607792010]
@@ -28,9 +29,11 @@ shape = SubResource("RectangleShape2D_bfmfj")
 debug_color = Color(0.9057299, 0.19126847, 0.59334266, 0.41960785)
 
 [node name="InteractionLabel" type="Label" parent="." unique_id=1045913543]
-offset_left = -20.0
-offset_top = 40.0
-offset_right = 111.0
-offset_bottom = 63.0
+offset_left = 14.0
+offset_top = 49.0
+offset_right = 93.5
+offset_bottom = 65.0
 theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_r2usd")
+theme_override_font_sizes/font_size = 9
 text = "Press [E] to sleep"
