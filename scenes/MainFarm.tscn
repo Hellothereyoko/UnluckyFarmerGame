@@ -83,6 +83,7 @@ texture = ExtResource("1_dk8p3")
 sources/1 = SubResource("TileSetAtlasSource_dk8p3")
 
 [node name="MainFarm" type="Node2D" unique_id=1503612408]
+position = Vector2(-248, 169)
 
 [node name="Objects" type="Node2D" parent="." unique_id=90045710]
 
