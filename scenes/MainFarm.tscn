@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cblkbdeq8p2xj" path="res://assets/Woolly Lands FREE pack/Tilesets/Set 1.png" id="1_dk8p3"]
 [ext_resource type="PackedScene" uid="uid://dh7ytx2cokvvo" path="res://scenes/Player.tscn" id="2_yolus"]
 [ext_resource type="PackedScene" uid="uid://bm0hchotuo8uo" path="res://scenes/House.tscn" id="3_6h7hh"]
+[ext_resource type="PackedScene" uid="uid://2ovhh234lja7" path="res://scenes/Tree.tscn" id="4_olo40"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk8p3"]
 texture = ExtResource("1_dk8p3")
@@ -96,3 +97,9 @@ position = Vector2(398, 303)
 
 [node name="House" parent="." unique_id=1702688911 instance=ExtResource("3_6h7hh")]
 position = Vector2(55, -184)
+
+[node name="Tree" parent="." unique_id=1719463820 instance=ExtResource("4_olo40")]
+position = Vector2(145, 170)
+
+[node name="Tree2" parent="." unique_id=1234474324 instance=ExtResource("4_olo40")]
+position = Vector2(655, 160)
