@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cblkbdeq8p2xj" path="res://assets/Woolly Lands FREE pack/Tilesets/Set 1.png" id="1_dk8p3"]
 [ext_resource type="PackedScene" uid="uid://dh7ytx2cokvvo" path="res://scenes/Player.tscn" id="2_yolus"]
 [ext_resource type="PackedScene" uid="uid://bm0hchotuo8uo" path="res://scenes/House.tscn" id="3_6h7hh"]
+[ext_resource type="Script" uid="uid://b5rj7brjyliil" path="res://scripts/DayNightCycle.cs" id="4_olo40"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk8p3"]
 texture = ExtResource("1_dk8p3")
@@ -98,4 +99,5 @@ scale = Vector2(1, 1)
 [node name="House" parent="." unique_id=1702688911 instance=ExtResource("3_6h7hh")]
 position = Vector2(330, 57)
 
-[node name="SleepDialogue" type="CanvasLayer" parent="." unique_id=1788569982]
+[node name="DayNightCycl" type="CanvasModulate" parent="." unique_id=255116171]
+script = ExtResource("4_olo40")
