@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dh7ytx2cokvvo" path="res://scenes/Player.tscn" id="2_yolus"]
 [ext_resource type="PackedScene" uid="uid://bm0hchotuo8uo" path="res://scenes/House.tscn" id="3_6h7hh"]
 [ext_resource type="PackedScene" uid="uid://2ovhh234lja7" path="res://scenes/Tree.tscn" id="4_olo40"]
+[ext_resource type="PackedScene" uid="uid://cfxg8cmytirw0" path="res://scenes/NotApple.tscn" id="5_0oesp"]
+[ext_resource type="PackedScene" uid="uid://c8rv8o8ost3ti" path="res://scenes/Collect_Apples.tscn" id="6_j8ajv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk8p3"]
 texture = ExtResource("1_dk8p3")
@@ -103,3 +105,9 @@ position = Vector2(145, 170)
 
 [node name="Tree2" parent="." unique_id=1234474324 instance=ExtResource("4_olo40")]
 position = Vector2(655, 160)
+
+[node name="DeliciousFruit(bad)" parent="." unique_id=802498872 instance=ExtResource("5_0oesp")]
+position = Vector2(276, 271)
+
+[node name="Apple" parent="." unique_id=87394357 instance=ExtResource("6_j8ajv")]
+position = Vector2(491, 350)
