@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://2ovhh234lja7"]
 
 [ext_resource type="Texture2D" uid="uid://cagjdcyjk5s13" path="res://assets/Woolly Lands FREE pack/Trees/1 Tree Hit Sheets.png" id="1_2cic4"]
+[ext_resource type="Script" uid="uid://cylm6nqludx3l" path="res://scenes/Spawn_Apples_On_Tree.gd" id="1_omb14"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omb14"]
 atlas = ExtResource("1_2cic4")
@@ -56,8 +57,10 @@ animations = [{
 size = Vector2(20, 34)
 
 [node name="Tree" type="Node2D" unique_id=1719463820]
+script = ExtResource("1_omb14")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1070894386]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_uuee5")
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=939893713]
