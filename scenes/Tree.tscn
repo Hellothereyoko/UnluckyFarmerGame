@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://2ovhh234lja7"]
+
+[ext_resource type="Texture2D" uid="uid://cagjdcyjk5s13" path="res://assets/Woolly Lands FREE pack/Trees/1 Tree Hit Sheets.png" id="1_2cic4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omb14"]
+atlas = ExtResource("1_2cic4")
+region = Rect2(0, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_874r4"]
+atlas = ExtResource("1_2cic4")
+region = Rect2(64, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvbew"]
+atlas = ExtResource("1_2cic4")
+region = Rect2(128, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gtcl"]
+atlas = ExtResource("1_2cic4")
+region = Rect2(192, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0kve"]
+atlas = ExtResource("1_2cic4")
+region = Rect2(256, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i8fu"]
+atlas = ExtResource("1_2cic4")
+region = Rect2(320, 0, 64, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uuee5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omb14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_874r4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvbew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gtcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0kve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2i8fu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ego7h"]
+size = Vector2(20, 34)
+
+[node name="Tree" type="Node2D" unique_id=1719463820]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1070894386]
+sprite_frames = SubResource("SpriteFrames_uuee5")
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=939893713]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=1606505040]
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_ego7h")

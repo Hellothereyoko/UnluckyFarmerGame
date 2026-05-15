@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cfxg8cmytirw0"]
+
+[ext_resource type="Texture2D" uid="uid://gthuqarjjyo4" path="res://assets/Custom Sprites/TreeFruits.png" id="1_0o4ko"]
+[ext_resource type="Script" uid="uid://qncsotgujqc5" path="res://scenes/NotApple_script.gd" id="1_yept1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yept1"]
+atlas = ExtResource("1_0o4ko")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5niww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yept1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5niww"]
+radius = 15.297058
+
+[node name="DeliciousFruit(bad)" type="Node2D" unique_id=802498872]
+script = ExtResource("1_yept1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1701735451]
+sprite_frames = SubResource("SpriteFrames_5niww")
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=1162133801]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=1506599777]
+shape = SubResource("CircleShape2D_5niww")
+
+[connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
