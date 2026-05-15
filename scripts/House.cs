@@ -5,17 +5,15 @@ public partial class House : StaticBody2D
 	private bool playerNearby = false;
 	private Label interactionLabel;
 
-
 	public override void _Ready()
 	{
 		Area2D sleepArea = GetNode<Area2D>("SleepArea");
 
 		sleepArea.BodyEntered += OnBodyEntered;
 		sleepArea.BodyExited += OnBodyExited;
-		
+
 		interactionLabel = GetNode<Label>("InteractionLabel");
 		interactionLabel.Visible = false;
-		
 	}
 
 	public override void _Process(double delta)

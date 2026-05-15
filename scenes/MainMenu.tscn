@@ -1,6 +1,67 @@
 [gd_scene format=3 uid="uid://buaqdlydwxucj"]
 
 [ext_resource type="Script" uid="uid://b5moys4jiwl6d" path="res://scripts/MainMenu.cs" id="1_yqorp"]
+[ext_resource type="FontFile" uid="uid://cpnl32p472uvf" path="res://assets/Pixeloid_Font_1_0/TrueType (.ttf)/PixeloidMono.ttf" id="2_2wh52"]
+[ext_resource type="FontFile" uid="uid://ly4knwemy0x2" path="res://assets/Pixeloid_Font_1_0/OpenType (.otf)/PixeloidSans.otf" id="3_ow34m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqorp"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ykhv"]
+bg_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2wh52"]
+bg_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ow34m"]
+bg_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l72w3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l72w3"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_826wr"]
+bg_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucygd"]
+bg_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mipys"]
+bg_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8a8k8"]
 
 [node name="MainMenu" type="Control" unique_id=76422148]
 layout_mode = 3
@@ -8,22 +69,68 @@ anchors_preset = 0
 script = ExtResource("1_yqorp")
 
 [node name="GameTitle" type="Label" parent="." unique_id=1213933575]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 400.0
+offset_top = 80.0
+offset_right = 729.0
+offset_bottom = 127.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 34
+text = "The Unlucky Farmer"
 
-[node name="Start" type="Button" parent="." unique_id=95432831]
-layout_mode = 0
-offset_left = 93.0
-offset_top = 143.0
-offset_right = 139.0
-offset_bottom = 174.0
+[node name="VBoxContainer" type="HBoxContainer" parent="." unique_id=1785312777]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 320.0
+offset_top = 416.0
+offset_right = 820.0
+offset_bottom = 566.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 38
+alignment = 1
+
+[node name="Start" type="Button" parent="VBoxContainer" unique_id=95432831]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ow34m")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yqorp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2wh52")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ow34m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l72w3")
 text = "Start"
 
-[node name="Quit" type="Button" parent="." unique_id=2104295651]
-layout_mode = 0
-offset_left = 223.0
-offset_top = 144.0
-offset_right = 265.0
-offset_bottom = 175.0
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=2104295651]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ow34m")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l72w3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_826wr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ucygd")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_mipys")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8a8k8")
 text = "Quit"
