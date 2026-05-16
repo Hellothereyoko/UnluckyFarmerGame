@@ -6,33 +6,33 @@ extends Node
 ## These Are Dictonaries
 ## Apples.sell_value = ...
 ## Variable = Apples.sell_value
-static var Apples = {
+var apple = {
 	"sell_value" : 10,
 	"damageless_bonus" : 5,
 	"planted" : true,
 }
 
-static var Oranges = {
+var orange = {
 	"sell_value" : 10,
 	"damageless_bonus" : 10,
-	"planted" : Apples.planted,
+	"planted" : apple.planted,
 }
 
-static var Delicious_Fruit = {
+var delicious_fruit = {
 	"sell_value" : 20,
 	"damageless_bonus" : 20,
-	"planted" : Apples.planted,
+	"planted" : apple.planted,
 	"aggresiveness" : 3, 
 }
 
-static var Corn = {
+var corn = {
 	"sell_value" : 10,
 	"damageless_bonus" : 5,
 	"planted" : false,
 	"aggresiveness" : 1,
 }
 
-static var Dandilion = {
+var dandilion = {
 	"planted" : false,
 	"aggresiveness" : 1,
 }
