@@ -1,12 +1,12 @@
 extends Node2D
 
-var apple_Object = preload("res://scenes/Collect_Apples.tscn")
-var notApple_Object = preload("res://scenes/NotApple.tscn")
+const apple_Object = preload("res://scenes/Collect_Apples.tscn")
+const notApple_Object = preload("res://scenes/NotApple.tscn")
 
-var x_position = 0;
-var y_position = 90;
+var x_position : int = 0;
+var y_position : int = 90;
 
-var maximum_amount = 10;
+const maximum_amount : int = 10;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

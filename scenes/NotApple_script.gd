@@ -8,20 +8,21 @@ const movement_speed = 10
 
 func _process(delta):
 	
-	match direction:
-		0:
-			position.x -= movement_speed
-		1:
-			position.x += movement_speed
-		2: 
-			position.y -= movement_speed
-		3:
-			position.y += movement_speed
-	
-	if despawn_timer > 400:
-		queue_free()
-	if  initiate_trap:
-		despawn_timer += 1
+	if initiate_trap:
+		match direction:
+			0:
+				position.x -= movement_speed
+			1:
+				position.x += movement_speed
+			2: 
+				position.y -= movement_speed
+			3:
+				position.y += movement_speed
+		
+		if despawn_timer > 400:
+			queue_free()
+		if  initiate_trap:
+			despawn_timer += 1
 	
 
 func _on_hit_colission_body_entered(body):

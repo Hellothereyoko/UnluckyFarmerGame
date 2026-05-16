@@ -3,13 +3,13 @@ extends Node
 ##I have no clue if they should be seperate
 
 ##This tracks all the money data
-var cash = 0
-var debt = 1000
+var cash : int = 0
+var debt : int = 1000
 
 ##This tracks all the produce collected during the day
 ##When the player collects fruit, both total and fresh increases.
 ##When the player gets hit, the damageless_bonus var gets halved, resulting in less bonus money
-const penalty_amount = 2
+const penalty_amount : int = 2
 
 var inventory_array = [0,0,0,0,0]
 var damageless_bonus_array = inventory_array.duplicate()
