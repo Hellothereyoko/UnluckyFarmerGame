@@ -7,6 +7,7 @@
 size = Vector2(31.5, 45.625)
 
 [node name="Player" type="CharacterBody2D" unique_id=607596513]
+z_index = 5
 scale = Vector2(2, 2)
 script = ExtResource("1_v6fml")
 

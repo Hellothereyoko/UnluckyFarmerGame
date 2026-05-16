@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dt7tcxuocc87p"]
+
+[ext_resource type="Script" uid="uid://da12yatudsvve" path="res://scripts/Crop.cs" id="1_3nlst"]
+[ext_resource type="Texture2D" uid="uid://yaykb278mno1" path="res://assets/Tileset/Crops_Tileset.png" id="1_gxb1g"]
+[ext_resource type="Resource" uid="uid://bjw8wdpjj4yps" path="res://Carrot.tres" id="2_3nlst"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nlst"]
+atlas = ExtResource("1_gxb1g")
+region = Rect2(0, 62, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgwq5"]
+atlas = ExtResource("1_gxb1g")
+region = Rect2(0, 90, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_travc"]
+atlas = ExtResource("1_gxb1g")
+region = Rect2(0, 118, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6s6xe"]
+atlas = ExtResource("1_gxb1g")
+region = Rect2(0, 146, 32, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7w5hp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nlst")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgwq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_travc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6s6xe")
+}],
+"loop": false,
+"name": &"carrot_growth",
+"speed": 5.0
+}]
+
+[node name="Crop" type="Node2D" unique_id=639549454]
+z_index = 10
+script = ExtResource("1_3nlst")
+Data = ExtResource("2_3nlst")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1947635801]
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_7w5hp")
+animation = &"carrot_growth"
+frame = 3
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="." unique_id=387071826]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=183153405]
+
+[node name="Timer" type="Timer" parent="." unique_id=1721407770]
