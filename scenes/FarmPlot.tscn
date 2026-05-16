@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bmofanuq4gapc"]
+
+[ext_resource type="Script" uid="uid://bn3c70q3r5dlq" path="res://scripts/FarmPlot.cs" id="1_bffsj"]
+[ext_resource type="Texture2D" uid="uid://doju2oun8ytbj" path="res://assets/dirt (1).png" id="2_is2ei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tao5"]
+
+[node name="FarmPlot" type="StaticBody2D" unique_id=248779064]
+z_index = 1
+script = ExtResource("1_bffsj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1450149467]
+z_index = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_is2ei")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1573343731]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=752075521]
+shape = SubResource("RectangleShape2D_0tao5")

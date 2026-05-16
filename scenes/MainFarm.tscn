@@ -1,13 +1,16 @@
 [gd_scene format=4 uid="uid://ch0q707mlyt8n"]
 
+[ext_resource type="Script" uid="uid://da12yatudsvve" path="res://scripts/Crop.cs" id="1_2lacs"]
 [ext_resource type="Texture2D" uid="uid://cblkbdeq8p2xj" path="res://assets/Woolly Lands FREE pack/Tilesets/Set 1.png" id="1_dk8p3"]
+[ext_resource type="PackedScene" uid="uid://dt7tcxuocc87p" path="res://scenes/Crop.tscn" id="2_hiqg4"]
+[ext_resource type="PackedScene" uid="uid://bmofanuq4gapc" path="res://scenes/FarmPlot.tscn" id="2_jjv3p"]
 [ext_resource type="Texture2D" uid="uid://b6rho8xs55348" path="res://assets/Woolly Lands FREE pack/Objects/Woods Objects.png" id="2_us3p0"]
 [ext_resource type="PackedScene" uid="uid://dh7ytx2cokvvo" path="res://scenes/Player.tscn" id="2_yolus"]
 [ext_resource type="PackedScene" uid="uid://bm0hchotuo8uo" path="res://scenes/House.tscn" id="3_6h7hh"]
 [ext_resource type="PackedScene" uid="uid://2ovhh234lja7" path="res://scenes/Tree.tscn" id="4_tree"]
+[ext_resource type="Resource" uid="uid://bjw8wdpjj4yps" path="res://Carrot.tres" id="5_j0rrn"]
 [ext_resource type="PackedScene" uid="uid://cfxg8cmytirw0" path="res://scenes/NotApple.tscn" id="5_notapple"]
 [ext_resource type="PackedScene" uid="uid://c8rv8o8ost3ti" path="res://scenes/Collect_Apples.tscn" id="6_collect"]
-[ext_resource type="Script" uid="uid://b5rj7brjyliil" path="res://scripts/DayNightCycle.cs" id="7_daynight"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk8p3"]
 texture = ExtResource("1_dk8p3")
@@ -129,7 +132,12 @@ size = Vector2(60, 42)
 size = Vector2(20, 36)
 
 [node name="MainFarm" type="Node2D" unique_id=1503612408]
-position = Vector2(19, 35)
+position = Vector2(19, 36)
+
+[node name="FarmPlot" parent="." unique_id=248779064 instance=ExtResource("2_jjv3p")]
+position = Vector2(1063, 146)
+CropScene = ExtResource("2_hiqg4")
+StartingCrop = ExtResource("5_j0rrn")
 
 [node name="Objects" type="Node2D" parent="." unique_id=90045710]
 
@@ -144,6 +152,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAIAAAABAAAAAAABAAUAAAACAAAAAAACAAU
 tile_set = SubResource("TileSet_hiqg4")
 
 [node name="Player" parent="." unique_id=607596513 instance=ExtResource("2_yolus")]
+z_index = 20
 position = Vector2(484, 267)
 scale = Vector2(1, 1)
 
@@ -177,4 +186,4 @@ position = Vector2(222, 329)
 position = Vector2(197, 130)
 
 [node name="DayNightCycl" type="CanvasModulate" parent="." unique_id=255116171]
-script = ExtResource("7_daynight")
+script = ExtResource("1_2lacs")
