@@ -42,7 +42,6 @@ animations = [{
 
 [node name="Crop" type="Node2D" unique_id=639549454]
 z_index = 10
-position = Vector2(-13, 0)
 script = ExtResource("1_3nlst")
 Data = ExtResource("2_3nlst")
 
