@@ -57,6 +57,7 @@ animations = [{
 size = Vector2(20, 34)
 
 [node name="Tree" type="Node2D" unique_id=1719463820]
+texture_filter = 1
 script = ExtResource("1_omb14")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1070894386]

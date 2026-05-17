@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dhofmy5dxhhoa" path="res://scenes/player_frames.tres" id="2_v6fml"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0vlq"]
-size = Vector2(31.5, 45.625)
+size = Vector2(30, 46)
 
 [node name="Player" type="CharacterBody2D" unique_id=607596513]
 z_index = 5
@@ -12,12 +12,15 @@ scale = Vector2(2, 2)
 script = ExtResource("1_v6fml")
 
 [node name="Human" type="AnimatedSprite2D" parent="." unique_id=1756942527]
+texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_v6fml")
-animation = &"walk_down"
+animation = &"walk_up"
+frame = 3
+frame_progress = 0.41686016
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=650420559]
-position = Vector2(-11.75, 7.3125)
+position = Vector2(1, 6)
 shape = SubResource("RectangleShape2D_p0vlq")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1771623877]

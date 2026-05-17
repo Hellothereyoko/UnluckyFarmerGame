@@ -51,9 +51,6 @@ func selling_crops():
 		inventory_array[i] = 0
 		damageless_bonus_array[i] = 0
 
-
 func damageless_penalty():
-	basket_inventory.apple.damageless_bonus /= penalty_amount
-	basket_inventory.orange.damageless_bonus /= penalty_amount
-	basket_inventory.delicious_fruit.damageless_bonus /= penalty_amount
-	basket_inventory.corn.damageless_bonus /= penalty_amount
+	for i in damageless_bonus_array:
+		damageless_bonus_array[i] /= 2
