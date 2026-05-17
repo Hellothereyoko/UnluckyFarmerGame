@@ -15,6 +15,11 @@ run/main_scene="uid://buaqdlydwxucj"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CollectablesConstants="*uid://baw20q40htr7m"
+GameData="*uid://pmrf8okjhs3q"
+
 [dotnet]
 
 project/assembly_name="UnluckyFarmer"

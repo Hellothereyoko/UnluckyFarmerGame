@@ -28,26 +28,33 @@ radius = 15.297058
 script = ExtResource("1_yept1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1701735451]
+scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_5niww")
 
-[node name="Move Trigger" type="Area2D" parent="AnimatedSprite2D" unique_id=957653522]
+[node name="Down Trigger" type="Area2D" parent="AnimatedSprite2D" unique_id=532193077]
 
-[node name="Left Trigger" type="CollisionShape2D" parent="AnimatedSprite2D/Move Trigger" unique_id=1213127220]
-position = Vector2(-130, 0)
+[node name="Down Trigger" type="CollisionShape2D" parent="AnimatedSprite2D/Down Trigger" unique_id=423153229]
+position = Vector2(0, 130)
+rotation = 1.5707964
 shape = SubResource("RectangleShape2D_7tu5i")
 
-[node name="Right Trigger" type="CollisionShape2D" parent="AnimatedSprite2D/Move Trigger" unique_id=736631838]
-position = Vector2(130, 0)
-shape = SubResource("RectangleShape2D_7tu5i")
+[node name="Up Trigger" type="Area2D" parent="AnimatedSprite2D" unique_id=813041074]
 
-[node name="Up Trigger" type="CollisionShape2D" parent="AnimatedSprite2D/Move Trigger" unique_id=75409753]
+[node name="Up Trigger" type="CollisionShape2D" parent="AnimatedSprite2D/Up Trigger" unique_id=250868096]
 position = Vector2(0, -130)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_7tu5i")
 
-[node name="Down Trigger" type="CollisionShape2D" parent="AnimatedSprite2D/Move Trigger" unique_id=1960938877]
-position = Vector2(0, 130)
-rotation = 1.5707964
+[node name="Right Trigger" type="Area2D" parent="AnimatedSprite2D" unique_id=753327339]
+
+[node name="Right Trigger" type="CollisionShape2D" parent="AnimatedSprite2D/Right Trigger" unique_id=1681268400]
+position = Vector2(130, 0)
+shape = SubResource("RectangleShape2D_7tu5i")
+
+[node name="Left Trigger" type="Area2D" parent="AnimatedSprite2D" unique_id=957653522]
+
+[node name="Left Trigger" type="CollisionShape2D" parent="AnimatedSprite2D/Left Trigger" unique_id=1213127220]
+position = Vector2(-130, 0)
 shape = SubResource("RectangleShape2D_7tu5i")
 
 [node name="Hit Colission" type="Area2D" parent="AnimatedSprite2D" unique_id=1162133801]
@@ -55,4 +62,9 @@ shape = SubResource("RectangleShape2D_7tu5i")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Hit Colission" unique_id=1506599777]
 shape = SubResource("CircleShape2D_5niww")
 
+[connection signal="body_entered" from="AnimatedSprite2D/Down Trigger" to="." method="_on_down_trigger_body_entered"]
+[connection signal="body_entered" from="AnimatedSprite2D/Up Trigger" to="." method="_on_up_trigger_body_entered"]
+[connection signal="body_entered" from="AnimatedSprite2D/Right Trigger" to="." method="_on_right_trigger_body_entered"]
+[connection signal="body_entered" from="AnimatedSprite2D/Left Trigger" to="." method="_on_left_trigger_body_entered"]
+[connection signal="body_entered" from="AnimatedSprite2D/Hit Colission" to="." method="_on_hit_colission_body_entered"]
 [connection signal="body_entered" from="AnimatedSprite2D/Hit Colission" to="." method="_on_area_2d_body_entered"]
