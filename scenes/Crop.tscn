@@ -1,26 +1,81 @@
 [gd_scene format=3 uid="uid://dt7tcxuocc87p"]
 
 [ext_resource type="Script" uid="uid://da12yatudsvve" path="res://scripts/Crop.cs" id="1_3nlst"]
-[ext_resource type="Texture2D" uid="uid://yaykb278mno1" path="res://assets/Tileset/Crops_Tileset.png" id="1_gxb1g"]
-[ext_resource type="Resource" uid="uid://bjw8wdpjj4yps" path="res://Carrot.tres" id="2_3nlst"]
+[ext_resource type="Script" uid="uid://cfwmxa0tv7cwj" path="res://scripts/CropData.cs" id="2_tgwq5"]
+[ext_resource type="Texture2D" uid="uid://b8yh43ec2v2rb" path="res://assets/Strawberry.png" id="3_tgwq5"]
+[ext_resource type="Texture2D" uid="uid://4fem6amwlajd" path="res://assets/pumpkin.png" id="4_tgwq5"]
+
+[sub_resource type="Resource" id="Resource_travc"]
+script = ExtResource("2_tgwq5")
+CropName = "carrot"
+GrowTime = 3.0
+metadata/_custom_type_script = "uid://cfwmxa0tv7cwj"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3nlst"]
-atlas = ExtResource("1_gxb1g")
-region = Rect2(0, 62, 32, 28)
+atlas = ExtResource("4_tgwq5")
+region = Rect2(6, 60, 35, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tgwq5"]
-atlas = ExtResource("1_gxb1g")
-region = Rect2(0, 90, 32, 28)
+atlas = ExtResource("4_tgwq5")
+region = Rect2(6, 90, 35, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_travc"]
-atlas = ExtResource("1_gxb1g")
-region = Rect2(0, 118, 32, 28)
+atlas = ExtResource("4_tgwq5")
+region = Rect2(6, 120, 35, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6s6xe"]
-atlas = ExtResource("1_gxb1g")
-region = Rect2(0, 146, 32, 28)
+atlas = ExtResource("4_tgwq5")
+region = Rect2(6, 150, 35, 30)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7w5hp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w5hp"]
+atlas = ExtResource("3_tgwq5")
+region = Rect2(22, 60, 35, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im1rq"]
+atlas = ExtResource("3_tgwq5")
+region = Rect2(22, 90, 35, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf6sn"]
+atlas = ExtResource("3_tgwq5")
+region = Rect2(22, 120, 35, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f6tm"]
+atlas = ExtResource("3_tgwq5")
+region = Rect2(22, 150, 35, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_voajn"]
+atlas = ExtResource("4_tgwq5")
+region = Rect2(38, 60, 38, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_246gg"]
+atlas = ExtResource("4_tgwq5")
+region = Rect2(38, 90, 38, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_763re"]
+atlas = ExtResource("4_tgwq5")
+region = Rect2(38, 120, 38, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx8rs"]
+atlas = ExtResource("4_tgwq5")
+region = Rect2(38, 150, 38, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb3vn"]
+atlas = ExtResource("3_tgwq5")
+region = Rect2(54, 60, 35, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcn57"]
+atlas = ExtResource("3_tgwq5")
+region = Rect2(54, 90, 35, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_id7ya"]
+atlas = ExtResource("3_tgwq5")
+region = Rect2(54, 120, 35, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qqad"]
+atlas = ExtResource("3_tgwq5")
+region = Rect2(54, 150, 35, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wyb5f"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -35,21 +90,73 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6s6xe")
 }],
-"loop": false,
+"loop": true,
 "name": &"carrot_growth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7w5hp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im1rq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf6sn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f6tm")
+}],
+"loop": true,
+"name": &"cauliflower_growth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_voajn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_246gg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_763re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx8rs")
+}],
+"loop": false,
+"name": &"pumpkin_growth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb3vn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcn57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_id7ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qqad")
+}],
+"loop": true,
+"name": &"strawberry_growth",
 "speed": 5.0
 }]
 
 [node name="Crop" type="Node2D" unique_id=639549454]
 z_index = 10
 script = ExtResource("1_3nlst")
-Data = ExtResource("2_3nlst")
+Data = SubResource("Resource_travc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1947635801]
 z_index = 2
 scale = Vector2(1.25, 1.25)
-sprite_frames = SubResource("SpriteFrames_7w5hp")
+sprite_frames = SubResource("SpriteFrames_wyb5f")
 animation = &"carrot_growth"
+frame_progress = 0.8669369
 
 [node name="Area2D" type="Area2D" parent="." unique_id=387071826]
 

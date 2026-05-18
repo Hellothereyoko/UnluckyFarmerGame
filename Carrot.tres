@@ -4,6 +4,5 @@
 
 [resource]
 script = ExtResource("1_ump5r")
-CropName = "carrot"
-GrowTime = 3.0
+CropName = "Carrot"
 metadata/_custom_type_script = "uid://cfwmxa0tv7cwj"

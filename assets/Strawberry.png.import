@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4fem6amwlajd"
-path="res://.godot/imported/pumpkin.png-169987bd4eafe0980e51c5f4ee993130.ctex"
+uid="uid://b8yh43ec2v2rb"
+path="res://.godot/imported/Strawberry.png-797785cc03f4e8cc2f89138424bed938.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pumpkin.png"
-dest_files=["res://.godot/imported/pumpkin.png-169987bd4eafe0980e51c5f4ee993130.ctex"]
+source_file="res://assets/Strawberry.png"
+dest_files=["res://.godot/imported/Strawberry.png-797785cc03f4e8cc2f89138424bed938.ctex"]
 
 [params]
 

@@ -17,7 +17,8 @@ public partial class Crop : Node2D
 	sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	timer = GetNode<Timer>("Timer");
 
-	sprite.Animation = "carrot_growth";
+	sprite.Animation =
+	Data.CropName.ToLower() + "_growth";
 
 	sprite.Frame = 0;
 
