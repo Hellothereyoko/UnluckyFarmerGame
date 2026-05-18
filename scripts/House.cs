@@ -4,7 +4,7 @@ public partial class House : StaticBody2D
 {
 	private bool playerNearby = false;
 	private Label interactionLabel;
-
+	private Node scriptNode;
 	public override void _Ready()
 	{
 		Area2D sleepArea = GetNode<Area2D>("SleepArea");
@@ -14,13 +14,17 @@ public partial class House : StaticBody2D
 
 		interactionLabel = GetNode<Label>("InteractionLabel");
 		interactionLabel.Visible = false;
+		scriptNode = GetNode("/root/GameData");
 	}
 
 	public override void _Process(double delta)
 	{
 		if (playerNearby && Input.IsActionJustPressed("interact"))
 		{
+			Node scriptNode = GetNode("/root/GameData");
+			scriptNode.Call("selling_crops");
 			GD.Print("Sleeping...");
+			GD.Print("Cash " + scriptNode.Get("cash"));
 		}
 	}
 

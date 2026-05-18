@@ -13,47 +13,43 @@ const penalty_amount : int = 2
 
 var inventory_array = [0,0,0,0,0]
 var damageless_bonus_array = inventory_array.duplicate()
+var inventory_bonuses = [
+	CollectablesConstants.apple.damageless_bonus,
+	CollectablesConstants.orange.damageless_bonus,
+	CollectablesConstants.delicious_fruit.damageless_bonus,
+	CollectablesConstants.corn.damageless_bonus,
+	CollectablesConstants.corn.damageless_bonus,
+]
 
 var basket_inventory = {
 	"apple" = {
-		"total" = inventory_array[0],
-		"damageless_bonus" = damageless_bonus_array[0]
+		"total" : func(): damageless_bonus_array[0] += CollectablesConstants.apple.sell_value,
+		"damageless_bonus" : func(): damageless_bonus_array[0] += 1,
 	},
 	"orange" = {
-		"total" = inventory_array[1],
-		"damageless_bonus" = damageless_bonus_array[1],
+		"total" : func(): damageless_bonus_array[1] += 1,
+		"damageless_bonus" : func(): damageless_bonus_array[1] += 1,
 	},
 	"delicious_fruit" = {
-		"total" = inventory_array[2],
-		"damageless_bonus" = damageless_bonus_array[2],
+		"total" : func(): damageless_bonus_array[2] += 1,
+		"damageless_bonus"  : func(): damageless_bonus_array[2] += 1,
 	},
 	"corn" = {
-		"total" = inventory_array[3],
-		"damageless_bonus" = damageless_bonus_array[3],
+		"total" : func(): damageless_bonus_array[4] += 1,
+		"damageless_bonus" : func(): damageless_bonus_array[4] += 1,
 	}
 }
 
 func selling_crops():
 	
-	var cash_gained_today = []
+	for i in range(inventory_array.size()):
+		cash += inventory_array[i]
+		cash += damageless_bonus_array[i] * inventory_bonuses[i]
 	
-	cash_gained_today.append(basket_inventory.apple.total * CollectablesConstants.apple.sell_value ) 
-	cash_gained_today.append(basket_inventory.apple.damageless_bonus * CollectablesConstants.apple.damageless_bonus )
-	
-	cash_gained_today.append(basket_inventory.orange.total * CollectablesConstants.orange.sell_value)
-	cash_gained_today.append(basket_inventory.orange.damageless_bonus * CollectablesConstants.orange.damageless_bonus)
-	
-	for income in cash_gained_today:
-		cash += cash_gained_today[income]
-
-##Restart everything
-	for i in inventory_array:
+	for i in range(inventory_array.size()):
 		inventory_array[i] = 0
 		damageless_bonus_array[i] = 0
 
-
 func damageless_penalty():
-	basket_inventory.apple.damageless_bonus /= penalty_amount
-	basket_inventory.orange.damageless_bonus /= penalty_amount
-	basket_inventory.delicious_fruit.damageless_bonus /= penalty_amount
-	basket_inventory.corn.damageless_bonus /= penalty_amount
+	for i in range(damageless_bonus_array.size()):
+		damageless_bonus_array[i] /= 2
