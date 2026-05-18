@@ -38,7 +38,17 @@ public partial class FarmManager : TileMapLayer
 
 	public override void _Process(double delta)
 	{
-		// Tool switching
+		
+		
+		// Temporary tool switching using keyboard keys
+		// 1 = Hoe
+		// 2 = Seeds
+		// 3 = Empty hands (harvest)
+		// 4 = Carrot selected
+		// 5 = pumpkin selected
+		// 6 = strawberry selected
+		// 7 = Cauliflower selected
+		
 		if (Input.IsKeyPressed(Key.Key1))
 		{
 			ToolManager.CurrentTool = ToolType.Hoe;
@@ -140,8 +150,7 @@ public partial class FarmManager : TileMapLayer
 
 		Crop crop = CropScene.Instantiate<Crop>();
 
-		// IMPORTANT:
-		// Set crop data BEFORE AddChild()
+		
 		crop.Data = StartingCrop;
 
 		cropContainer.AddChild(crop);
