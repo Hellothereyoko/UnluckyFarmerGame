@@ -29,7 +29,8 @@ func _on_hit_colission_body_entered(body):
 	if body.name == "Player":
 		print("Got Hit, lose half your stuff")
 		GameData.damageless_penalty()
-		print(GameData.basket_inventory.apple.damageless_bonus)
+		print(GameData.damageless_bonus_array)
+
 		queue_free()
 
 func _on_down_trigger_body_entered(body):
