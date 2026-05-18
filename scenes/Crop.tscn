@@ -47,10 +47,9 @@ Data = ExtResource("2_3nlst")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1947635801]
 z_index = 2
+scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_7w5hp")
 animation = &"carrot_growth"
-frame = 3
-frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=387071826]
 

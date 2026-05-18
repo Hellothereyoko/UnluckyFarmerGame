@@ -1,17 +1,117 @@
 [gd_scene format=3 uid="uid://bmofanuq4gapc"]
 
-[ext_resource type="Script" uid="uid://bn3c70q3r5dlq" path="res://scripts/FarmPlot.cs" id="1_bffsj"]
 [ext_resource type="Texture2D" uid="uid://doju2oun8ytbj" path="res://assets/dirt (1).png" id="2_is2ei"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_40myj"]
+script/source = "using Godot;
+
+public partial class FarmPlot : StaticBody2D
+{
+	[Export]
+	public PackedScene CropScene;
+
+	[Export]
+	public CropData StartingCrop;
+	
+	[Export]
+	public ToolLevel RequiredHoeLevel = ToolLevel.Basic;
+
+	private bool playerNearby = false;
+
+	private Crop plantedCrop = null;
+	private bool tilled = false;
+
+	public override void _Ready()
+	{
+		Area2D area = GetNode<Area2D>(\"Area2D\");
+	//	GetNode<Sprite2D>(\"Sprite2D\").Visible = false;
+
+		area.BodyEntered += OnBodyEntered;
+		area.BodyExited += OnBodyExited;
+	}
+
+	public override void _Process(double delta)
+	{
+		if (!playerNearby)
+			return;
+
+		if (Input.IsActionJustPressed(\"interact\"))
+		{
+			if (!tilled)
+			{
+				if (ToolManager.HoeLevel >= RequiredHoeLevel)
+				{
+					TillSoil();
+				}
+				else
+				{
+					GD.Print(\"Hoe level too low!\");
+				}
+			}
+			else if (plantedCrop == null)
+			{
+				PlantCrop();
+			}
+				else
+			{
+				plantedCrop.Harvest();
+
+				plantedCrop = null;
+		}
+			
+		}
+	}
+
+	private void PlantCrop()
+	{
+		Crop crop = CropScene.Instantiate<Crop>();
+
+		AddChild(crop);
+
+		 crop.Position = new Vector2(-12, -6);
+
+		crop.Data = StartingCrop;
+
+		plantedCrop = crop;
+
+		GD.Print(\"Crop planted!\");
+	}
+	
+	
+	private void TillSoil()
+	{
+		tilled = true;
+
+		GetNode<Sprite2D>(\"Sprite2D\").Visible = true;
+
+		GD.Print(\"Soil tilled!\");
+	}
+
+	private void OnBodyEntered(Node body)
+	{
+		if (body is Player)
+			playerNearby = true;
+	}
+
+	private void OnBodyExited(Node body)
+	{
+		if (body is Player)
+			playerNearby = false;
+	}
+	
+}
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tao5"]
 
 [node name="FarmPlot" type="StaticBody2D" unique_id=248779064]
 z_index = 1
-script = ExtResource("1_bffsj")
+script = SubResource("CSharpScript_40myj")
+RequiredHoeLevel = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1450149467]
 z_index = 1
-scale = Vector2(2, 2)
+scale = Vector2(1.25, 1.25)
 texture = ExtResource("2_is2ei")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1573343731]
