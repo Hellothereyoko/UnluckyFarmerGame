@@ -35,48 +35,99 @@ public partial class InventoryUI : CanvasLayer
 	}
 
 	private void Refresh()
+{
+	GD.Print("Refresh called");
+
+	foreach (Node child in slotGrid.GetChildren())
+		child.QueueFree();
+
+	var itemEntries = new System.Collections.Generic.List<(string name, int qty)>();
+
+	if (InventoryManager.Instance != null)
 	{
-		GD.Print("Refresh called");
+		foreach (var entry in InventoryManager.Instance.Items)
+			itemEntries.Add((entry.Key, entry.Value));
+	}
+	else
+	{
+		GD.PrintErr("InventoryManager.Instance is null!");
+	}
 
-		foreach (Node child in slotGrid.GetChildren())
-			child.QueueFree();
+	for (int i = 0; i < TotalSlots; i++)
+	{
+		var slot = new PanelContainer();
+		slot.CustomMinimumSize = new Vector2(120, 60);
 
-		var itemEntries = new System.Collections.Generic.List<(string name, int qty)>();
+		var vbox = new VBoxContainer();
 
-		if (InventoryManager.Instance != null)
+		var label = new Label();
+		label.HorizontalAlignment = HorizontalAlignment.Center;
+
+		if (HotkeyLabels[i] != null)
 		{
-			foreach (var entry in InventoryManager.Instance.Items)
-				itemEntries.Add((entry.Key, entry.Value));
+			label.Text = HotkeyLabels[i];
+			vbox.AddChild(label);
 		}
 		else
 		{
-			GD.PrintErr("InventoryManager.Instance is null! Make sure it's in the scene tree.");
-		}
-
-		for (int i = 0; i < TotalSlots; i++)
-		{
-			var slot = new PanelContainer();
-			slot.CustomMinimumSize = new Vector2(120, 50);
-
-			var label = new Label();
-			label.HorizontalAlignment = HorizontalAlignment.Center;
-			label.VerticalAlignment = VerticalAlignment.Center;
-
-			if (HotkeyLabels[i] != null)
+			int itemIndex = i - 7;
+			if (itemIndex >= 0 && itemIndex < itemEntries.Count)
 			{
-				label.Text = HotkeyLabels[i];
+				var (itemName, itemQty) = itemEntries[itemIndex];
+				label.Text = $"{itemName}  x{itemQty}";
+				vbox.AddChild(label);
+
+				// Assign button
+				var btn = new Button();
+				btn.Text = "Assign";
+				string capturedName = itemName;
+				btn.Pressed += () => ShowHotbarPicker(capturedName);
+				vbox.AddChild(btn);
 			}
 			else
 			{
-				int itemIndex = i - 7;
-				if (itemIndex >= 0 && itemIndex < itemEntries.Count)
-					label.Text = $"{itemEntries[itemIndex].name}  x{itemEntries[itemIndex].qty}";
-				else
-					label.Text = "(empty)";
+				label.Text = "(empty)";
+				vbox.AddChild(label);
 			}
-
-			slot.AddChild(label);
-			slotGrid.AddChild(slot);
 		}
+
+		slot.AddChild(vbox);
+		slotGrid.AddChild(slot);
 	}
+}
+
+private void ShowHotbarPicker(string itemName)
+{
+	GD.Print($"Assigning {itemName} to hotbar...");
+
+	// Remove existing picker if open
+	var existing = GetNodeOrNull<Window>("HotbarPicker");
+	existing?.QueueFree();
+
+	var popup = new Window();
+	popup.Name = "HotbarPicker";
+	popup.Title = $"Assign '{itemName}' to slot:";
+	popup.Size = new Vector2I(200, 280);
+	AddChild(popup);
+	popup.PopupCentered();
+
+	var vbox = new VBoxContainer();
+	popup.AddChild(vbox);
+
+	for (int s = 0; s < HotbarManager.SlotCount; s++)
+	{
+		int capturedSlot = s;
+		var btn = new Button();
+		string current = HotbarManager.Instance.Slots[s];
+		btn.Text = current != null ? $"Slot {s + 1}: {current}" : $"Slot {s + 1}: (empty)";
+		btn.Pressed += () =>
+		{
+			HotbarManager.Instance.Assign(capturedSlot, itemName);
+			popup.QueueFree();
+			// Refresh hotbar display
+			GetTree().Root.GetNodeOrNull<HotbarUI>("HotbarUI")?.Refresh();
+		};
+		vbox.AddChild(btn);
+	}
+}
 }
