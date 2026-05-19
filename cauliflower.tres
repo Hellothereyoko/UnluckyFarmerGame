@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_2e84i")
+CropName = "Cauliflower"
 metadata/_custom_type_script = "uid://cfwmxa0tv7cwj"

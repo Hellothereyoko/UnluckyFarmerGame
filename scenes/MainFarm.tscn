@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://cfxg8cmytirw0" path="res://scenes/NotApple.tscn" id="5_notapple"]
 [ext_resource type="PackedScene" uid="uid://c8rv8o8ost3ti" path="res://scenes/Collect_Apples.tscn" id="6_collect"]
 [ext_resource type="Texture2D" uid="uid://dsq6oxrwhfcoi" path="res://assets/darkdirt.png" id="7_vwf1t"]
+[ext_resource type="Resource" uid="uid://cj7scf1spctkj" path="res://Pumpkin.tres" id="8_7vcgj"]
+[ext_resource type="Resource" uid="uid://bb0e2tje22ex4" path="res://Strawberry.tres" id="9_ek620"]
+[ext_resource type="Resource" uid="uid://dbphadcgi3n7q" path="res://Cauliflower.tres" id="10_2j08t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk8p3"]
 texture = ExtResource("1_dk8p3")
@@ -181,6 +184,10 @@ tile_set = SubResource("TileSet_p0yrl")
 script = ExtResource("4_hiqg4")
 CropScene = ExtResource("2_hiqg4")
 StartingCrop = ExtResource("5_j0rrn")
+CarrotCrop = ExtResource("5_j0rrn")
+PumpkinCrop = ExtResource("8_7vcgj")
+StrawberryCrop = ExtResource("9_ek620")
+CauliflowerCrop = ExtResource("10_2j08t")
 
 [node name="CropContainer" type="Node2D" parent="." unique_id=1008156176]
 

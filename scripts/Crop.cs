@@ -13,26 +13,66 @@ public partial class Crop : Node2D
 	private bool grown = false;
 
 	public override void _Ready()
-{
-	sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-	timer = GetNode<Timer>("Timer");
+	{
+		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		timer = GetNode<Timer>("Timer");
 
-	sprite.Animation = "carrot_growth";
+		// Set animation from crop name
+		sprite.Animation =
+			Data.CropName.ToLower() + "_growth";
 
-	sprite.Frame = 0;
+		// -----------------------------
+		// Crop scaling
+		// -----------------------------
+		if (Data.CropName == "Pumpkin")
+		{
+			sprite.Scale = new Vector2(1.5f, 1.5f);
+		}
+		else if (Data.CropName == "Cauliflower")
+		{
+			sprite.Scale = new Vector2(1.4f, 1.4f);
+		}
+		else if (Data.CropName == "Strawberry")
+		{
+			sprite.Scale = new Vector2(1.2f, 1.2f);
+		}
+		else
+		{
+			sprite.Scale = Vector2.One;
+		}
 
-	
+		// -----------------------------
+		// Crop visual offsets
+		// -----------------------------
+		if (Data.CropName == "Pumpkin")
+		{
+			sprite.Position = new Vector2(-2, -2);
+		}
+		else if (Data.CropName == "Cauliflower")
+		{
+			sprite.Position = new Vector2(-2, 2);
+		}
+		else if (Data.CropName == "Carrot")
+		{
+			sprite.Position = new Vector2(0, 0);
+		}
+		else if (Data.CropName == "Strawberry")
+		{
+			sprite.Position = new Vector2(-1, 1);
+		}
+		else
+		{
+			sprite.Position = Vector2.Zero;
+		}
 
-	sprite.Visible = true;
+		sprite.Frame = 0;
 
-	timer.WaitTime = Data.GrowTime;
+		timer.WaitTime = Data.GrowTime;
 
-	timer.Timeout += AdvanceGrowth;
+		timer.Timeout += AdvanceGrowth;
 
-	timer.Start();
-
-	GD.Print("Crop ready!");
-}
+		timer.Start();
+	}
 
 	private void AdvanceGrowth()
 	{
@@ -40,15 +80,11 @@ public partial class Crop : Node2D
 
 		sprite.Frame = Mathf.Min(growthStage, 3);
 
-		GD.Print("Growth Stage: " + growthStage);
-
 		if (growthStage >= 3)
 		{
 			grown = true;
 
 			timer.Stop();
-
-			GD.Print(Data.CropName + " fully grown!");
 		}
 	}
 
@@ -57,13 +93,6 @@ public partial class Crop : Node2D
 		if (!grown)
 			return;
 
-		AddToInventory();
-
 		QueueFree();
-	}
-
-	private void AddToInventory()
-	{
-		GD.Print(Data.CropName + " added to inventory");
 	}
 }

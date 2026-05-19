@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4fem6amwlajd"
-path="res://.godot/imported/pumpkin.png-169987bd4eafe0980e51c5f4ee993130.ctex"
+uid="uid://bwqhhbwks5824"
+path="res://.godot/imported/Crops_Tileset (1).png-51fd04f16413bca69d1f6e5c72a1c0a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pumpkin.png"
-dest_files=["res://.godot/imported/pumpkin.png-169987bd4eafe0980e51c5f4ee993130.ctex"]
+source_file="res://assets/Crops_Tileset (1).png"
+dest_files=["res://.godot/imported/Crops_Tileset (1).png-51fd04f16413bca69d1f6e5c72a1c0a7.ctex"]
 
 [params]
 
