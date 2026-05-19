@@ -25,7 +25,7 @@ public partial class InventoryManager : Node
 		else
 			Items[itemName] = quantity;
 
-		GD.Print($"{itemName} x{quantity} added to inventory");
+		GD.Print($"{itemName} x{quantity} added to inventory"); //DBG STATEMENT
 	}
 
 

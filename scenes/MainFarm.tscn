@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://d3pmqehloikvq" path="res://cauliflower.tres" id="10_13jdd"]
 [ext_resource type="Script" uid="uid://cqqj8tgnkphaw" path="res://scripts/InventoryUI.cs" id="14_j0rrn"]
 [ext_resource type="Script" uid="uid://b5rj7brjyliil" path="res://scripts/DayNightCycle.cs" id="16_ek620"]
+[ext_resource type="Script" uid="uid://c5thfd57rgw4i" path="res://HotbarUI.cs" id="15_vjv8i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk8p3"]
 texture = ExtResource("1_dk8p3")
@@ -240,18 +241,41 @@ position = Vector2(183, 418)
 [node name="DayNightCycl" type="CanvasModulate" parent="." unique_id=255116171]
 script = ExtResource("16_ek620")
 
-[node name="InventoryCanvas" type="CanvasLayer" parent="DayNightCycl" unique_id=1687699913]
+[node name="HotbarUI" type="CanvasLayer" parent="." unique_id=481355974]
+layer = 2
+script = ExtResource("15_vjv8i")
+
+[node name="HotbarPanel" type="CenterContainer" parent="HotbarUI" unique_id=278833357]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HotbarContainer" type="HBoxContainer" parent="HotbarUI/HotbarPanel" unique_id=1454301522]
+layout_mode = 2
+
+[node name="InventoryCanvas" type="CanvasLayer" parent="." unique_id=1687699913]
 script = ExtResource("14_j0rrn")
 
-[node name="InventoryPanel" type="Control" parent="DayNightCycl/InventoryCanvas" unique_id=1927815188]
+[node name="InventoryPanel" type="Control" parent="InventoryCanvas" unique_id=1927815188]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 337.0
+offset_top = 245.0
+offset_right = 43.0
+offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InventoryContainer" type="GridContainer" parent="DayNightCycl/InventoryCanvas/InventoryPanel" unique_id=1193667757]
+[node name="InventoryContainer" type="GridContainer" parent="InventoryCanvas/InventoryPanel" unique_id=1193667757]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
