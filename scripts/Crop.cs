@@ -21,56 +21,13 @@ public partial class Crop : Node2D
 		sprite.Animation =
 			Data.CropName.ToLower() + "_growth";
 
-		// -----------------------------
-		// Crop scaling
-		// -----------------------------
-		if (Data.CropName == "Pumpkin")
-		{
-			sprite.Scale = new Vector2(1.5f, 1.5f);
-		}
-		else if (Data.CropName == "Cauliflower")
-		{
-			sprite.Scale = new Vector2(1.4f, 1.4f);
-		}
-		else if (Data.CropName == "Strawberry")
-		{
-			sprite.Scale = new Vector2(1.2f, 1.2f);
-		}
-		else
-		{
-			sprite.Scale = Vector2.One;
-		}
-
-		// -----------------------------
-		// Crop visual offsets
-		// -----------------------------
-		if (Data.CropName == "Pumpkin")
-		{
-			sprite.Position = new Vector2(-2, -2);
-		}
-		else if (Data.CropName == "Cauliflower")
-		{
-			sprite.Position = new Vector2(-2, 2);
-		}
-		else if (Data.CropName == "Carrot")
-		{
-			sprite.Position = new Vector2(0, 0);
-		}
-		else if (Data.CropName == "Strawberry")
-		{
-			sprite.Position = new Vector2(-1, 1);
-		}
-		else
-		{
-			sprite.Position = Vector2.Zero;
-		}
+		sprite.Scale = Data.SpriteScale;
+		sprite.Position = Data.SpriteOffset;
 
 		sprite.Frame = 0;
 
 		timer.WaitTime = Data.GrowTime;
-
 		timer.Timeout += AdvanceGrowth;
-
 		timer.Start();
 	}
 
