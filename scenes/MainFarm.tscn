@@ -13,9 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cfxg8cmytirw0" path="res://scenes/NotApple.tscn" id="5_notapple"]
 [ext_resource type="PackedScene" uid="uid://c8rv8o8ost3ti" path="res://scenes/Collect_Apples.tscn" id="6_collect"]
 [ext_resource type="Texture2D" uid="uid://dsq6oxrwhfcoi" path="res://assets/darkdirt.png" id="7_vwf1t"]
-[ext_resource type="Resource" uid="uid://dflvpc1dpbytk" path="res://Pumpkin.tres" id="8_7vcgj"]
-[ext_resource type="Resource" path="res://Strawberry.tres" id="9_ek620"]
-[ext_resource type="Resource" path="res://Cauliflower.tres" id="10_2j08t"]
+[ext_resource type="Script" uid="uid://cqqj8tgnkphaw" path="res://scripts/InventoryUI.cs" id="14_j0rrn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk8p3"]
 texture = ExtResource("1_dk8p3")
@@ -184,10 +182,6 @@ tile_set = SubResource("TileSet_p0yrl")
 script = ExtResource("4_hiqg4")
 CropScene = ExtResource("2_hiqg4")
 StartingCrop = ExtResource("5_j0rrn")
-CarrotCrop = ExtResource("5_j0rrn")
-PumpkinCrop = ExtResource("8_7vcgj")
-StrawberryCrop = ExtResource("9_ek620")
-CauliflowerCrop = ExtResource("10_2j08t")
 
 [node name="CropContainer" type="Node2D" parent="." unique_id=1008156176]
 
@@ -227,3 +221,20 @@ position = Vector2(197, 130)
 
 [node name="DayNightCycl" type="CanvasModulate" parent="." unique_id=255116171]
 script = ExtResource("1_2lacs")
+
+[node name="InventoryCanvas" type="CanvasLayer" parent="DayNightCycl" unique_id=1687699913]
+script = ExtResource("14_j0rrn")
+
+[node name="InventoryPanel" type="Control" parent="DayNightCycl/InventoryCanvas" unique_id=1927815188]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InventoryContainer" type="GridContainer" parent="DayNightCycl/InventoryCanvas/InventoryPanel" unique_id=1193667757]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 4
