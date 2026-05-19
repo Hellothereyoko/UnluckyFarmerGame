@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfxg8cmytirw0"]
 
 [ext_resource type="Texture2D" uid="uid://gthuqarjjyo4" path="res://assets/Custom Sprites/TreeFruits.png" id="1_0o4ko"]
-[ext_resource type="Script" uid="uid://qncsotgujqc5" path="res://scenes/NotApple_script.gd" id="1_yept1"]
+[ext_resource type="Script" uid="uid://qncsotgujqc5" path="res://NotApple_script.gd" id="1_yept1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yept1"]
 atlas = ExtResource("1_0o4ko")
@@ -19,7 +19,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7tu5i"]
-size = Vector2(273, 20)
+size = Vector2(121.333336, 7.333333)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5niww"]
 radius = 15.297058
@@ -34,27 +34,28 @@ sprite_frames = SubResource("SpriteFrames_5niww")
 [node name="Down Trigger" type="Area2D" parent="AnimatedSprite2D" unique_id=532193077]
 
 [node name="Down Trigger" type="CollisionShape2D" parent="AnimatedSprite2D/Down Trigger" unique_id=423153229]
-position = Vector2(0, 130)
+position = Vector2(0, 88)
 rotation = 1.5707964
+scale = Vector2(1.5, 1)
 shape = SubResource("RectangleShape2D_7tu5i")
 
 [node name="Up Trigger" type="Area2D" parent="AnimatedSprite2D" unique_id=813041074]
 
 [node name="Up Trigger" type="CollisionShape2D" parent="AnimatedSprite2D/Up Trigger" unique_id=250868096]
-position = Vector2(0, -130)
+position = Vector2(0, -57)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_7tu5i")
 
 [node name="Right Trigger" type="Area2D" parent="AnimatedSprite2D" unique_id=753327339]
 
 [node name="Right Trigger" type="CollisionShape2D" parent="AnimatedSprite2D/Right Trigger" unique_id=1681268400]
-position = Vector2(130, 0)
+position = Vector2(57, 0)
 shape = SubResource("RectangleShape2D_7tu5i")
 
 [node name="Left Trigger" type="Area2D" parent="AnimatedSprite2D" unique_id=957653522]
 
 [node name="Left Trigger" type="CollisionShape2D" parent="AnimatedSprite2D/Left Trigger" unique_id=1213127220]
-position = Vector2(-130, 0)
+position = Vector2(-57, 0)
 shape = SubResource("RectangleShape2D_7tu5i")
 
 [node name="Hit Colission" type="Area2D" parent="AnimatedSprite2D" unique_id=1162133801]

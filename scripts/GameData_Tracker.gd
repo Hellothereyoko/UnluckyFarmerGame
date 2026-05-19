@@ -1,6 +1,10 @@
 extends Node
 
-##I have no clue if they should be seperate
+## For a C# script needing to refer to this script:
+## Declare this --> private Node scriptNode;
+## Set the node --> Node scriptNode = GetNode("/root/GameData");
+## Use Get, Set, and Call to adjust the specific parameters
+## --> scriptNode.Call("selling_crops");
 
 ##This tracks all the money data
 var cash : int = 0
@@ -9,47 +13,69 @@ var debt : int = 1000
 ##This tracks all the produce collected during the day
 ##When the player collects fruit, both total and fresh increases.
 ##When the player gets hit, the damageless_bonus var gets halved, resulting in less bonus money
-const penalty_amount : int = 2
-
-var inventory_array = [0,0,0,0,0]
-var damageless_bonus_array = inventory_array.duplicate()
-var inventory_bonuses = [
-	CollectablesConstants.apple.damageless_bonus,
-	CollectablesConstants.orange.damageless_bonus,
-	CollectablesConstants.delicious_fruit.damageless_bonus,
-	CollectablesConstants.corn.damageless_bonus,
-	CollectablesConstants.corn.damageless_bonus,
-]
+const penalty_amount : int = 3
 
 var basket_inventory = {
 	"apple" = {
-		"total" : func(): damageless_bonus_array[0] += CollectablesConstants.apple.sell_value,
-		"damageless_bonus" : func(): damageless_bonus_array[0] += 1,
+		"inventory" = 0,
+		"damageless_bonus" = 0,
+		"sell_value" = 5,
+		"bonus_value" = 3,
+		"crop_count" = 3,
 	},
 	"orange" = {
-		"total" : func(): damageless_bonus_array[1] += 1,
-		"damageless_bonus" : func(): damageless_bonus_array[1] += 1,
+		"inventory" = 0,
+		"damageless_bonus" = 0,
+		"sell_value" = 10,
+		"bonus_value" = 7,
+		"spawn_chance" = 10,
+		"spawnchance_" = true,
 	},
 	"delicious_fruit" = {
-		"total" : func(): damageless_bonus_array[2] += 1,
-		"damageless_bonus"  : func(): damageless_bonus_array[2] += 1,
+		"inventory" = 0,
+		"damageless_bonus" = 0,
+		"sell_value" = 5,
+		"bonus_value" = 3,
 	},
 	"corn" = {
-		"total" : func(): damageless_bonus_array[4] += 1,
-		"damageless_bonus" : func(): damageless_bonus_array[4] += 1,
+		"inventory" = 0,
+		"damageless_bonus" = 0,
+		"sell_value" = 10,
+		"bonus_value" = 5,
+	},
+	"cherry" = {
+		"inventory" = 0,
+		"damageless_bonus" = 0,
+		"sell_value" = 7,
+		"bonus_value" = 5,
+	},
+	"crop_1" = {
+		"inventory" = 0,
+		"damageless_bonus" = 0,
+		"sell_value" = 5,
+		"bonus_value" = 5,
+	},
+	"crop_2" = {
+		"inventory" = 0,
+		"damageless_bonus" = 0,
+		"sell_value" = 5,
+		"bonus_value" = 5,
+	},
+	"crop_3" = {
+		"inventory" = 0,
+		"damageless_bonus" = 0,
+		"sell_value" = 5,
+		"bonus_value" = 5,
 	}
 }
 
 func selling_crops():
-	
-	for i in range(inventory_array.size()):
-		cash += inventory_array[i]
-		cash += damageless_bonus_array[i] * inventory_bonuses[i]
-	
-	for i in range(inventory_array.size()):
-		inventory_array[i] = 0
-		damageless_bonus_array[i] = 0
+	for item in basket_inventory.keys():
+		cash  += basket_inventory[item]["inventory"] * basket_inventory[item]["sell_value"]
+		cash  += basket_inventory[item]["damageless_bonus"] * basket_inventory[item]["bonus_value"]
+		basket_inventory[item]["inventory"] = 0
+		basket_inventory[item]["damageless_bonus"] = 0
 
 func damageless_penalty():
-	for i in range(damageless_bonus_array.size()):
-		damageless_bonus_array[i] /= 2
+	for item in basket_inventory.keys():
+		basket_inventory[item]["damageless_bonus"]  /= penalty_amount

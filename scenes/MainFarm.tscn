@@ -185,39 +185,48 @@ StartingCrop = ExtResource("5_j0rrn")
 
 [node name="CropContainer" type="Node2D" parent="." unique_id=1008156176]
 
-[node name="Player" parent="." unique_id=607596513 instance=ExtResource("2_yolus")]
-z_index = 20
-position = Vector2(484, 267)
-scale = Vector2(1, 1)
-
 [node name="House" parent="." unique_id=1702688911 instance=ExtResource("3_6h7hh")]
 position = Vector2(522, 4)
-
-[node name="Tree" parent="." unique_id=1719463820 instance=ExtResource("4_tree")]
-position = Vector2(147, 226)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Tree" unique_id=13879090]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/StaticBody2D" unique_id=218743544]
-position = Vector2(-10, 23)
-shape = SubResource("RectangleShape2D_j8ajv")
-debug_color = Color(0.81684977, 0.38956097, 0.317401, 0.41960785)
-
-[node name="Area2D" type="Area2D" parent="Tree" unique_id=1406228698]
-disable_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/Area2D" unique_id=1912080399]
-position = Vector2(0, 21)
-shape = SubResource("RectangleShape2D_us3p0")
-
-[node name="Tree2" parent="." unique_id=1234474324 instance=ExtResource("4_tree")]
-position = Vector2(183, 418)
 
 [node name="DeliciousFruit(bad)" parent="." unique_id=802498872 instance=ExtResource("5_notapple")]
 position = Vector2(222, 329)
 
 [node name="Apple" parent="." unique_id=87394357 instance=ExtResource("6_collect")]
 position = Vector2(197, 130)
+
+[node name="LayerOrdering" type="Node2D" parent="." unique_id=967600371]
+z_as_relative = false
+y_sort_enabled = true
+
+[node name="Player" parent="LayerOrdering" unique_id=607596513 instance=ExtResource("2_yolus")]
+position = Vector2(484, 267)
+scale = Vector2(1, 1)
+
+[node name="Tree3" parent="LayerOrdering" unique_id=1719463820 instance=ExtResource("4_tree")]
+z_as_relative = true
+position = Vector2(657, 416)
+
+[node name="Tree" parent="LayerOrdering" unique_id=1474818266 instance=ExtResource("4_tree")]
+z_as_relative = true
+position = Vector2(147, 226)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LayerOrdering/Tree" unique_id=13879090]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerOrdering/Tree/StaticBody2D" unique_id=218743544]
+position = Vector2(-21, 27)
+shape = SubResource("RectangleShape2D_j8ajv")
+debug_color = Color(0.81684977, 0.38956097, 0.317401, 0.41960785)
+
+[node name="Area2D" type="Area2D" parent="LayerOrdering/Tree" unique_id=1406228698]
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerOrdering/Tree/Area2D" unique_id=1912080399]
+position = Vector2(55, 26)
+shape = SubResource("RectangleShape2D_us3p0")
+
+[node name="Tree2" parent="LayerOrdering" unique_id=1234474324 instance=ExtResource("4_tree")]
+z_as_relative = true
+position = Vector2(183, 418)
 
 [node name="DayNightCycl" type="CanvasModulate" parent="." unique_id=255116171]
 script = ExtResource("1_2lacs")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2ovhh234lja7"]
 
 [ext_resource type="Texture2D" uid="uid://cagjdcyjk5s13" path="res://assets/Woolly Lands FREE pack/Trees/1 Tree Hit Sheets.png" id="1_2cic4"]
-[ext_resource type="Script" uid="uid://cylm6nqludx3l" path="res://scenes/Spawn_Apples_On_Tree.gd" id="1_omb14"]
+[ext_resource type="Script" uid="uid://cylm6nqludx3l" path="res://Spawn_Apples_On_Tree.gd" id="1_omb14"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omb14"]
 atlas = ExtResource("1_2cic4")
@@ -54,18 +54,24 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ego7h"]
-size = Vector2(20, 34)
+size = Vector2(10, 16)
 
 [node name="Tree" type="Node2D" unique_id=1719463820]
+z_as_relative = false
 texture_filter = 1
 script = ExtResource("1_omb14")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1070894386]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_uuee5")
+frame = 5
+frame_progress = 0.15968353
+offset = Vector2(0, -14.405)
 
-[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=939893713]
+[node name="StaticBody2D" type="StaticBody2D" parent="AnimatedSprite2D" unique_id=587884046]
+scale = Vector2(0.5, 0.5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=1606505040]
-position = Vector2(0, 17)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/StaticBody2D" unique_id=1606505040]
+position = Vector2(0, 16)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_ego7h")

@@ -4,20 +4,20 @@ var initiate_trap = false
 var direction = -1
 var despawn_timer = 0
 
-const movement_speed = 10
+const movement_speed = 350
 
 func _process(delta):
 	
 	if initiate_trap:
 		match direction:
 			0:
-				position.x -= movement_speed
+				position.x -= movement_speed * delta
 			1:
-				position.x += movement_speed
+				position.x += movement_speed * delta
 			2: 
-				position.y -= movement_speed
+				position.y -= movement_speed * delta
 			3:
-				position.y += movement_speed
+				position.y += movement_speed * delta
 		
 		if despawn_timer > 400:
 			queue_free()
@@ -29,8 +29,7 @@ func _on_hit_colission_body_entered(body):
 	if body.name == "Player":
 		print("Got Hit, lose half your stuff")
 		GameData.damageless_penalty()
-		print(GameData.damageless_bonus_array)
-
+		print(GameData.basket_inventory.apple.damageless_bonus)
 		queue_free()
 
 func _on_down_trigger_body_entered(body):
