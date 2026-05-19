@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b8dia781vxjh6"]
+
+[ext_resource type="Texture2D" uid="uid://gthuqarjjyo4" path="res://assets/Custom Sprites/TreeFruits.png" id="1_fxgmd"]
+[ext_resource type="Script" uid="uid://cg6rw4iaweap2" path="res://scripts/orange.gd" id="1_jrtoq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrtoq"]
+atlas = ExtResource("1_fxgmd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wpr8x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrtoq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wpr8x"]
+radius = 16.124516
+
+[node name="Orange" type="Node2D" unique_id=1417175682]
+scale = Vector2(0.65, 0.65)
+script = ExtResource("1_jrtoq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1665983399]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_wpr8x")
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=676090978]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=476840338]
+shape = SubResource("CircleShape2D_wpr8x")
+
+[connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
