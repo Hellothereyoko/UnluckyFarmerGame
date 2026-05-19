@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="CropData" format=3 uid="uid://cj7scf1spctkj"]
+[gd_resource type="Resource" script_class="CropData" format=3 uid="uid://dflvpc1dpbytk"]
 
 [ext_resource type="Script" uid="uid://cfwmxa0tv7cwj" path="res://scripts/CropData.cs" id="1_eghpu"]
 
 [resource]
 script = ExtResource("1_eghpu")
 CropName = "Pumpkin"
+SpriteScale = Vector2(1.5, 1.5)
+SpriteOffset = Vector2(-2, -2)
 metadata/_custom_type_script = "uid://cfwmxa0tv7cwj"

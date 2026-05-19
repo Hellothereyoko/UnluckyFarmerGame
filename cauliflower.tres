@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="CropData" format=3 uid="uid://dbphadcgi3n7q"]
+[gd_resource type="Resource" script_class="CropData" format=3 uid="uid://d3pmqehloikvq"]
 
 [ext_resource type="Script" uid="uid://cfwmxa0tv7cwj" path="res://scripts/CropData.cs" id="1_2e84i"]
 
 [resource]
 script = ExtResource("1_2e84i")
 CropName = "Cauliflower"
+SpriteScale = Vector2(1.4, 1.4)
+SpriteOffset = Vector2(-2, 2)
 metadata/_custom_type_script = "uid://cfwmxa0tv7cwj"
