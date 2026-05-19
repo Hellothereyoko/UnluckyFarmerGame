@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://ch0q707mlyt8n"]
 
-[ext_resource type="Script" uid="uid://da12yatudsvve" path="res://scripts/Crop.cs" id="1_2lacs"]
 [ext_resource type="Texture2D" uid="uid://cblkbdeq8p2xj" path="res://assets/Woolly Lands FREE pack/Tilesets/Set 1.png" id="1_dk8p3"]
 [ext_resource type="PackedScene" uid="uid://dt7tcxuocc87p" path="res://scenes/Crop.tscn" id="2_hiqg4"]
 [ext_resource type="Texture2D" uid="uid://b6rho8xs55348" path="res://assets/Woolly Lands FREE pack/Objects/Woods Objects.png" id="2_us3p0"]
@@ -17,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://dwn34eb50do4d" path="res://strawberry.tres" id="9_2j08t"]
 [ext_resource type="Resource" uid="uid://d3pmqehloikvq" path="res://cauliflower.tres" id="10_13jdd"]
 [ext_resource type="Script" uid="uid://cqqj8tgnkphaw" path="res://scripts/InventoryUI.cs" id="14_j0rrn"]
+[ext_resource type="Script" uid="uid://b5rj7brjyliil" path="res://scripts/DayNightCycle.cs" id="16_ek620"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk8p3"]
 texture = ExtResource("1_dk8p3")
@@ -238,7 +238,7 @@ z_as_relative = true
 position = Vector2(183, 418)
 
 [node name="DayNightCycl" type="CanvasModulate" parent="." unique_id=255116171]
-script = ExtResource("1_2lacs")
+script = ExtResource("16_ek620")
 
 [node name="InventoryCanvas" type="CanvasLayer" parent="DayNightCycl" unique_id=1687699913]
 script = ExtResource("14_j0rrn")

@@ -54,7 +54,7 @@ public partial class DayNightCycle : CanvasModulate
 	{
 		time = 0.0f;
 		isNight = false;
-
 		Color = Colors.White;
+		GD.Print("=== NEW DAY STARTED === LIGHTING RESET ===");
 	}
 }
