@@ -6,5 +6,5 @@
 script = ExtResource("1_2e84i")
 CropName = "Cauliflower"
 SpriteScale = Vector2(1.4, 1.4)
-SpriteOffset = Vector2(-2, 2)
+SpriteOffset = Vector2(0, 4)
 metadata/_custom_type_script = "uid://cfwmxa0tv7cwj"
