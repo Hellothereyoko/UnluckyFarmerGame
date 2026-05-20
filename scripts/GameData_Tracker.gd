@@ -25,17 +25,16 @@ var basket_inventory = {
 	"apple" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,
-		"sell_value" = 5,
-		"bonus_value" = 3,
+		"sell_value" = 2,
+		"bonus_value" = 1,
 		"crop_count" = 3,
 	},
 	"orange" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,
-		"sell_value" = 10,
-		"bonus_value" = 7,
+		"sell_value" = 2,
+		"bonus_value" = 2,
 		"spawn_chance" = 10,
-		"spawnchance_" = true,
 	},
 	"delicious_fruit" = {
 		"inventory" = 0,
@@ -46,14 +45,14 @@ var basket_inventory = {
 	"corn" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,
-		"sell_value" = 10,
-		"bonus_value" = 5,
+		"sell_value" = 2,
+		"bonus_value" = 1,
 	},
 	"cherry" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,
-		"sell_value" = 7,
-		"bonus_value" = 5,
+		"sell_value" = 2,
+		"bonus_value" = 1,
 	},
 	"cauliflower" = {
 		"inventory" = 0,
