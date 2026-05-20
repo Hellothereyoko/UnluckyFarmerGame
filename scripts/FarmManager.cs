@@ -88,12 +88,16 @@ public partial class FarmManager : TileMapLayer
 	}
 
 	private void TillSoil(Vector2I tilePos)
+{
+	if (GetCellSourceId(tilePos) != -1)
 	{
-		if (GetCellSourceId(tilePos) != -1)
-			return;
-		SetCell(tilePos, 0, Vector2I.Zero);
-		GD.Print("Soil tilled!");
+		GD.Print("Already tilled!");
+		return;
 	}
+	SetCell(tilePos, 3, Vector2I.Zero);
+	GD.Print($"Tile set at {tilePos}, source ID now: {GetCellSourceId(tilePos)}");
+	GD.Print("Soil tilled!");
+}
 
 	private void PlantCrop(Vector2I tilePos)
 {

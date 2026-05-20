@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmofanuq4gapc"]
 
-[ext_resource type="Texture2D" uid="uid://doju2oun8ytbj" path="res://assets/dirt (1).png" id="2_is2ei"]
+[ext_resource type="Texture2D" uid="uid://biw71h8q4ndvv" path="res://assets/dirt (1).png" id="2_is2ei"]
 
 [sub_resource type="CSharpScript" id="CSharpScript_40myj"]
 script/source = "using Godot;
