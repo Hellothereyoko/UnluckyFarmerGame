@@ -5,6 +5,7 @@ public partial class Chicken : CharacterBody2D
 	[Export] public float Speed = 30.0f;
 	[Export] public float MinMoveTime = 1.0f;
 	[Export] public float MaxMoveTime = 3.0f;
+	[Export] public PackedScene EggScene;
 
 	private AnimatedSprite2D sprite;
 	private Timer movementTimer;
@@ -77,33 +78,38 @@ public partial class Chicken : CharacterBody2D
 	
 	public void LayEgg()
 {
-	float roll = GD.Randf();
 	var gameData = GetNode<Node>("/root/GameData");
-
-	// Randomly lay 1 or 2 eggs
 	int eggsToLay = (int)(GD.Randi() % 2) + 1;
 	
 	for (int i = 0; i < eggsToLay; i++)
 	{
 		float eggRoll = GD.Randf();
 		
-		if (eggRoll < 0.15f)		
-	{
-		InventoryManager.Instance.AddItem("bad_egg", 1);
-   		int cash = gameData.Get("cash").AsInt32();
-		gameData.Set("cash", cash - 20);
-		GD.Print("Your chicken is sick! Lost 20g for medication.");
-	}
+		// Spawn egg in world near chicken
+		Egg egg = EggScene.Instantiate<Egg>();
+		GetParent().AddChild(egg);
+		
+		// Place egg near chicken with slight random offset
+		egg.GlobalPosition = GlobalPosition + new Vector2(
+			GD.RandRange(-20, 20),
+			GD.RandRange(-20, 20)
+		);
+
+		if (eggRoll < 0.15f)
+		{
+			egg.Type = Egg.EggType.Bad;
+			int cash = gameData.Get("cash").AsInt32();
+			gameData.Set("cash", cash - 20);
+			GD.Print("Your chicken is sick! Lost 20g for medication.");
+		}
 		else if (eggRoll < 0.80f)
 		{
-			// Good egg
-			InventoryManager.Instance.AddItem("egg", 1);
+			egg.Type = Egg.EggType.Good;
 			GD.Print("Your chicken laid a good egg!");
 		}
 		else
 		{
-			// Golden egg!
-			InventoryManager.Instance.AddItem("golden_egg", 1);
+			egg.Type = Egg.EggType.Golden;
 			GD.Print("Your chicken laid a GOLDEN EGG!");
 		}
 	}
