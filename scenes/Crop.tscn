@@ -147,16 +147,16 @@ animations = [{
 }]
 
 [node name="Crop" type="Node2D" unique_id=639549454]
-z_index = 10
+y_sort_enabled = true
 script = ExtResource("1_3nlst")
 Data = SubResource("Resource_travc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1947635801]
-z_index = 2
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_wyb5f")
 animation = &"carrot_growth"
 frame_progress = 0.8669369
+offset = Vector2(0, -4)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=387071826]
 

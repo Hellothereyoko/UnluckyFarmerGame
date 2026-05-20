@@ -22,8 +22,18 @@ public partial class FarmManager : TileMapLayer
 
 	public override void _Ready()
 	{
-		cropContainer = GetNode<Node2D>("../CropContainer");
+		cropContainer = GetNode<Node2D>("../LayerOrdering/CropContainer");
 		farmBounds = GetNode<TileMapLayer>("../FarmBounds");
+		 // Print starting economy
+		var gameData = GetNode<Node>("/root/GameData");
+		int startingCash = gameData.Get("cash").AsInt32();
+		int startingDebt = gameData.Get("debt").AsInt32();
+		int startingDay = gameData.Get("day").AsInt32();
+   	 	GD.Print($"=== FARM STARTED ===");
+		GD.Print($"Day: {startingDay}/{7}");
+  		GD.Print($"Cash: {startingCash}g");
+		GD.Print($"Debt: {startingDebt}g");
+		GD.Print($"====================");
 	}
 
 	public override void _Input(InputEvent @event)
@@ -47,8 +57,10 @@ public partial class FarmManager : TileMapLayer
 	{
 		if (Input.IsActionJustPressed("interact"))
 		{
-			Player player = GetNode<Player>("../Player");
+			GD.Print("Interact pressed!");
+			Player player = GetNode<Player>("../LayerOrdering/Player");
 			Vector2I tilePos = LocalToMap(ToLocal(player.GlobalPosition));
+			GD.Print($"Tile pos: {tilePos}, FarmBounds cell: {farmBounds.GetCellSourceId(tilePos)}");
 			HandleTileInteraction(tilePos);
 		}
 	}
@@ -83,26 +95,64 @@ public partial class FarmManager : TileMapLayer
 	}
 
 	private void PlantCrop(Vector2I tilePos)
+{
+	GD.Print("PlantCrop called!");
+	
+	if (plantedCrops.ContainsKey(tilePos))
 	{
-		if (plantedCrops.ContainsKey(tilePos))
-			return;
-		if (GetCellSourceId(tilePos) == -1)
-			return;
-		Crop crop = CropScene.Instantiate<Crop>();
-		crop.Data = StartingCrop;
-		cropContainer.AddChild(crop);
-		crop.GlobalPosition = ToGlobal(MapToLocal(tilePos));
-		plantedCrops.Add(tilePos, crop);
-		GD.Print("Crop planted!");
+		GD.Print("Already a crop here!");
+		return;
+	}
+	if (GetCellSourceId(tilePos) == -1)
+	{
+		GD.Print("Soil not tilled!");
+		return;
 	}
 
-	private void HarvestCrop(Vector2I tilePos)
+	GD.Print("Attempting to buy seed...");
+	var gameData = GetNode<Node>("/root/GameData");
+	string cropName = StartingCrop.CropName.ToLower();
+	GD.Print($"Crop name: {cropName}");
+	
+	bool canAfford = gameData.Call("buy_seed", cropName).AsBool();
+	if (!canAfford)
 	{
-		if (!plantedCrops.ContainsKey(tilePos))
-			return;
-		plantedCrops[tilePos].Harvest();
-		plantedCrops.Remove(tilePos);
-		EraseCell(tilePos);
-		GD.Print("Crop harvested!");
+		GD.Print("Not enough cash for seeds!");
+		return;
 	}
+
+	Crop crop = CropScene.Instantiate<Crop>();
+	crop.Data = StartingCrop;
+	cropContainer.AddChild(crop);
+	crop.GlobalPosition = ToGlobal(MapToLocal(tilePos));
+	plantedCrops.Add(tilePos, crop);
+	GD.Print("Crop planted!");
+	int currentCash = gameData.Get("cash").AsInt32();
+	GD.Print($"Remaining cash: {currentCash}");
+}
+
+	private void HarvestCrop(Vector2I tilePos)
+{
+	if (!plantedCrops.ContainsKey(tilePos))
+		return;
+
+	plantedCrops[tilePos].Harvest();
+	plantedCrops.Remove(tilePos);
+	EraseCell(tilePos);
+
+	var gameData = GetNode<Node>("/root/GameData");
+	string cropName = StartingCrop.CropName.ToLower();
+	
+	var inventory = gameData.Get("basket_inventory").AsGodotDictionary();
+	if (inventory.ContainsKey(cropName))
+	{
+		var cropEntry = inventory[cropName].AsGodotDictionary();
+		cropEntry["inventory"] = cropEntry["inventory"].AsInt32() + 1;
+		GD.Print($"{cropName} harvested! Total: {cropEntry["inventory"]}");
+	}
+
+	
+	int currentCash = gameData.Get("cash").AsInt32();
+	GD.Print($"Current cash: {currentCash}");
+}
 }
