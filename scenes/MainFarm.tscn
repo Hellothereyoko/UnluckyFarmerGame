@@ -16,8 +16,9 @@
 [ext_resource type="Resource" uid="uid://dwn34eb50do4d" path="res://strawberry.tres" id="9_2j08t"]
 [ext_resource type="Resource" uid="uid://d3pmqehloikvq" path="res://cauliflower.tres" id="10_13jdd"]
 [ext_resource type="Script" uid="uid://cqqj8tgnkphaw" path="res://scripts/InventoryUI.cs" id="14_j0rrn"]
-[ext_resource type="Script" uid="uid://b5rj7brjyliil" path="res://scripts/DayNightCycle.cs" id="16_ek620"]
 [ext_resource type="Script" uid="uid://c5thfd57rgw4i" path="res://HotbarUI.cs" id="15_vjv8i"]
+[ext_resource type="Script" uid="uid://b5rj7brjyliil" path="res://scripts/DayNightCycle.cs" id="16_ek620"]
+[ext_resource type="PackedScene" uid="uid://lg6fcyrbaj1v" path="res://scenes/lemon_tree.tscn" id="19_13jdd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk8p3"]
 texture = ExtResource("1_dk8p3")
@@ -215,6 +216,9 @@ scale = Vector2(1, 1)
 [node name="Tree3" parent="LayerOrdering" unique_id=1719463820 instance=ExtResource("4_tree")]
 z_as_relative = true
 position = Vector2(657, 416)
+
+[node name="LemonTree" parent="LayerOrdering" unique_id=1122597337 instance=ExtResource("19_13jdd")]
+position = Vector2(726, 269)
 
 [node name="Tree" parent="LayerOrdering" unique_id=1474818266 instance=ExtResource("4_tree")]
 z_as_relative = true
