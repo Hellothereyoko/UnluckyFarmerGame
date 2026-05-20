@@ -55,6 +55,12 @@ public partial class FarmManager : TileMapLayer
 
 	public override void _Process(double delta)
 	{
+		if (Input.IsActionJustPressed("debug_pos"))
+{
+	Player player = GetNode<Player>("../LayerOrdering/Player");
+	GD.Print($"Player world position: {player.GlobalPosition}");
+}
+		
 		if (Input.IsActionJustPressed("interact"))
 		{
 			GD.Print("Interact pressed!");

@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://ch0q707mlyt8n"]
 
+[ext_resource type="PackedScene" uid="uid://b2kr41ko2k4xv" path="res://scenes/Chicken.tscn" id="1_cjnv8"]
 [ext_resource type="Texture2D" uid="uid://cblkbdeq8p2xj" path="res://assets/Woolly Lands FREE pack/Tilesets/Set 1.png" id="1_dk8p3"]
 [ext_resource type="PackedScene" uid="uid://dt7tcxuocc87p" path="res://scenes/Crop.tscn" id="2_hiqg4"]
+[ext_resource type="Script" uid="uid://c3smnbbgld8nr" path="res://scripts/Chicken.cs" id="2_m4uk3"]
 [ext_resource type="Texture2D" uid="uid://b6rho8xs55348" path="res://assets/Woolly Lands FREE pack/Objects/Woods Objects.png" id="2_us3p0"]
 [ext_resource type="PackedScene" uid="uid://dh7ytx2cokvvo" path="res://scenes/Player.tscn" id="2_yolus"]
 [ext_resource type="Texture2D" uid="uid://biw71h8q4ndvv" path="res://assets/dirt (1).png" id="3_2lacs"]
@@ -348,6 +350,12 @@ y_sort_enabled = true
 [node name="Player" parent="LayerOrdering" unique_id=607596513 instance=ExtResource("2_yolus")]
 position = Vector2(484, 267)
 scale = Vector2(1, 1)
+
+[node name="Chicken" parent="LayerOrdering" unique_id=88184386 instance=ExtResource("1_cjnv8")]
+position = Vector2(1415, 119)
+script = ExtResource("2_m4uk3")
+FarmMin = Vector2(1167, 108)
+FarmMax = Vector2(1541, 240)
 
 [node name="Tree3" parent="LayerOrdering" unique_id=1719463820 instance=ExtResource("4_tree")]
 z_as_relative = true

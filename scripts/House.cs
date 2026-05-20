@@ -23,20 +23,33 @@ public partial class House : StaticBody2D
 	{
 		GD.Print("Sleeping...");
 		
-		// Call end_of_day instead of just selling_crops
-		// end_of_day already calls selling_crops internally
 		scriptNode.Call("end_of_day");
 		
-		// Get updated values after end of day
 		GD.Print($"Day: {scriptNode.Get("day")}");
 		GD.Print($"Cash: {scriptNode.Get("cash")}g");
 		GD.Print($"Debt: {scriptNode.Get("debt")}g");
 
-		// Reset the day/night cycle
-		DayNightCycle dayNight = GetNode<DayNightCycle>("../DayNightCycl");
-		dayNight.StartNewDay();
+		// Lay egg when player sleeps
+		try
+		{
+			Chicken chicken = GetNode<Chicken>("../LayerOrdering/Chicken");
+			chicken.LayEgg();
+		}
+		catch (System.Exception e)
+		{
+			GD.PrintErr($"Could not find Chicken: {e.Message}");
+		}
 
-		GD.Print("Good morning!");
+		try
+		{
+			DayNightCycle dayNight = GetNode<DayNightCycle>("../DayNightCycl");
+			dayNight.StartNewDay();
+			GD.Print("Good morning!");
+		}
+		catch (System.Exception e)
+		{
+			GD.PrintErr($"Could not find DayNightCycle: {e.Message}");
+		}
 	}
 }
 
