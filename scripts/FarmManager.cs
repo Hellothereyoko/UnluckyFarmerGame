@@ -59,7 +59,8 @@ public partial class FarmManager : TileMapLayer
 		{
 			GD.Print("Interact pressed!");
 			Player player = GetNode<Player>("../LayerOrdering/Player");
-			Vector2I tilePos = LocalToMap(ToLocal(player.GlobalPosition));
+			Vector2I playerTile = LocalToMap(ToLocal(player.GlobalPosition));
+			Vector2I tilePos = playerTile + player.FacingDirection;
 			GD.Print($"Tile pos: {tilePos}, FarmBounds cell: {farmBounds.GetCellSourceId(tilePos)}");
 			HandleTileInteraction(tilePos);
 		}
