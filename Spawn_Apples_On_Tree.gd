@@ -10,7 +10,9 @@ var y_position : int = 90;
 
 const maximum_amount : int = 10;
 
-var appleTimer : int = 500
+var appleTimer : int = 1000
+
+var maximum_apple_drops : int = randi_range(1,5)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,9 +22,13 @@ func _ready():
 func _process(delta):
 	if appleTimer == 0:
 		dropping_Apples()
-		appleTimer = randi_range(500, 750)
+		appleTimer = randi_range(2000, 5000)
+		maximum_apple_drops -= 1
+		if maximum_apple_drops <= 0:
+			set_process(false)
+			print("Apples Stop Spawning")
 	else:
-		appleTimer -= 1 
+		appleTimer -= 1 * delta
 
 func spawn_Apples():
 	for i in range(maximum_amount):
