@@ -7,13 +7,39 @@ var letters_index : int = 0
 var letter_texture
 var letter_keys = []
 
+var letters_from_the_mail ={
+	"day_1" = {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png",
+		"mail_2" = "res://assets/Mailbox Letters/Day_1_Tips.png"
+	},
+	"day_2" = {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+	},
+	"day_3"= {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+	},
+	"day_4" = {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+	},
+	"day_5" = {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+	},
+	"day_6" = {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+	},
+	"day_7" = {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+	},
+}
+
+
 func _ready():
 	##Get Data for Mail here
 	match GameData.day:
 		1:
-			letters_in_mail = GameData.letters_from_the_mail.day_1
+			letters_in_mail = letters_from_the_mail.day_1
 		2:
-			letters_in_mail = GameData.letters_from_the_mail.day_2
+			letters_in_mail = letters_from_the_mail.day_2
 	for i in letters_in_mail.keys():
 		letter_keys.append(i)
 	$"Text Prompt".hide()
