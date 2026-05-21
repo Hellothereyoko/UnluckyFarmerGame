@@ -9,6 +9,7 @@ extends Node
 ##This tracks all the money data
 var cash : int = 100 # starting gold
 var debt : int = 1500
+var total_money_earned : int = 0
 var last_interest : int = 0
 var last_penalty : int = 0
 var crop_money_today : int = 0
@@ -129,6 +130,7 @@ func selling_crops():
 		var bonus = basket_inventory[item]["damageless_bonus"] * basket_inventory[item]["bonus_value"]
 		var total_item_money = earned + bonus
 		cash += total_item_money
+		total_money_earned += total_item_money
 		
 		if item == "egg" or item == "golden_egg" or item == "bad_egg":
 			egg_money_today += total_item_money

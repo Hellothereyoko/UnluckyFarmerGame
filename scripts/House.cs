@@ -43,6 +43,7 @@ summary.ShowSummary(
 	(int)scriptNode.Get("last_payment"),
 	(int)scriptNode.Get("last_interest"),
 	(int)scriptNode.Get("last_penalty"),
+	(int)scriptNode.Get("total_money_earned"),
 	(int)scriptNode.Get("debt")
 );
 		

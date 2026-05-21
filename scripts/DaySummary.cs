@@ -12,6 +12,7 @@ public partial class DaySummary : CanvasLayer
 	private Label debtLabel;
 	private Label penaltyLabel;
 	private Button continueButton;
+	private Label lifetimeLabel;
 
 	// Data to display
 	private int cropEarnings = 0;
@@ -29,6 +30,7 @@ public partial class DaySummary : CanvasLayer
 		debtLabel = GetNode<Label>("ColorRect/VBoxContainer/DebtLabel");
 		interestLabel = GetNode<Label>("ColorRect/VBoxContainer/InterestLabel");
 		penaltyLabel = GetNode<Label>("ColorRect/VBoxContainer/PenaltyLabel");
+		lifetimeLabel = GetNode<Label>("ColorRect/VBoxContainer/LifetimeLabel");
 		continueButton = GetNode<Button>("ColorRect/VBoxContainer/ContinueButton");
 
 		continueButton.Pressed += OnContinuePressed;
@@ -42,6 +44,7 @@ public partial class DaySummary : CanvasLayer
 		int loanPayment,
 		int interestAdded,
 		int missedPenalty,
+		int lifetimeEarned,
 		int remainingDebt)
 	{
 		int total = cropGold + eggGold + fruitGold;
@@ -54,6 +57,7 @@ public partial class DaySummary : CanvasLayer
 		interestLabel.Text = $"Interest Added: +{interestAdded}g";
 		penaltyLabel.Text = $"Missed Payment Penalty: +{missedPenalty}g";
 		loanLabel.Text = $"Loan Payment: -{loanPayment}g";
+		lifetimeLabel.Text = $"Lifetime Earnings: {lifetimeEarned}g";
 		debtLabel.Text = $"Remaining Debt: {remainingDebt}g";
 	}
 
