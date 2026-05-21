@@ -95,7 +95,7 @@ var basket_inventory = {
 	"damageless_bonus" = 0,
 	"sell_value" = 0,
 	"bonus_value" = 0,
-}
+},
 	"lemon" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,
