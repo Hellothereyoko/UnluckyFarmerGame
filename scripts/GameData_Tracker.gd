@@ -96,6 +96,12 @@ var basket_inventory = {
 	"sell_value" = 0,
 	"bonus_value" = 0,
 }
+	"lemon" = {
+		"inventory" = 0,
+		"damageless_bonus" = 0,
+		"sell_value" = 3,
+		"bonus_value" = 4,
+	}
 }
 
 # Seed costs

@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://lg6fcyrbaj1v"]
+
+[ext_resource type="Script" uid="uid://bqadayeat5upb" path="res://scenes/lemon_tree.gd" id="1_v5co6"]
+[ext_resource type="Texture2D" uid="uid://cvhngjvf8ni7f" path="res://assets/Woolly Lands FREE pack/Trees/Cut Tree.png" id="1_yejql"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5co6"]
+atlas = ExtResource("1_yejql")
+region = Rect2(0, 0, 64, 79)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6uerw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5co6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ifl7"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5co6"]
+size = Vector2(57, 28)
+
+[node name="LemonTree" type="Node2D" unique_id=1122597337]
+script = ExtResource("1_v5co6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=41259729]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_6uerw")
+offset = Vector2(0, -20)
+
+[node name="Tree Colission" type="StaticBody2D" parent="." unique_id=1720469652]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree Colission" unique_id=841830475]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_2ifl7")
+
+[node name="Shake Tree Range" type="Area2D" parent="." unique_id=1638059197]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shake Tree Range" unique_id=374013221]
+position = Vector2(0, 29)
+shape = SubResource("RectangleShape2D_v5co6")
+debug_color = Color(0.8899539, 0.32657138, 0, 0.41960785)
+
+[node name="Hit Tree Instructions" type="Label" parent="." unique_id=1926013304]
+offset_left = 8.999999
+offset_top = -3.999998
+offset_right = 181.0
+offset_bottom = 19.000002
+text = "Press [E] to shake tree"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Shake Tree Range" to="." method="_on_shake_tree_range_body_entered"]
+[connection signal="body_exited" from="Shake Tree Range" to="." method="_on_shake_tree_range_body_exited"]

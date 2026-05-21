@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b5j4837p2plh3"]
+
+[ext_resource type="Texture2D" uid="uid://gthuqarjjyo4" path="res://assets/Custom Sprites/TreeFruits.png" id="1_2gfhm"]
+[ext_resource type="Script" uid="uid://cngd5kxyxcg24" path="res://scenes/collect_lemons.gd" id="1_jwtbj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwtbj"]
+atlas = ExtResource("1_2gfhm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wt5j7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwtbj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2gfhm"]
+radius = 15.132746
+
+[node name="CollectLemons" type="Node2D" unique_id=1015711069]
+script = ExtResource("1_jwtbj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1136164846]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_wt5j7")
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=9585118]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=1625267228]
+shape = SubResource("CircleShape2D_2gfhm")
+
+[connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_entered"]

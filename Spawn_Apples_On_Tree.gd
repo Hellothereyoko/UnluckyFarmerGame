@@ -4,7 +4,6 @@ const apple_Object = preload("res://scenes/Collect_Apples.tscn")
 const notApple_Object = preload("res://scenes/NotApple.tscn")
 const rare_orange = preload("res://scenes/Collect_Oranges.tscn")
 
-
 var x_position : int = 0;
 var y_position : int = 90;
 
