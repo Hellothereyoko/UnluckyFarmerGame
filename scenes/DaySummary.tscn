@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cxu713r73tmno"]
 
 [ext_resource type="Script" uid="uid://c6po6tejrg0rj" path="res://scripts/DaySummary.cs" id="1_3f5sj"]
+[ext_resource type="FontFile" uid="uid://di2401nyimce1" path="res://assets/Pixeloid_Font_1_0/OpenType (.otf)/PixeloidMono.otf" id="2_dnkbq"]
 
 [node name="DaySummary" type="CanvasLayer" unique_id=102647704]
 script = ExtResource("1_3f5sj")
@@ -22,16 +23,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -427.0
-offset_top = -541.0
-offset_right = -294.0
-offset_bottom = -160.0
+offset_left = -439.0
+offset_top = -512.0
+offset_right = -233.0
+offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
 [node name="DayLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1364577826]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dnkbq")
 text = "Day:"
 
 [node name="HSeparator" type="HSeparator" parent="ColorRect/VBoxContainer" unique_id=1604693665]
@@ -39,14 +41,17 @@ layout_mode = 2
 
 [node name="CropsLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=440779835]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dnkbq")
 text = "Crops:"
 
 [node name="EggsLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=2039070719]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dnkbq")
 text = "Eggs:"
 
 [node name="FruitLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1542401952]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dnkbq")
 text = "Fruit:"
 
 [node name="HSeparator2" type="HSeparator" parent="ColorRect/VBoxContainer" unique_id=1054017317]
@@ -54,14 +59,27 @@ layout_mode = 2
 
 [node name="TotalLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1212501454]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dnkbq")
 text = "Total Earned:"
+
+[node name="InterestLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1871025846]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dnkbq")
+text = "Interest Added:"
+
+[node name="PenaltyLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1372431960]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dnkbq")
+text = "Missed Payment Penality:s"
 
 [node name="LoanLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1557236021]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dnkbq")
 text = "Loan Payment: "
 
 [node name="DebtLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1896857853]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dnkbq")
 text = "Remaining Debt: "
 
 [node name="HSeparator3" type="HSeparator" parent="ColorRect/VBoxContainer" unique_id=2087037210]

@@ -8,7 +8,9 @@ public partial class DaySummary : CanvasLayer
 	private Label fruitLabel;
 	private Label totalLabel;
 	private Label loanLabel;
+	private Label interestLabel;
 	private Label debtLabel;
+	private Label penaltyLabel;
 	private Button continueButton;
 
 	// Data to display
@@ -25,12 +27,22 @@ public partial class DaySummary : CanvasLayer
 		totalLabel = GetNode<Label>("ColorRect/VBoxContainer/TotalLabel");
 		loanLabel = GetNode<Label>("ColorRect/VBoxContainer/LoanLabel");
 		debtLabel = GetNode<Label>("ColorRect/VBoxContainer/DebtLabel");
+		interestLabel = GetNode<Label>("ColorRect/VBoxContainer/InterestLabel");
+		penaltyLabel = GetNode<Label>("ColorRect/VBoxContainer/PenaltyLabel");
 		continueButton = GetNode<Button>("ColorRect/VBoxContainer/ContinueButton");
 
 		continueButton.Pressed += OnContinuePressed;
 	}
 
-	public void ShowSummary(int day, int cropGold, int eggGold, int fruitGold, int loanPayment, int remainingDebt)
+	public void ShowSummary(
+		int day,
+		int cropGold,
+		int eggGold,
+		int fruitGold,
+		int loanPayment,
+		int interestAdded,
+		int missedPenalty,
+		int remainingDebt)
 	{
 		int total = cropGold + eggGold + fruitGold;
 
@@ -39,6 +51,8 @@ public partial class DaySummary : CanvasLayer
 		eggsLabel.Text = $"Eggs:         {eggGold}g";
 		fruitLabel.Text = $"Fruit:        {fruitGold}g";
 		totalLabel.Text = $"Total Earned: {total}g";
+		interestLabel.Text = $"Interest Added: +{interestAdded}g";
+		penaltyLabel.Text = $"Missed Payment Penalty: +{missedPenalty}g";
 		loanLabel.Text = $"Loan Payment: -{loanPayment}g";
 		debtLabel.Text = $"Remaining Debt: {remainingDebt}g";
 	}

@@ -41,6 +41,8 @@ summary.ShowSummary(
 	(int)scriptNode.Get("egg_money_today"),
 	(int)scriptNode.Get("fruit_money_today"),
 	(int)scriptNode.Get("last_payment"),
+	(int)scriptNode.Get("last_interest"),
+	(int)scriptNode.Get("last_penalty"),
 	(int)scriptNode.Get("debt")
 );
 		

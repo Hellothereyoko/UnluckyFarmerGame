@@ -9,6 +9,8 @@ extends Node
 ##This tracks all the money data
 var cash : int = 100 # starting gold
 var debt : int = 1500
+var last_interest : int = 0
+var last_penalty : int = 0
 var crop_money_today : int = 0
 var egg_money_today : int = 0
 var fruit_money_today : int = 0
@@ -145,17 +147,20 @@ func end_of_day():
 	selling_crops()
 	
 	# Apply interest to debt
-	debt = int(debt * (1.0 + DAILY_INTEREST))
+	last_interest = int(debt * DAILY_INTEREST)
+	debt += last_interest
 	
 	# Check minimum payment
 	if cash >= MINIMUM_PAYMENT:
 		cash -= MINIMUM_PAYMENT
 		debt -= MINIMUM_PAYMENT
 		last_payment = MINIMUM_PAYMENT
+		last_penalty = 0
 		print("Minimum payment made! Debt: ", debt)
 	else:
 		# Penalty — can't make minimum payment
 		last_payment = 0
+		last_penalty = MINIMUM_PAYMENT
 		print("Could not make minimum payment! Penalty applied!")
 		debt += MINIMUM_PAYMENT
 	
