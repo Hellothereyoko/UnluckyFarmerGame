@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cxu713r73tmno"]
+
+[node name="DaySummary" type="CanvasLayer" unique_id=102647704]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=460748752]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 580.0
+offset_bottom = 510.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.101960786, 0.18039216, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=1563352035]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -110.5
+offset_right = 20.0
+offset_bottom = 110.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="DayLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1364577826]
+layout_mode = 2
+text = "Day:"
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/VBoxContainer" unique_id=1604693665]
+layout_mode = 2
+
+[node name="CropsLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=440779835]
+layout_mode = 2
+text = "Crops:"
+
+[node name="EggsLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=2039070719]
+layout_mode = 2
+text = "Eggs:"
+
+[node name="FruitLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1542401952]
+layout_mode = 2
+text = "Fruit:"
+
+[node name="HSeparator2" type="HSeparator" parent="ColorRect/VBoxContainer" unique_id=1054017317]
+layout_mode = 2
+
+[node name="TotalLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1212501454]
+layout_mode = 2
+text = "Total Earned:"
+
+[node name="LoanLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1557236021]
+layout_mode = 2
+text = "Loan Payment: "
+
+[node name="DebtLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1896857853]
+layout_mode = 2
+text = "Remaining Debt: "
+
+[node name="HSeparator3" type="HSeparator" parent="ColorRect/VBoxContainer" unique_id=2087037210]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="ColorRect/VBoxContainer" unique_id=1710397441]
+layout_mode = 2
