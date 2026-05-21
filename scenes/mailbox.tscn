@@ -38,7 +38,7 @@ offset_left = -87.0
 offset_top = -61.0
 offset_right = 88.0
 offset_bottom = -38.0
-text = "Press [E] to retrve mail"
+text = "Press [E] to retrieve mail"
 
 [node name="Mail Image" type="Sprite2D" parent="." unique_id=1107248135]
 z_index = 20

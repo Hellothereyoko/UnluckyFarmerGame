@@ -427,5 +427,11 @@ offset_right = 40.0
 offset_bottom = 40.0
 columns = 4
 
+[node name="DayBar" type="CanvasLayer" parent="." unique_id=1892966719]
+
+[node name="DebtBar" type="CanvasLayer" parent="." unique_id=1232037191]
+
+[node name="StaminaBar" type="CanvasLayer" parent="." unique_id=246720631]
+
 [node name="Mailbox" parent="." unique_id=215827450 instance=ExtResource("20_cjnv8")]
 position = Vector2(393, 93)
