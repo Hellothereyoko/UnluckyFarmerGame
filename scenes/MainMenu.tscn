@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5moys4jiwl6d" path="res://scripts/MainMenu.cs" id="1_yqorp"]
 [ext_resource type="FontFile" uid="uid://cpnl32p472uvf" path="res://assets/Pixeloid_Font_1_0/TrueType (.ttf)/PixeloidMono.ttf" id="2_2wh52"]
+[ext_resource type="Texture2D" uid="uid://x7hbh7qatpk5" path="res://assets/menubackground.png" id="2_ow34m"]
 [ext_resource type="FontFile" uid="uid://ly4knwemy0x2" path="res://assets/Pixeloid_Font_1_0/OpenType (.otf)/PixeloidSans.otf" id="3_ow34m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqorp"]
@@ -68,6 +69,12 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_yqorp")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1423248914]
+layout_mode = 0
+offset_right = 1157.0
+offset_bottom = 655.0
+texture = ExtResource("2_ow34m")
+
 [node name="GameTitle" type="Label" parent="." unique_id=1213933575]
 layout_mode = 1
 anchors_preset = 5
@@ -79,7 +86,7 @@ offset_right = 729.0
 offset_bottom = 127.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_2wh52")
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 58
 text = "The Unlucky Farmer"
 
 [node name="VBoxContainer" type="HBoxContainer" parent="." unique_id=1785312777]
