@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cdfrt3rlmi4nj"]
+
+[ext_resource type="Texture2D" uid="uid://b6bbc35kapkju" path="res://assets/Custom Sprites/To_Do_background.png" id="1_6b0se"]
+[ext_resource type="Script" uid="uid://dwa5cxeieut7s" path="res://scenes/chore_list.gd" id="1_ppia1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6b0se"]
+font_size = 12
+shadow_size = 0
+
+[node name="Chore List" type="Control" unique_id=371314134]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ppia1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=626310657]
+
+[node name="Paper Background" type="Sprite2D" parent="CanvasLayer" unique_id=247061105]
+texture_filter = 1
+position = Vector2(1066, 116)
+texture = ExtResource("1_6b0se")
+
+[node name="Test" type="Label" parent="CanvasLayer" unique_id=111852045]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+offset_left = 990.0
+offset_top = 71.0
+offset_right = 1145.0
+offset_bottom = 213.0
+text = "-1111111"
+label_settings = SubResource("LabelSettings_6b0se")
