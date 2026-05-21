@@ -155,7 +155,6 @@ Data = SubResource("Resource_travc")
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_wyb5f")
 animation = &"carrot_growth"
-frame_progress = 0.8669369
 offset = Vector2(0, -4)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=387071826]

@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_eghpu")
 CropName = "Pumpkin"
+GrowTime = 9.0
 SpriteScale = Vector2(1.5, 1.5)
-SpriteOffset = Vector2(-2, -2)
+SpriteOffset = Vector2(3, 8)
 metadata/_custom_type_script = "uid://cfwmxa0tv7cwj"

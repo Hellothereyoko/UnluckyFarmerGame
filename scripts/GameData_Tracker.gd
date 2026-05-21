@@ -78,6 +78,24 @@ var basket_inventory = {
 		"sell_value" = 14,
 		"bonus_value" = 5,
 	},
+	"egg" = {
+	"inventory" = 0,
+	"damageless_bonus" = 0,
+	"sell_value" = 8,
+	"bonus_value" = 3,
+},
+"golden_egg" = {
+	"inventory" = 0,
+	"damageless_bonus" = 0,
+	"sell_value" = 25,
+	"bonus_value" = 0,
+},
+"bad_egg" = {
+	"inventory" = 0,
+	"damageless_bonus" = 0,
+	"sell_value" = 0,
+	"bonus_value" = 0,
+},
 	"lemon" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,

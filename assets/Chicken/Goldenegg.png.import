@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biw71h8q4ndvv"
-path="res://.godot/imported/dirt (1).png-721bad8ea81bfdf10a726f2739a05305.ctex"
+uid="uid://c8sqdgdx5hv83"
+path="res://.godot/imported/Goldenegg.png-f32390da6bcf9256dceccb6edffd556b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dirt (1).png"
-dest_files=["res://.godot/imported/dirt (1).png-721bad8ea81bfdf10a726f2739a05305.ctex"]
+source_file="res://assets/Chicken/Goldenegg.png"
+dest_files=["res://.godot/imported/Goldenegg.png-f32390da6bcf9256dceccb6edffd556b.ctex"]
 
 [params]
 

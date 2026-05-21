@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_ump5r")
 CropName = "Carrot"
+SpriteOffset = Vector2(0, 2)
 metadata/_custom_type_script = "uid://cfwmxa0tv7cwj"

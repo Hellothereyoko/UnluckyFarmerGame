@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://draeqpc0j8s0e"]
+
+[ext_resource type="Script" uid="uid://b437ys0rrp4js" path="res://scripts/Egg.cs" id="1_l2ag5"]
+[ext_resource type="Texture2D" uid="uid://b2c8npqhly4jf" path="res://assets/Chicken/Goodegg.png" id="2_3ibgg"]
+[ext_resource type="Texture2D" uid="uid://c8sqdgdx5hv83" path="res://assets/Chicken/Goldenegg.png" id="3_1tmvx"]
+[ext_resource type="Texture2D" uid="uid://hhb4idkckymn" path="res://assets/Chicken/Badegg.png" id="4_kkcx1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1tmvx"]
+radius = 5.0
+height = 12.0
+
+[node name="Egg" type="Area2D" unique_id=1753452373]
+script = ExtResource("1_l2ag5")
+GoodTexture = ExtResource("2_3ibgg")
+GoldenTexture = ExtResource("3_1tmvx")
+BadTexture = ExtResource("4_kkcx1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=615945238]
+position = Vector2(4, 12)
+texture = ExtResource("2_3ibgg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D" unique_id=1050981320]
+position = Vector2(-4, -12)
+shape = SubResource("CapsuleShape2D_1tmvx")

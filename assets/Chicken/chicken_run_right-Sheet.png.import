@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biw71h8q4ndvv"
-path="res://.godot/imported/dirt (1).png-721bad8ea81bfdf10a726f2739a05305.ctex"
+uid="uid://brysj48a56gf7"
+path="res://.godot/imported/chicken_run_right-Sheet.png-2c4556e5a870d567b117615ec8e59a35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dirt (1).png"
-dest_files=["res://.godot/imported/dirt (1).png-721bad8ea81bfdf10a726f2739a05305.ctex"]
+source_file="res://assets/Chicken/chicken_run_right-Sheet.png"
+dest_files=["res://.godot/imported/chicken_run_right-Sheet.png-2c4556e5a870d567b117615ec8e59a35.ctex"]
 
 [params]
 

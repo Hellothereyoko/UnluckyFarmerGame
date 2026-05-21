@@ -6,5 +6,5 @@
 script = ExtResource("1_3nnvf")
 CropName = "Strawberry"
 SpriteScale = Vector2(1.2, 1.2)
-SpriteOffset = Vector2(-1, 1)
+SpriteOffset = Vector2(0, 4)
 metadata/_custom_type_script = "uid://cfwmxa0tv7cwj"

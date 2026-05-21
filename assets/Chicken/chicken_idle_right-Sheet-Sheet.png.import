@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biw71h8q4ndvv"
-path="res://.godot/imported/dirt (1).png-721bad8ea81bfdf10a726f2739a05305.ctex"
+uid="uid://bhs1x5knhul8u"
+path="res://.godot/imported/chicken_idle_right-Sheet-Sheet.png-659c3a8c29419e1ed8faf18960867d90.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dirt (1).png"
-dest_files=["res://.godot/imported/dirt (1).png-721bad8ea81bfdf10a726f2739a05305.ctex"]
+source_file="res://assets/Chicken/chicken_idle_right-Sheet-Sheet.png"
+dest_files=["res://.godot/imported/chicken_idle_right-Sheet-Sheet.png-659c3a8c29419e1ed8faf18960867d90.ctex"]
 
 [params]
 
