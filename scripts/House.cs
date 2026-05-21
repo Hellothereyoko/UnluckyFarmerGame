@@ -40,7 +40,7 @@ public partial class House : StaticBody2D
 	}
 }
 
-	private void OnBodyEntered(Node body)
+private void OnBodyEntered(Node body)
 	{
 		if (body is Player)
 		{

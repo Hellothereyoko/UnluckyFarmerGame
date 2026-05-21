@@ -77,6 +77,12 @@ var basket_inventory = {
 		"damageless_bonus" = 0,
 		"sell_value" = 14,
 		"bonus_value" = 5,
+	},
+	"lemon" = {
+		"inventory" = 0,
+		"damageless_bonus" = 0,
+		"sell_value" = 3,
+		"bonus_value" = 4,
 	}
 }
 
