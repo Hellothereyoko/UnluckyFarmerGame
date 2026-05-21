@@ -9,6 +9,13 @@ extends Node
 ##This tracks all the money data
 var cash : int = 100 # starting gold
 var debt : int = 1500
+var total_money_earned : int = 0
+var last_interest : int = 0
+var last_penalty : int = 0
+var crop_money_today : int = 0
+var egg_money_today : int = 0
+var fruit_money_today : int = 0
+var last_payment: int = 0
 var day : int = 1
 const MAX_DAYS: int = 7
 const DAILY_INTEREST : float = 0.02
@@ -112,9 +119,28 @@ var seed_costs = {
 	"cauliflower" : 5,
 }
 func selling_crops():
+
+	crop_money_today = 0
+	egg_money_today = 0
+	fruit_money_today = 0
+
 	for item in basket_inventory.keys():
-		cash += basket_inventory[item]["inventory"] * basket_inventory[item]["sell_value"]
-		cash += basket_inventory[item]["damageless_bonus"] * basket_inventory[item]["bonus_value"]
+
+		var earned = basket_inventory[item]["inventory"] * basket_inventory[item]["sell_value"]
+		var bonus = basket_inventory[item]["damageless_bonus"] * basket_inventory[item]["bonus_value"]
+		var total_item_money = earned + bonus
+		cash += total_item_money
+		total_money_earned += total_item_money
+		
+		if item == "egg" or item == "golden_egg" or item == "bad_egg":
+			egg_money_today += total_item_money
+
+		elif item == "apple" or item == "orange" or item == "lemon" or item == "delicious_fruit":
+			fruit_money_today += total_item_money
+
+		else:
+			crop_money_today += total_item_money
+
 		basket_inventory[item]["inventory"] = 0
 		basket_inventory[item]["damageless_bonus"] = 0
 
@@ -123,15 +149,20 @@ func end_of_day():
 	selling_crops()
 	
 	# Apply interest to debt
-	debt = int(debt * (1.0 + DAILY_INTEREST))
+	last_interest = int(debt * DAILY_INTEREST)
+	debt += last_interest
 	
 	# Check minimum payment
 	if cash >= MINIMUM_PAYMENT:
 		cash -= MINIMUM_PAYMENT
 		debt -= MINIMUM_PAYMENT
+		last_payment = MINIMUM_PAYMENT
+		last_penalty = 0
 		print("Minimum payment made! Debt: ", debt)
 	else:
 		# Penalty — can't make minimum payment
+		last_payment = 0
+		last_penalty = MINIMUM_PAYMENT
 		print("Could not make minimum payment! Penalty applied!")
 		debt += MINIMUM_PAYMENT
 	
