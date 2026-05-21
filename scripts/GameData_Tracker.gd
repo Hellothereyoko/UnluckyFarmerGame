@@ -141,3 +141,28 @@ func buy_seed(crop_name: String) -> bool:
 		return true
 	print("Not enough cash for seeds!")
 	return false
+
+var letters_from_the_mail ={
+	"day_1" = {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png",
+		"mail_2" = "res://assets/Mailbox Letters/Day_1_Tips.png"
+	},
+	"day_2" = {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+	},
+	"day_3"= {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+	},
+	"day_4" = {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+	},
+	"day_5" = {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+	},
+	"day_6" = {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+	},
+	"day_7" = {
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+	},
+}

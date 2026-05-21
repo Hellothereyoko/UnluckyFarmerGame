@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cgkbc4vdbw3ba"]
+
+[ext_resource type="Texture2D" uid="uid://dt0ylro1g0g8b" path="res://assets/Tileset/Exterior_Tileset.png" id="1_3eaje"]
+[ext_resource type="Script" uid="uid://boe70fnoug1nv" path="res://scenes/mailbox.gd" id="1_80nar"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eaje"]
+size = Vector2(20, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80nar"]
+size = Vector2(38, 28)
+
+[node name="Mailbox" type="Node2D" unique_id=215827450]
+script = ExtResource("1_80nar")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1106832242]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_3eaje")
+offset = Vector2(0, -6.595)
+region_enabled = true
+region_rect = Rect2(35, 27, 11, 21)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=519839018]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1969143391]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_3eaje")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1730029323]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=980124642]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_80nar")
+
+[node name="Text Prompt" type="Label" parent="." unique_id=1898192032]
+texture_filter = 1
+offset_left = -87.0
+offset_top = -61.0
+offset_right = 88.0
+offset_bottom = -38.0
+text = "Press [E] to retrve mail"
+
+[node name="Mail Image" type="Sprite2D" parent="." unique_id=1107248135]
+z_index = 20
+scale = Vector2(0.6, 0.6)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
