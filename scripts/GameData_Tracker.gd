@@ -9,6 +9,10 @@ extends Node
 ##This tracks all the money data
 var cash : int = 100 # starting gold
 var debt : int = 1500
+var crop_money_today : int = 0
+var egg_money_today : int = 0
+var fruit_money_today : int = 0
+var last_payment: int = 0
 var day : int = 1
 const MAX_DAYS: int = 7
 const DAILY_INTEREST : float = 0.02
@@ -112,9 +116,27 @@ var seed_costs = {
 	"cauliflower" : 5,
 }
 func selling_crops():
+
+	crop_money_today = 0
+	egg_money_today = 0
+	fruit_money_today = 0
+
 	for item in basket_inventory.keys():
-		cash += basket_inventory[item]["inventory"] * basket_inventory[item]["sell_value"]
-		cash += basket_inventory[item]["damageless_bonus"] * basket_inventory[item]["bonus_value"]
+
+		var earned = basket_inventory[item]["inventory"] * basket_inventory[item]["sell_value"]
+		var bonus = basket_inventory[item]["damageless_bonus"] * basket_inventory[item]["bonus_value"]
+		var total_item_money = earned + bonus
+		cash += total_item_money
+		
+		if item == "egg" or item == "golden_egg" or item == "bad_egg":
+			egg_money_today += total_item_money
+
+		elif item == "apple" or item == "orange" or item == "lemon" or item == "delicious_fruit":
+			fruit_money_today += total_item_money
+
+		else:
+			crop_money_today += total_item_money
+
 		basket_inventory[item]["inventory"] = 0
 		basket_inventory[item]["damageless_bonus"] = 0
 
@@ -129,9 +151,11 @@ func end_of_day():
 	if cash >= MINIMUM_PAYMENT:
 		cash -= MINIMUM_PAYMENT
 		debt -= MINIMUM_PAYMENT
+		last_payment = MINIMUM_PAYMENT
 		print("Minimum payment made! Debt: ", debt)
 	else:
 		# Penalty — can't make minimum payment
+		last_payment = 0
 		print("Could not make minimum payment! Penalty applied!")
 		debt += MINIMUM_PAYMENT
 	

@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cxu713r73tmno"]
 
+[ext_resource type="Script" uid="uid://c6po6tejrg0rj" path="res://scripts/DaySummary.cs" id="1_3f5sj"]
+
 [node name="DaySummary" type="CanvasLayer" unique_id=102647704]
+script = ExtResource("1_3f5sj")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=460748752]
 anchors_preset = 15
@@ -19,10 +22,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -110.5
-offset_right = 20.0
-offset_bottom = 110.5
+offset_left = -427.0
+offset_top = -541.0
+offset_right = -294.0
+offset_bottom = -160.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -66,3 +69,5 @@ layout_mode = 2
 
 [node name="ContinueButton" type="Button" parent="ColorRect/VBoxContainer" unique_id=1710397441]
 layout_mode = 2
+text = "Continue
+"

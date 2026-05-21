@@ -23,7 +23,26 @@ public partial class House : StaticBody2D
 	{
 		GD.Print("Sleeping...");
 		
+		int currentDay = (int)scriptNode.Get("day");
+
 		scriptNode.Call("end_of_day");
+		
+		
+		PackedScene summaryScene = GD.Load<PackedScene>("res://Scenes/DaySummary.tscn");
+		GD.Print(summaryScene);
+	DaySummary summary = summaryScene.Instantiate<DaySummary>();
+	GD.Print(summary);
+	GetTree().CurrentScene.AddChild(summary);
+	GD.Print("Summary added to scene");
+
+summary.ShowSummary(
+	currentDay,
+	(int)scriptNode.Get("crop_money_today"),
+	(int)scriptNode.Get("egg_money_today"),
+	(int)scriptNode.Get("fruit_money_today"),
+	(int)scriptNode.Get("last_payment"),
+	(int)scriptNode.Get("debt")
+);
 		
 		GD.Print($"Day: {scriptNode.Get("day")}");
 		GD.Print($"Cash: {scriptNode.Get("cash")}g");
