@@ -17,12 +17,18 @@ public partial class Chicken : CharacterBody2D
 	[Export] public Vector2 FarmMax = new Vector2(700, 500);
 
 	public override void _Ready()
-	{
-		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		movementTimer = GetNode<Timer>("MovementTimer");
-		movementTimer.Timeout += OnMovementTimerTimeout;
-		PickNewDirection();
-	}
+{
+	sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+	movementTimer = GetNode<Timer>("MovementTimer");
+	movementTimer.Timeout += OnMovementTimerTimeout;
+	
+	// Make sure chicken starts inside bounds
+	GlobalPosition = new Vector2(
+		Mathf.Clamp(GlobalPosition.X, FarmMin.X, FarmMax.X),
+		Mathf.Clamp(GlobalPosition.Y, FarmMin.Y, FarmMax.Y)
+	);
+	PickNewDirection();
+}
 
 	
 	public override void _PhysicsProcess(double delta)
@@ -80,24 +86,18 @@ public partial class Chicken : CharacterBody2D
 		PickNewDirection();
 	}
 	
-	public void LayEgg()
+
+public void LayEgg()
 {
 	var gameData = GetNode<Node>("/root/GameData");
-	int eggsToLay = (int)(GD.Randi() % 2) + 1;
+	int eggsToLay = 1;
 	
 	for (int i = 0; i < eggsToLay; i++)
 	{
 		float eggRoll = GD.Randf();
 		
-		// Spawn egg in world near chicken
+		// Create egg and set type BEFORE adding to scene
 		Egg egg = EggScene.Instantiate<Egg>();
-		GetParent().AddChild(egg);
-		
-		// Place egg near chicken with slight random offset
-		egg.GlobalPosition = GlobalPosition + new Vector2(
-			GD.RandRange(-20, 20),
-			GD.RandRange(-20, 20)
-		);
 
 		if (eggRoll < 0.15f)
 		{
@@ -116,6 +116,13 @@ public partial class Chicken : CharacterBody2D
 			egg.Type = Egg.EggType.Golden;
 			GD.Print("Your chicken laid a GOLDEN EGG!");
 		}
+
+		//  add to scene after type is set
+		GetParent().AddChild(egg);
+		egg.GlobalPosition = GlobalPosition + new Vector2(
+			(float)GD.RandRange(-20, 20),
+			(float)GD.RandRange(-20, 20)
+		);
 	}
 }
 	
