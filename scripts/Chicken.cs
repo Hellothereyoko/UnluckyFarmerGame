@@ -24,22 +24,26 @@ public partial class Chicken : CharacterBody2D
 		PickNewDirection();
 	}
 
+	
 	public override void _PhysicsProcess(double delta)
+{
+	if (isMoving)
 	{
-		if (isMoving)
+		Vector2 newPos = GlobalPosition + moveDirection * Speed * (float)delta;
+		
+		// If hitting bounds, pick a new direction instead of flipping
+		if (newPos.X < FarmMin.X || newPos.X > FarmMax.X ||
+			newPos.Y < FarmMin.Y || newPos.Y > FarmMax.Y)
 		{
-			// Keep chicken inside farm bounds
-			Vector2 newPos = GlobalPosition + moveDirection * Speed * (float)delta;
-			if (newPos.X < FarmMin.X || newPos.X > FarmMax.X)
-				moveDirection.X = -moveDirection.X;
-			if (newPos.Y < FarmMin.Y || newPos.Y > FarmMax.Y)
-				moveDirection.Y = -moveDirection.Y;
-
-			Velocity = moveDirection * Speed;
-			MoveAndSlide();
-			UpdateAnimation();
+			PickNewDirection();
+			return;
 		}
+
+		Velocity = moveDirection * Speed;
+		MoveAndSlide();
+		UpdateAnimation();
 	}
+}
 
 	private void PickNewDirection()
 	{

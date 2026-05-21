@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3smnbbgld8nr" path="res://scripts/Chicken.cs" id="1_6kyny"]
 [ext_resource type="Texture2D" uid="uid://bo7m2gnjr2hh1" path="res://assets/Chicken/chicken_eating_left-Sheet.png" id="1_yq58b"]
+[ext_resource type="PackedScene" uid="uid://draeqpc0j8s0e" path="res://scenes/Egg.tscn" id="2_0g8gh"]
 [ext_resource type="Texture2D" uid="uid://ow8noijfj851" path="res://assets/Chicken/chicken_eating_right-Sheet.png" id="2_bivu5"]
 [ext_resource type="Texture2D" uid="uid://btotrxhvi86y" path="res://assets/Chicken/chicken_idle_left-Sheet.png" id="3_6kyny"]
 [ext_resource type="Texture2D" uid="uid://bhs1x5knhul8u" path="res://assets/Chicken/chicken_idle_right-Sheet-Sheet.png" id="4_0g8gh"]
@@ -272,6 +273,7 @@ radius = 3.1622777
 position = Vector2(900, 500)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_6kyny")
+EggScene = ExtResource("2_0g8gh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=988604784]
 sprite_frames = SubResource("SpriteFrames_25dbn")
