@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2ovhh234lja7"]
 
 [ext_resource type="Texture2D" uid="uid://cagjdcyjk5s13" path="res://assets/Woolly Lands FREE pack/Trees/1 Tree Hit Sheets.png" id="1_2cic4"]
-[ext_resource type="Script" uid="uid://cylm6nqludx3l" path="res://Spawn_Apples_On_Tree.gd" id="1_omb14"]
+[ext_resource type="Script" uid="uid://cylm6nqludx3l" path="res://scripts/Spawn_Apples_On_Tree.gd" id="1_omb14"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omb14"]
 atlas = ExtResource("1_2cic4")

@@ -11,6 +11,8 @@ var tree_hits : int = 0
 
 func _ready() -> void:
 	$"Hit Tree Instructions".hide()
+	set_process(false)
+
 
 func _process(delta):
 	if Input.is_action_just_pressed("interact") && tree_zap_chance > 0:

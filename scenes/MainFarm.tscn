@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://c5thfd57rgw4i" path="res://HotbarUI.cs" id="15_vjv8i"]
 [ext_resource type="Script" uid="uid://b5rj7brjyliil" path="res://scripts/DayNightCycle.cs" id="16_ek620"]
 [ext_resource type="PackedScene" uid="uid://lg6fcyrbaj1v" path="res://scenes/lemon_tree.tscn" id="19_13jdd"]
+[ext_resource type="PackedScene" uid="uid://cgkbc4vdbw3ba" path="res://scenes/mailbox.tscn" id="20_cjnv8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk8p3"]
 texture = ExtResource("1_dk8p3")
@@ -425,3 +426,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 columns = 4
+
+[node name="Mailbox" parent="." unique_id=215827450 instance=ExtResource("20_cjnv8")]
+position = Vector2(393, 93)
