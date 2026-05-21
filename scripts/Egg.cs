@@ -1,5 +1,4 @@
 using Godot;
-
 public partial class Egg : Area2D
 {
 	public enum EggType { Good, Golden, Bad }
@@ -9,36 +8,41 @@ public partial class Egg : Area2D
 	[Export] public Texture2D GoodTexture;
 	[Export] public Texture2D GoldenTexture;
 	[Export] public Texture2D BadTexture;
-
+	
+	private bool collected = false;
 	private Sprite2D sprite;
 
 	public override void _Ready()
 	{
 		sprite = GetNode<Sprite2D>("Sprite2D");
+		Monitoring = true;
+		Monitorable = true;
 		
-		// Set texture based on egg type
 		switch (Type)
 		{
-			case EggType.Good:
-				sprite.Texture = GoodTexture;
-				break;
-			case EggType.Golden:
-				sprite.Texture = GoldenTexture;
-				break;
-			case EggType.Bad:
-				sprite.Texture = BadTexture;
-				break;
+			case EggType.Good: sprite.Texture = GoodTexture; break;
+			case EggType.Golden: sprite.Texture = GoldenTexture; break;
+			case EggType.Bad: sprite.Texture = BadTexture; break;
 		}
-
-		// Connect body entered signal
-		BodyEntered += OnBodyEntered;
+		GD.Print($"Egg spawned! Type: {Type}");
 	}
 
-	private void OnBodyEntered(Node body)
+	public override void _Process(double delta)
 	{
-		if (body is Player)
+		if (collected) return;
+		
+		var players = GetTree().GetNodesInGroup("player");
+		foreach (Node node in players)
 		{
-			CollectEgg();
+			if (node is Node2D playerNode)
+			{
+				float distance = GlobalPosition.DistanceTo(playerNode.GlobalPosition);
+				if (distance < 20f)
+				{
+					CollectEgg();
+					return;
+				}
+			}
 		}
 	}
 
@@ -48,11 +52,11 @@ public partial class Egg : Area2D
 		{
 			case EggType.Good:
 				InventoryManager.Instance.AddItem("egg", 1);
-				GD.Print("Collected a good egg! +8g at end of day");
+				GD.Print("Collected a good egg!");
 				break;
 			case EggType.Golden:
 				InventoryManager.Instance.AddItem("golden_egg", 1);
-				GD.Print("Collected a GOLDEN EGG! +25g at end of day");
+				GD.Print("Collected a GOLDEN EGG!");
 				break;
 			case EggType.Bad:
 				InventoryManager.Instance.AddItem("bad_egg", 1);
