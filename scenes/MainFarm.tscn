@@ -361,6 +361,7 @@ y_sort_enabled = true
 [node name="Tree3" parent="LayerOrdering/Tree_Node" unique_id=1719463820 instance=ExtResource("4_tree")]
 z_as_relative = true
 position = Vector2(91, 315)
+script = null
 
 [node name="LemonTree" parent="LayerOrdering/Tree_Node" unique_id=1122597337 instance=ExtResource("19_13jdd")]
 position = Vector2(91, 701)
@@ -368,6 +369,7 @@ position = Vector2(91, 701)
 [node name="Tree" parent="LayerOrdering/Tree_Node" unique_id=1474818266 instance=ExtResource("4_tree")]
 z_as_relative = true
 position = Vector2(96, 103)
+script = null
 
 [node name="StaticBody2D" type="StaticBody2D" parent="LayerOrdering/Tree_Node/Tree" unique_id=13879090]
 
@@ -386,6 +388,7 @@ shape = SubResource("RectangleShape2D_us3p0")
 [node name="Tree2" parent="LayerOrdering/Tree_Node" unique_id=1234474324 instance=ExtResource("4_tree")]
 z_as_relative = true
 position = Vector2(303, 94)
+script = null
 
 [node name="DayNightCycl" type="CanvasModulate" parent="." unique_id=255116171]
 script = ExtResource("16_ek620")
@@ -437,4 +440,4 @@ columns = 4
 [node name="StaminaBar" type="CanvasLayer" parent="." unique_id=246720631]
 
 [node name="Mailbox" parent="." unique_id=215827450 instance=ExtResource("20_cjnv8")]
-position = Vector2(393, 93)
+position = Vector2(511, 101)

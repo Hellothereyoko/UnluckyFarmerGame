@@ -2,6 +2,9 @@ using Godot;
 
 public partial class DaySummary : CanvasLayer
 {
+	[Signal] public delegate void SummaryClosedEventHandler();
+
+		
 	private Label dayLabel;
 	private Label cropsLabel;
 	private Label eggsLabel;
@@ -63,7 +66,8 @@ public partial class DaySummary : CanvasLayer
 
 	private void OnContinuePressed()
 	{
-		// Hide this screen and start new day
+		EmitSignal(SignalName.SummaryClosed);
+
 		QueueFree();
 	}
 }
