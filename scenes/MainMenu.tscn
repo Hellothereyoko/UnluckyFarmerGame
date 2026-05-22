@@ -96,9 +96,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 320.0
+offset_left = 227.0
 offset_top = 416.0
-offset_right = 820.0
+offset_right = 912.0
 offset_bottom = 566.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -124,7 +124,25 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ow34m")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_l72w3")
 text = "Start"
 
-[node name="Quit" type="Button" parent="VBoxContainer" unique_id=2104295651]
+[node name="HowTo" type="Button" parent="VBoxContainer" unique_id=2104295651]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 20.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ow34m")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l72w3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_826wr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ucygd")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_mipys")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8a8k8")
+text = "How To Play"
+
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=2106780329]
 custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -141,3 +159,48 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ucygd")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_mipys")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8a8k8")
 text = "Quit"
+
+[node name="HowToLayer" type="CanvasLayer" parent="." unique_id=118936902]
+
+[node name="HowToPanel" type="Panel" parent="HowToLayer" unique_id=343568618]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -175.0
+offset_right = 250.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CloseButton" type="Button" parent="HowToLayer/HowToPanel" unique_id=105797224]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -71.5
+offset_top = -53.0
+offset_right = 71.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_ow34m")
+text = "Close"
+
+[node name="Label" type="Label" parent="HowToLayer/HowToPanel" unique_id=1709567100]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -11.5
+offset_right = 150.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "** I'm a Placeholder for Instructions **"
