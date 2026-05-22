@@ -21,6 +21,11 @@ public partial class FarmManager : TileMapLayer
 	private Dictionary<Vector2I, Crop> plantedCrops = new();
 
 	private Node gameData;
+	
+	//farm upgrades
+	private int expansionLevel = 0;
+	private TileMapLayer farmBoundsMed;
+	private TileMapLayer farmBoundsLarge;
 
 
 	public override void _Ready()
@@ -32,6 +37,10 @@ public partial class FarmManager : TileMapLayer
 		int startingCash = gameData.Get("cash").AsInt32();
 		int startingDebt = gameData.Get("debt").AsInt32();
 		int startingDay = gameData.Get("day").AsInt32();
+		farmBoundsMed = GetNode<TileMapLayer>("../FarmBounds_Medium");
+		farmBoundsLarge = GetNode<TileMapLayer>("../FarmBounds_Large");
+		
+		
 		
    	 	GD.Print($"=== FARM STARTED ===");
 		GD.Print($"Day: {startingDay}/{7}");
@@ -53,6 +62,9 @@ public partial class FarmManager : TileMapLayer
 				case Key.Key5: StartingCrop = PumpkinCrop;     GD.Print("Pumpkin selected");      break;
 				case Key.Key6: StartingCrop = StrawberryCrop;  GD.Print("Strawberry selected");   break;
 				case Key.Key7: StartingCrop = CauliflowerCrop; GD.Print("Cauliflower selected");  break;
+				case Key.Key8:
+				UpgradeFarm();
+				break;
 			}
 		}
 	}
@@ -194,5 +206,35 @@ public partial class FarmManager : TileMapLayer
 	
 	int currentCash = gameData.Get("cash").AsInt32();
 	GD.Print($"Current cash: {currentCash}");
+}
+	public void UpgradeFarm()
+{
+	GD.Print($"UpgradeFarm called! Current level: {expansionLevel}");
+	expansionLevel++;
+	
+	if (expansionLevel == 1)
+	{
+		farmBounds.Enabled = false;
+		farmBounds.Visible = false;
+		farmBoundsMed.Enabled = true;
+		farmBoundsMed.Visible = true;
+		farmBounds = farmBoundsMed;
+		GD.Print($"farmBounds now has {farmBounds.GetUsedCells().Count} cells");
+		GD.Print("Farm expanded to medium!");
+	}
+	else if (expansionLevel == 2)
+	{
+		farmBoundsMed.Enabled = false;
+		farmBoundsMed.Visible = false;
+		farmBoundsLarge.Enabled = true;
+		farmBoundsLarge.Visible = true;
+		farmBounds = farmBoundsLarge;
+		GD.Print($"farmBounds now has {farmBounds.GetUsedCells().Count} cells");
+		GD.Print("Farm expanded to large!");
+	}
+	else
+	{
+		GD.Print("Farm is already at max size!");
+	}
 }
 }
