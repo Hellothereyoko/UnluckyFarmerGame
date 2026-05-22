@@ -175,7 +175,7 @@ offset_bottom = 175.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="HowToLayer/HowToPanel" unique_id=105797224]
+[node name="CloseButton" type="Button" parent="HowToLayer/HowToPanel" unique_id=105797224]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
