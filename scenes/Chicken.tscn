@@ -270,6 +270,7 @@ animations = [{
 radius = 3.1622777
 
 [node name="Chicken" type="CharacterBody2D" unique_id=88184386]
+texture_filter = 1
 position = Vector2(900, 500)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_6kyny")

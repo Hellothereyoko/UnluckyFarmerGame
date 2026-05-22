@@ -293,12 +293,6 @@ texture = ExtResource("3_2lacs")
 [sub_resource type="TileSet" id="TileSet_p0yrl"]
 sources/3 = SubResource("TileSetAtlasSource_13jdd")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8ajv"]
-size = Vector2(60, 42)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_us3p0"]
-size = Vector2(20, 36)
-
 [node name="MainFarm" type="Node2D" unique_id=1503612408]
 y_sort_enabled = true
 position = Vector2(19, 36)
@@ -347,10 +341,10 @@ CauliflowerCrop = ExtResource("10_13jdd")
 position = Vector2(665, 12)
 
 [node name="DeliciousFruit(bad)" parent="." unique_id=802498872 instance=ExtResource("5_notapple")]
-position = Vector2(214, 158)
+position = Vector2(-263, -46)
 
 [node name="Apple" parent="." unique_id=87394357 instance=ExtResource("6_collect")]
-position = Vector2(197, 130)
+position = Vector2(-245, -43)
 
 [node name="LayerOrdering" type="Node2D" parent="." unique_id=967600371]
 z_index = 2
@@ -361,7 +355,8 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="Player" parent="LayerOrdering" unique_id=607596513 groups=["player"] instance=ExtResource("2_yolus")]
-position = Vector2(484, 267)
+y_sort_enabled = true
+position = Vector2(668, 185)
 scale = Vector2(1, 1)
 
 [node name="Chicken" parent="LayerOrdering" unique_id=88184386 instance=ExtResource("1_cjnv8")]
@@ -370,37 +365,14 @@ position = Vector2(1415, 119)
 [node name="Tree_Node" type="Node2D" parent="LayerOrdering" unique_id=631899351]
 y_sort_enabled = true
 
-[node name="Tree3" parent="LayerOrdering/Tree_Node" unique_id=1719463820 instance=ExtResource("4_tree")]
-z_as_relative = true
-position = Vector2(91, 315)
-script = null
+[node name="Tree" parent="LayerOrdering/Tree_Node" unique_id=1719463820 instance=ExtResource("4_tree")]
+position = Vector2(100, 300)
+
+[node name="Tree2" parent="LayerOrdering/Tree_Node" unique_id=2070512598 instance=ExtResource("4_tree")]
+position = Vector2(350, 300)
 
 [node name="LemonTree" parent="LayerOrdering/Tree_Node" unique_id=1122597337 instance=ExtResource("19_13jdd")]
-position = Vector2(91, 701)
-
-[node name="Tree" parent="LayerOrdering/Tree_Node" unique_id=1474818266 instance=ExtResource("4_tree")]
-z_as_relative = true
-position = Vector2(96, 103)
-script = null
-
-[node name="StaticBody2D" type="StaticBody2D" parent="LayerOrdering/Tree_Node/Tree" unique_id=13879090]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerOrdering/Tree_Node/Tree/StaticBody2D" unique_id=218743544]
-position = Vector2(-21, 27)
-shape = SubResource("RectangleShape2D_j8ajv")
-debug_color = Color(0.81684977, 0.38956097, 0.317401, 0.41960785)
-
-[node name="Area2D" type="Area2D" parent="LayerOrdering/Tree_Node/Tree" unique_id=1406228698]
-disable_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerOrdering/Tree_Node/Tree/Area2D" unique_id=1912080399]
-position = Vector2(55, 26)
-shape = SubResource("RectangleShape2D_us3p0")
-
-[node name="Tree2" parent="LayerOrdering/Tree_Node" unique_id=1234474324 instance=ExtResource("4_tree")]
-z_as_relative = true
-position = Vector2(303, 94)
-script = null
+position = Vector2(234, 40)
 
 [node name="DayNightCycl" type="CanvasModulate" parent="." unique_id=255116171]
 script = ExtResource("16_ek620")
@@ -428,6 +400,7 @@ layout_mode = 2
 script = ExtResource("14_j0rrn")
 
 [node name="InventoryPanel" type="Control" parent="InventoryCanvas" unique_id=1927815188]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
