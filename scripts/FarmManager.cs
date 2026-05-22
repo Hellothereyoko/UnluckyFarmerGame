@@ -20,15 +20,19 @@ public partial class FarmManager : TileMapLayer
 	private TileMapLayer farmBounds;
 	private Dictionary<Vector2I, Crop> plantedCrops = new();
 
+	private Node gameData;
+
+
 	public override void _Ready()
 	{
 		cropContainer = GetNode<Node2D>("../LayerOrdering/CropContainer");
 		farmBounds = GetNode<TileMapLayer>("../FarmBounds");
 		 // Print starting economy
-		var gameData = GetNode<Node>("/root/GameData");
+		gameData = GetNode<Node>("/root/GameData");
 		int startingCash = gameData.Get("cash").AsInt32();
 		int startingDebt = gameData.Get("debt").AsInt32();
 		int startingDay = gameData.Get("day").AsInt32();
+		
    	 	GD.Print($"=== FARM STARTED ===");
 		GD.Print($"Day: {startingDay}/{7}");
   		GD.Print($"Cash: {startingCash}g");
@@ -95,11 +99,20 @@ public partial class FarmManager : TileMapLayer
 
 	private void TillSoil(Vector2I tilePos)
 {
+	//var gameData = GetNode<Node>("/root/GameData");
+	int current_stamina = gameData.Get("stamina").AsInt32();
 	if (GetCellSourceId(tilePos) != -1)
 	{
 		GD.Print("Already tilled!");
 		return;
+	} else if (current_stamina <= 0)
+	{
+		GD.Print("Out of Energy : Can't Till Field");
+		return;
 	}
+	GD.Print(current_stamina);
+	gameData.Set("stamina",current_stamina- 1);
+	GD.Print(gameData.Get("stamina").AsInt32());
 	SetCell(tilePos, 3, Vector2I.Zero);
 	GD.Print($"Tile set at {tilePos}, source ID now: {GetCellSourceId(tilePos)}");
 	GD.Print("Soil tilled!");
@@ -119,9 +132,13 @@ public partial class FarmManager : TileMapLayer
 		GD.Print("Soil not tilled!");
 		return;
 	}
-
+	if (gameData.Get("stamina").AsInt32() <= 0)
+	{
+		GD.Print("Out of Energy : Can't Plant seeds");
+		return;
+	}
 	GD.Print("Attempting to buy seed...");
-	var gameData = GetNode<Node>("/root/GameData");
+	//var gameData = GetNode<Node>("/root/GameData");
 	string cropName = StartingCrop.CropName.ToLower();
 	GD.Print($"Crop name: {cropName}");
 	
@@ -131,6 +148,10 @@ public partial class FarmManager : TileMapLayer
 		GD.Print("Not enough cash for seeds!");
 		return;
 	}
+
+	GD.Print(gameData.Get("stamina").AsInt32());
+	gameData.Set("stamina",gameData.Get("stamina").AsInt32() - 2);
+	GD.Print(gameData.Get("stamina").AsInt32());
 
 	Crop crop = CropScene.Instantiate<Crop>();
 	crop.Data = StartingCrop;
@@ -146,12 +167,20 @@ public partial class FarmManager : TileMapLayer
 {
 	if (!plantedCrops.ContainsKey(tilePos))
 		return;
+	else if (gameData.Get("stamina").AsInt32() <= 0)
+	{
+		GD.Print("Out of Energy : Can't pluck plants");
+		return;
+	}
+	GD.Print(gameData.Get("stamina").AsInt32());
+	gameData.Set("stamina",gameData.Get("stamina").AsInt32() - 5);
+	GD.Print(gameData.Get("stamina").AsInt32());
 
 	plantedCrops[tilePos].Harvest();
 	plantedCrops.Remove(tilePos);
 	EraseCell(tilePos);
 
-	var gameData = GetNode<Node>("/root/GameData");
+	//var gameData = GetNode<Node>("/root/GameData");
 	string cropName = StartingCrop.CropName.ToLower();
 	
 	var inventory = gameData.Get("basket_inventory").AsGodotDictionary();

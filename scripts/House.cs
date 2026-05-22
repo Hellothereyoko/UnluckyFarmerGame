@@ -50,7 +50,8 @@ summary.ShowSummary(
 		GD.Print($"Day: {scriptNode.Get("day")}");
 		GD.Print($"Cash: {scriptNode.Get("cash")}g");
 		GD.Print($"Debt: {scriptNode.Get("debt")}g");
-
+		
+		scriptNode.Set("stamina", 100);
 		// Lay egg when player sleeps
 		try
 		{

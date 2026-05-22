@@ -22,6 +22,8 @@ const DAILY_INTEREST : float = 0.02
 const MINIMUM_PAYMENT : int = 80
 const PENALTY_AMOUNT : int = 3
 
+##Stamina Tracker
+var stamina : int = 100
 
 ##This tracks all the produce collected during the day
 ##When the player collects fruit, both total and fresh increases.
