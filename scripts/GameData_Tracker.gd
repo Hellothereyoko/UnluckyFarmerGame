@@ -192,3 +192,23 @@ func buy_seed(crop_name: String) -> bool:
 		return true
 	print("Not enough cash for seeds!")
 	return false
+
+func reloadTrees():
+	var scene_ = get_tree().current_scene
+	scene_ = scene_.get_node("LayerOrdering").get_node("Tree_Node")
+	var tree_instance
+	var tree_Object 
+	for tree_ in scene_.get_children():
+		
+		match tree_.scene_file_path:
+			"res://scenes/AppleTree.tscn":
+				tree_instance = preload("res://scenes/AppleTree.tscn")
+				tree_Object = tree_instance.instantiate()
+			"res://scenes/lemon_tree.tscn":
+				tree_instance = preload("res://scenes/lemon_tree.tscn")
+				tree_Object = tree_instance.instantiate()
+			
+		
+		scene_.add_child(tree_Object)
+		tree_Object.position = tree_.position
+		tree_.queue_free()

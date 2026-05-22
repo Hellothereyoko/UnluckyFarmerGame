@@ -1,7 +1,7 @@
 extends Node2D
 
 const lemon_object = preload("res://scenes/collect_lemons.tscn")
-var maximum_lemon_drops : int = randi_range(3,6)
+var lemon_drops : int = 1
 
 #@onready var text_directions = $"Hit Tree Instructions"
 
@@ -32,7 +32,7 @@ func _process(delta):
 			#Animate the tree in a scary Way 
 
 func dropping_lemons():
-	for i in randi_range(1,4):
+	for i in lemon_drops:
 		var fruit = lemon_object.instantiate()
 		
 		var x_position = randi_range(-40,40)
@@ -44,6 +44,7 @@ func dropping_lemons():
 		var target_position = Vector2(x_position, y_position + 130)
 		var tween = create_tween()
 		tween.tween_property(fruit,"position",target_position,0.5)
+	lemon_drops += randi_range(1,2)
 
 
 func _on_shake_tree_range_body_entered(body):

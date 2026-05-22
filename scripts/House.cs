@@ -24,9 +24,8 @@ public partial class House : StaticBody2D
 		GD.Print("Sleeping...");
 		
 		int currentDay = (int)scriptNode.Get("day");
-
 		scriptNode.Call("end_of_day");
-		
+		scriptNode.Call("reloadTrees");
 		
 		PackedScene summaryScene = GD.Load<PackedScene>("res://Scenes/DaySummary.tscn");
 		GD.Print(summaryScene);
