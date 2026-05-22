@@ -43,7 +43,7 @@ public partial class DayNightCycle : CanvasModulate
 	}
 
 	// TODO:
-	// Call startnewday() when player successfully sleeps.
+
 	// In future: add here:
 	// - advance day counter
 	// - save game data

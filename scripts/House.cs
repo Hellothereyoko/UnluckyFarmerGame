@@ -3,6 +3,7 @@ using Godot;
 public partial class House : StaticBody2D
 {
 	private bool playerNearby = false;
+	private bool sleeping = false;
 	private Label interactionLabel;
 	private Node scriptNode;
 	public override void _Ready()
@@ -19,8 +20,13 @@ public partial class House : StaticBody2D
 
 	public override void _Process(double delta)
 {
+	// Block ALL interaction while summary is open
+	if (sleeping)
+		return;
+
 	if (playerNearby && Input.IsActionJustPressed("interact"))
 	{
+		sleeping = true;
 		GD.Print("Sleeping...");
 		
 		int currentDay = (int)scriptNode.Get("day");
@@ -28,30 +34,24 @@ public partial class House : StaticBody2D
 		scriptNode.Call("reloadTrees");
 		
 		PackedScene summaryScene = GD.Load<PackedScene>("res://Scenes/DaySummary.tscn");
-		GD.Print(summaryScene);
-	DaySummary summary = summaryScene.Instantiate<DaySummary>();
-	GD.Print(summary);
-	GetTree().CurrentScene.AddChild(summary);
-	GD.Print("Summary added to scene");
+		DaySummary summary = summaryScene.Instantiate<DaySummary>();
+		GetTree().CurrentScene.AddChild(summary);
+		summary.SummaryClosed += () => { sleeping = false; };
 
-summary.ShowSummary(
-	currentDay,
-	(int)scriptNode.Get("crop_money_today"),
-	(int)scriptNode.Get("egg_money_today"),
-	(int)scriptNode.Get("fruit_money_today"),
-	(int)scriptNode.Get("last_payment"),
-	(int)scriptNode.Get("last_interest"),
-	(int)scriptNode.Get("last_penalty"),
-	(int)scriptNode.Get("total_money_earned"),
-	(int)scriptNode.Get("debt")
-);
-		
-		GD.Print($"Day: {scriptNode.Get("day")}");
-		GD.Print($"Cash: {scriptNode.Get("cash")}g");
-		GD.Print($"Debt: {scriptNode.Get("debt")}g");
-		
+		summary.ShowSummary(
+			currentDay,
+			(int)scriptNode.Get("crop_money_today"),
+			(int)scriptNode.Get("egg_money_today"),
+			(int)scriptNode.Get("fruit_money_today"),
+			(int)scriptNode.Get("last_payment"),
+			(int)scriptNode.Get("last_interest"),
+			(int)scriptNode.Get("last_penalty"),
+			(int)scriptNode.Get("total_money_earned"),
+			(int)scriptNode.Get("debt")
+		);
+
 		scriptNode.Set("stamina", 100);
-		// Lay egg when player sleeps
+
 		try
 		{
 			Chicken chicken = GetNode<Chicken>("../LayerOrdering/Chicken");
@@ -66,7 +66,6 @@ summary.ShowSummary(
 		{
 			DayNightCycle dayNight = GetNode<DayNightCycle>("../DayNightCycl");
 			dayNight.StartNewDay();
-			GD.Print("Good morning!");
 		}
 		catch (System.Exception e)
 		{
@@ -89,6 +88,7 @@ private void OnBodyEntered(Node body)
 		if (body is Player)
 		{
 			playerNearby = false;
+			
 			interactionLabel.Visible = false;
 		}
 	}

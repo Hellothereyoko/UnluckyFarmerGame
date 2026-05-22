@@ -83,3 +83,4 @@ debug_pos={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0.15294118, 0.25490198, 0.09411765, 1)
