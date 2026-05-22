@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bm0hchotuo8uo" path="res://scenes/House.tscn" id="3_6h7hh"]
 [ext_resource type="Texture2D" uid="uid://tkfuij8bjpri" path="res://assets/FarmBounds.png" id="4_13jdd"]
 [ext_resource type="Script" uid="uid://dmm1t5qb4p4jw" path="res://scripts/FarmManager.cs" id="4_hiqg4"]
-[ext_resource type="PackedScene" uid="uid://2ovhh234lja7" path="res://scenes/Tree.tscn" id="4_tree"]
+[ext_resource type="PackedScene" uid="uid://2ovhh234lja7" path="res://scenes/AppleTree.tscn" id="4_tree"]
 [ext_resource type="Resource" uid="uid://bjw8wdpjj4yps" path="res://Carrot.tres" id="5_j0rrn"]
 [ext_resource type="PackedScene" uid="uid://cfxg8cmytirw0" path="res://scenes/NotApple.tscn" id="5_notapple"]
 [ext_resource type="PackedScene" uid="uid://c8rv8o8ost3ti" path="res://scenes/Collect_Apples.tscn" id="6_collect"]
@@ -355,32 +355,35 @@ scale = Vector2(1, 1)
 [node name="Chicken" parent="LayerOrdering" unique_id=88184386 instance=ExtResource("1_cjnv8")]
 position = Vector2(1415, 119)
 
-[node name="Tree3" parent="LayerOrdering" unique_id=1719463820 instance=ExtResource("4_tree")]
+[node name="Tree_Node" type="Node2D" parent="LayerOrdering" unique_id=631899351]
+y_sort_enabled = true
+
+[node name="Tree3" parent="LayerOrdering/Tree_Node" unique_id=1719463820 instance=ExtResource("4_tree")]
 z_as_relative = true
 position = Vector2(91, 315)
 
-[node name="LemonTree" parent="LayerOrdering" unique_id=1122597337 instance=ExtResource("19_13jdd")]
+[node name="LemonTree" parent="LayerOrdering/Tree_Node" unique_id=1122597337 instance=ExtResource("19_13jdd")]
 position = Vector2(91, 701)
 
-[node name="Tree" parent="LayerOrdering" unique_id=1474818266 instance=ExtResource("4_tree")]
+[node name="Tree" parent="LayerOrdering/Tree_Node" unique_id=1474818266 instance=ExtResource("4_tree")]
 z_as_relative = true
 position = Vector2(96, 103)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="LayerOrdering/Tree" unique_id=13879090]
+[node name="StaticBody2D" type="StaticBody2D" parent="LayerOrdering/Tree_Node/Tree" unique_id=13879090]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerOrdering/Tree/StaticBody2D" unique_id=218743544]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerOrdering/Tree_Node/Tree/StaticBody2D" unique_id=218743544]
 position = Vector2(-21, 27)
 shape = SubResource("RectangleShape2D_j8ajv")
 debug_color = Color(0.81684977, 0.38956097, 0.317401, 0.41960785)
 
-[node name="Area2D" type="Area2D" parent="LayerOrdering/Tree" unique_id=1406228698]
+[node name="Area2D" type="Area2D" parent="LayerOrdering/Tree_Node/Tree" unique_id=1406228698]
 disable_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerOrdering/Tree/Area2D" unique_id=1912080399]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerOrdering/Tree_Node/Tree/Area2D" unique_id=1912080399]
 position = Vector2(55, 26)
 shape = SubResource("RectangleShape2D_us3p0")
 
-[node name="Tree2" parent="LayerOrdering" unique_id=1234474324 instance=ExtResource("4_tree")]
+[node name="Tree2" parent="LayerOrdering/Tree_Node" unique_id=1234474324 instance=ExtResource("4_tree")]
 z_as_relative = true
 position = Vector2(303, 94)
 

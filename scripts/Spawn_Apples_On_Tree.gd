@@ -7,11 +7,11 @@ const rare_orange = preload("res://scenes/Collect_Oranges.tscn")
 var x_position : int = 0;
 var y_position : int = 90;
 
-const maximum_amount : int = 10;
+const maximum_amount : int = 7;
 
 var appleTimer : int = 1000
 
-var maximum_apple_drops : int = randi_range(1,5)
+var maximum_apple_drops : int = randi_range(2,6)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,7 +52,7 @@ func dropping_Apples():
 	
 	var target_position = Vector2(x_position, y_position + 130)
 	var tween = create_tween()
-	tween.tween_property(fruit,"position",target_position,2.0)
+	tween.tween_property(fruit,"position",target_position,0.5)
 	
 
 func spawn_notApples():
