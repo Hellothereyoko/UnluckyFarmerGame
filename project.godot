@@ -22,6 +22,10 @@ GameData="*uid://pmrf8okjhs3q"
 InventoryManager="*uid://bq6goqnerm57h"
 HotbarManager="*uid://bq3wfnslhd35"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="UnluckyFarmer"
