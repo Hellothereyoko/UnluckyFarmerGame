@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://ch0q707mlyt8n"]
 
+[ext_resource type="PackedScene" uid="uid://bteyamiejdn00" path="res://scenes/Shop.tscn" id="1_7pbjw"]
 [ext_resource type="PackedScene" uid="uid://b2kr41ko2k4xv" path="res://scenes/Chicken.tscn" id="1_cjnv8"]
 [ext_resource type="Texture2D" uid="uid://cblkbdeq8p2xj" path="res://assets/Woolly Lands FREE pack/Tilesets/Set 1.png" id="1_dk8p3"]
 [ext_resource type="PackedScene" uid="uid://dt7tcxuocc87p" path="res://scenes/Crop.tscn" id="2_hiqg4"]
@@ -339,6 +340,10 @@ CauliflowerCrop = ExtResource("10_13jdd")
 
 [node name="House" parent="." unique_id=1702688911 instance=ExtResource("3_6h7hh")]
 position = Vector2(665, 12)
+
+[node name="Shop" parent="." unique_id=146305738 instance=ExtResource("1_7pbjw")]
+position = Vector2(1510, 459)
+scale = Vector2(3, 3)
 
 [node name="DeliciousFruit(bad)" parent="." unique_id=802498872 instance=ExtResource("5_notapple")]
 position = Vector2(-263, -46)

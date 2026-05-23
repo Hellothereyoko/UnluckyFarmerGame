@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bteyamiejdn00"]
+
+[ext_resource type="Texture2D" uid="uid://citbc3p4u2jr5" path="res://assets/farmingTilesheetComplete.png" id="1_rgcs7"]
+[ext_resource type="Script" uid="uid://bc8rix7dtacsh" path="res://scripts/Shop.cs" id="1_t4md6"]
+[ext_resource type="FontFile" uid="uid://bbo2mle25u8do" path="res://assets/Pixeloid_Font_1_0/OpenType (.otf)/PixeloidSans-Bold.otf" id="3_cimqq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ec5oe"]
+size = Vector2(25, 3.9657404)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4md6"]
+size = Vector2(44.125, 21.25)
+
+[node name="Shop" type="StaticBody2D" unique_id=146305738]
+script = ExtResource("1_t4md6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1529517861]
+texture = ExtResource("1_rgcs7")
+region_enabled = true
+region_rect = Rect2(0, 180, 32, 28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1645445728]
+position = Vector2(0.5, 8.01713)
+shape = SubResource("RectangleShape2D_ec5oe")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1123672210]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=558282968]
+position = Vector2(2, 8)
+shape = SubResource("RectangleShape2D_t4md6")
+
+[node name="Label" type="Label" parent="." unique_id=1464675297]
+offset_left = 12.0
+offset_top = 9.0
+offset_right = 58.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("3_cimqq")
+theme_override_font_sizes/font_size = 4
+text = "Press [E] to shop"

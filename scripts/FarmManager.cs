@@ -76,6 +76,10 @@ public partial class FarmManager : TileMapLayer
 	Player player = GetNode<Player>("../LayerOrdering/Player");
 	GD.Print($"Player world position: {player.GlobalPosition}");
 }
+
+		// Don't farm if shop is open
+		if (GetTree().CurrentScene.FindChild("ShopUi") != null)
+		return;
 		
 		if (Input.IsActionJustPressed("interact"))
 		{
