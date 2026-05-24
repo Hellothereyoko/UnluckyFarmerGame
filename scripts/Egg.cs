@@ -45,27 +45,32 @@ public partial class Egg : Area2D
 			}
 		}
 	}
+private void CollectEgg()
+{
+	var gameData = GetNode<Node>("/root/GameData");
+	var inventory = gameData.Get("basket_inventory").AsGodotDictionary();
 
-	private void CollectEgg()
+	switch (Type)
 	{
-		switch (Type)
-		{
-			case EggType.Good:
-				InventoryManager.Instance.AddItem("egg", 1);
-				GD.Print("Collected a good egg!");
-				break;
-			case EggType.Golden:
-				InventoryManager.Instance.AddItem("golden_egg", 1);
-				GD.Print("Collected a GOLDEN EGG!");
-				break;
-			case EggType.Bad:
-				InventoryManager.Instance.AddItem("bad_egg", 1);
-				var gameData = GetNode<Node>("/root/GameData");
-				int cash = gameData.Get("cash").AsInt32();
-				gameData.Set("cash", cash - 20);
-				GD.Print("Bad egg! Chicken is sick! -20g");
-				break;
-		}
-		QueueFree();
+		case EggType.Good:
+			var goodEgg = inventory["egg"].AsGodotDictionary();
+			goodEgg["inventory"] = goodEgg["inventory"].AsInt32() + 1;
+			GD.Print("Collected a good egg!");
+			break;
+		case EggType.Golden:
+			var goldenEgg = inventory["golden_egg"].AsGodotDictionary();
+			goldenEgg["inventory"] = goldenEgg["inventory"].AsInt32() + 1;
+			GD.Print("Collected a GOLDEN EGG!");
+			break;
+		case EggType.Bad:
+			var badEgg = inventory["bad_egg"].AsGodotDictionary();
+			badEgg["inventory"] = badEgg["inventory"].AsInt32() + 1;
+			int cash = gameData.Get("cash").AsInt32();
+			gameData.Set("cash", cash - 20);
+			GD.Print("Bad egg! -20g");
+			break;
 	}
+	QueueFree();
 }
+}
+	

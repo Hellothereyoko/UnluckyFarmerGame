@@ -54,13 +54,13 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_dnkbq")
 text = "Fruit:"
 
-[node name="HSeparator2" type="HSeparator" parent="ColorRect/VBoxContainer" unique_id=1054017317]
-layout_mode = 2
-
 [node name="TotalLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1212501454]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_dnkbq")
 text = "Total Earned:"
+
+[node name="HSeparator2" type="HSeparator" parent="ColorRect/VBoxContainer" unique_id=1054017317]
+layout_mode = 2
 
 [node name="InterestLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1871025846]
 layout_mode = 2
@@ -70,7 +70,7 @@ text = "Interest Added:"
 [node name="PenaltyLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1372431960]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_dnkbq")
-text = "Missed Payment Penality:s"
+text = "Missed Payment Penality:"
 
 [node name="LoanLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1557236021]
 layout_mode = 2
@@ -88,7 +88,7 @@ layout_mode = 2
 [node name="LifetimeLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=2122821260]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_dnkbq")
-text = "Lifetime Earnings:"
+text = "Current Cash:"
 
 [node name="HSeparator4" type="HSeparator" parent="ColorRect/VBoxContainer" unique_id=1755398554]
 layout_mode = 2

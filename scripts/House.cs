@@ -46,7 +46,7 @@ public partial class House : StaticBody2D
 			(int)scriptNode.Get("last_payment"),
 			(int)scriptNode.Get("last_interest"),
 			(int)scriptNode.Get("last_penalty"),
-			(int)scriptNode.Get("total_money_earned"),
+			(int)scriptNode.Get("cash"),
 			(int)scriptNode.Get("debt")
 		);
 

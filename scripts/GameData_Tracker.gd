@@ -8,7 +8,7 @@ extends Node
 
 ##This tracks all the money data
 var cash : int = 75 # starting gold
-var debt : int = 1250
+var debt : int = 1500
 var total_money_earned : int = 0
 var last_interest : int = 0
 var last_penalty : int = 0
