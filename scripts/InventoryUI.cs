@@ -9,8 +9,8 @@ public partial class InventoryUI : CanvasLayer
 
 	private static readonly string[] HotkeyLabels = new string[]
 	{
-		"1: Hoe", "2: Seeds", "3: Hands",
-		"4: Carrot", "5: Pumpkin", "6: Strawberry", "7: Cauliflower",
+		"1: Hands", "2: Hoe", "3: Carrot",
+		"4: Strawberry", "5: Cauliflower", "6: Pumpkin", null,
 		null, null, null, null, null, null, null, null,
 		null, null, null, null, null
 	};
@@ -36,35 +36,26 @@ public partial class InventoryUI : CanvasLayer
 
 	private void Refresh()
 {
-	GD.Print("Refresh called");
-
 	foreach (Node child in slotGrid.GetChildren())
 		child.QueueFree();
 
 	var itemEntries = new System.Collections.Generic.List<(string name, int qty)>();
-
 	if (InventoryManager.Instance != null)
 	{
 		foreach (var entry in InventoryManager.Instance.Items)
 			itemEntries.Add((entry.Key, entry.Value));
-	}
-	else
-	{
-		GD.PrintErr("InventoryManager.Instance is null!");
 	}
 
 	for (int i = 0; i < TotalSlots; i++)
 	{
 		var slot = new PanelContainer();
 		slot.CustomMinimumSize = new Vector2(120, 60);
-
 		var vbox = new VBoxContainer();
-
-		var label = new Label();
-		label.HorizontalAlignment = HorizontalAlignment.Center;
 
 		if (HotkeyLabels[i] != null)
 		{
+			var label = new Label();
+			label.HorizontalAlignment = HorizontalAlignment.Center;
 			label.Text = HotkeyLabels[i];
 			vbox.AddChild(label);
 		}
@@ -74,10 +65,23 @@ public partial class InventoryUI : CanvasLayer
 			if (itemIndex >= 0 && itemIndex < itemEntries.Count)
 			{
 				var (itemName, itemQty) = itemEntries[itemIndex];
+
+				// Show seed image if available
+				Texture2D seedTex = GetSeedTexture(itemName);
+				if (seedTex != null)
+				{
+					var texRect = new TextureRect();
+					texRect.Texture = seedTex;
+					texRect.CustomMinimumSize = new Vector2(32, 32);
+					texRect.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
+					vbox.AddChild(texRect);
+				}
+
+				var label = new Label();
+				label.HorizontalAlignment = HorizontalAlignment.Center;
 				label.Text = $"{itemName}  x{itemQty}";
 				vbox.AddChild(label);
 
-				// Assign button
 				var btn = new Button();
 				btn.Text = "Assign";
 				string capturedName = itemName;
@@ -86,13 +90,33 @@ public partial class InventoryUI : CanvasLayer
 			}
 			else
 			{
+				var label = new Label();
 				label.Text = "(empty)";
+				label.HorizontalAlignment = HorizontalAlignment.Center;
 				vbox.AddChild(label);
 			}
 		}
 
 		slot.AddChild(vbox);
 		slotGrid.AddChild(slot);
+	}
+}
+
+private Texture2D GetSeedTexture(string itemName)
+{
+	// Map seed names to CropData resources
+	switch (itemName)
+	{
+		case "carrot_seed":
+			return GD.Load<CropData>("res://Carrot.tres").SeedTexture;
+		case "strawberry_seed":
+			return GD.Load<CropData>("res://strawberry.tres").SeedTexture;
+		case "pumpkin_seed":
+			return GD.Load<CropData>("res://pumpkin.tres").SeedTexture;
+		case "cauliflower_seed":
+			return GD.Load<CropData>("res://cauliflower.tres").SeedTexture;
+		default:
+			return null;
 	}
 }
 

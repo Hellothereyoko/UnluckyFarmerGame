@@ -1,87 +1,87 @@
 using Godot;
-
 public partial class ShopUI : CanvasLayer
 {
 	private Label goldLabel;
 	private Button closeButton;
 	private Node gameData;
+	private FarmManager farmManager;
+
+	// Store buttons so we can disable them
+	private Button carrotBtn, strawberryBtn, cauliflowerBtn, pumpkinBtn;
+	private Button medBtn, largeBtn;
 
 	public override void _Ready()
-{ 
-	gameData = GetNode<Node>("/root/GameData");
-	goldLabel = GetNode<Label>("ColorRect/Gold");
-	closeButton = GetNode<Button>("ColorRect/CloseButton");
-	closeButton.Pressed += OnClosePressed;
-	GD.Print("Close button connected!");
-	
-	GD.Print("ShopUI _Ready called!");
-var testButton = GetNodeOrNull<Button>("ColorRect/ScrollContainer/VBoxContainer/CarrotRow/VBoxContainer/BuyButton");
-GD.Print($"Carrot button found: {testButton != null}");
-if (testButton != null)
-{
-	testButton.Pressed += () => GD.Print("CARROT BUTTON PRESSED!");
-	GD.Print("Carrot button signal connected!");
-}
+	{
+		gameData = GetNode<Node>("/root/GameData");
+		farmManager = GetTree().CurrentScene.GetNode<FarmManager>("FarmTileMap");
 
-	try { GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/CarrotRow/VBoxContainer/BuyButton").Pressed += () => BuySeed("carrot", 2);
-		GD.Print("Carrot connected!"); }
-	catch (System.Exception e) { GD.PrintErr($"Carrot error: {e.Message}"); }
+		goldLabel = GetNode<Label>("ColorRect/Gold");
+		closeButton = GetNode<Button>("ColorRect/CloseButton");
+		closeButton.Pressed += OnClosePressed;
 
-	try { GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/StrawberryRow/VBoxContainer/BuyButton").Pressed += () => BuySeed("strawberry", 4);
-		GD.Print("Strawberry connected!"); }
-	catch (System.Exception e) { GD.PrintErr($"Strawberry error: {e.Message}"); }
+		carrotBtn = GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/CarrotRow/VBoxContainer/BuyButton");
+		strawberryBtn = GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/StrawberryRow/VBoxContainer/BuyButton");
+		cauliflowerBtn = GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/CauliflowerRow/VBoxContainer/BuyButton");
+		pumpkinBtn = GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/PumpkinRow/VBoxContainer/BuyButton");
+		medBtn = GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/MediumExpansion/BuyButton");
+		largeBtn = GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/LargeExpansion/BuyButton");
 
-	try { GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/CauliflowerRow/VBoxContainer/BuyButton").Pressed += () => BuySeed("cauliflower", 5);
-		GD.Print("Cauliflower connected!"); }
-	catch (System.Exception e) { GD.PrintErr($"Cauliflower error: {e.Message}"); }
+		carrotBtn.Pressed += () => BuySeed("carrot", 2);
+		strawberryBtn.Pressed += () => BuySeed("strawberry", 4);
+		cauliflowerBtn.Pressed += () => BuySeed("cauliflower", 5);
+		pumpkinBtn.Pressed += () => BuySeed("pumpkin", 6);
+		medBtn.Pressed += () => BuyExpansion(200);
+		largeBtn.Pressed += () => BuyExpansion(400);
 
-	try { GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/PumpkinRow/VBoxContainer/BuyButton").Pressed += () => BuySeed("pumpkin", 6);
-		GD.Print("Pumpkin connected!"); }
-	catch (System.Exception e) { GD.PrintErr($"Pumpkin error: {e.Message}"); }
+		UpdateGold();
+	}
 
-	try { GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/MediumExpansion/BuyButton").Pressed += () => BuyExpansion(200);
-		GD.Print("Medium expansion connected!"); }
-	catch (System.Exception e) { GD.PrintErr($"Medium expansion error: {e.Message}"); }
-
-	try { GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/LargeExpansion/BuyButton").Pressed += () => BuyExpansion(400);
-		GD.Print("Large expansion connected!"); }
-	catch (System.Exception e) { GD.PrintErr($"Large expansion error: {e.Message}"); }
-
-	UpdateGold();
-}
+	public override void _Process(double delta)
+	{
+		// Close shop with ESC
+		if (Input.IsActionJustPressed("ui_cancel"))
+			OnClosePressed();
+	}
 
 	private void UpdateGold()
 	{
 		int cash = gameData.Get("cash").AsInt32();
 		goldLabel.Text = $"Gold: {cash}g";
+
+		// Disable buttons when not enough gold
+		carrotBtn.Disabled = cash < 2;
+		strawberryBtn.Disabled = cash < 4;
+		cauliflowerBtn.Disabled = cash < 5;
+		pumpkinBtn.Disabled = cash < 6;
+		medBtn.Disabled = cash < 200;
+		largeBtn.Disabled = cash < 400;
+
+		// Disable expansion buttons if already at max level
+		int level = farmManager.expansionLevel;
+		medBtn.Disabled = level >= 1 || cash < 200;
+		largeBtn.Disabled = level < 1 || level >= 2 || cash < 400;
 	}
 
 	private void BuySeed(string seedName, int cost)
-	{
-		int cash = gameData.Get("cash").AsInt32();
-		if (cash < cost)
-		{
-			GD.Print("Not enough gold!");
-			return;
-		}
-		gameData.Set("cash", cash - cost);
-		InventoryManager.Instance.AddItem(seedName + "_seed", 1);
-		GD.Print($"Bought {seedName} seeds!");
-		UpdateGold();
-	}
+{
+	int cash = gameData.Get("cash").AsInt32();
+	if (cash < cost) return;
+	gameData.Set("cash", cash - cost);
+	InventoryManager.Instance.AddItem(seedName + "_seed", 1);
+	GD.Print($"Bought {seedName} seeds!");
+	UpdateGold();
+
+	// Refresh hotbar to show updated count
+	GetTree().Root.GetNodeOrNull<HotbarUI>("MainFarm/HotbarUI")?.Refresh();
+}
 
 	private void BuyExpansion(int cost)
 	{
 		int cash = gameData.Get("cash").AsInt32();
-		if (cash < cost)
-		{
-			GD.Print("Not enough gold for expansion!");
-			return;
-		}
+		if (cash < cost) return;
 		gameData.Set("cash", cash - cost);
-		var farm = GetTree().CurrentScene.GetNode<FarmManager>("FarmTileMap");
-		farm.UpgradeFarm();
-		GD.Print($"Farm expanded!");
+		farmManager.UpgradeFarm();
+		GD.Print("Farm expanded!");
 		UpdateGold();
 	}
 
