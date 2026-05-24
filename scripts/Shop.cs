@@ -28,7 +28,7 @@ public partial class Shop : StaticBody2D
 		GD.Print("Shop opened!");
 		PackedScene shopScene = GD.Load<PackedScene>("res://scenes/ShopUI.tscn");
 		GD.Print($"Shop scene loaded: {shopScene != null}");
-		ShopUI shop = shopScene.Instantiate<ShopUI>();
+		Node shop = shopScene.Instantiate();
 		GD.Print($"Shop instantiated: {shop != null}");
 		GetTree().CurrentScene.AddChild(shop);
 		GD.Print("Shop added to scene!");

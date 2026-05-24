@@ -54,9 +54,11 @@ offset_left = 95.333336
 offset_top = 97.33333
 offset_right = 520.6667
 offset_bottom = 360.6667
+mouse_filter = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/ScrollContainer" unique_id=2082507104]
 layout_mode = 2
+mouse_filter = 0
 
 [node name="Seeds" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer" unique_id=2010917317]
 layout_mode = 2
@@ -201,10 +203,13 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
 text = "Purchase"
 
-[node name="CloseButton" type="Button" parent="." unique_id=1301934702]
-offset_left = 188.0
-offset_top = 381.33334
-offset_right = 249.0
-offset_bottom = 409.33334
+[node name="CloseButton" type="Button" parent="ColorRect" unique_id=1301934702]
+layout_mode = 0
+offset_left = 188.66667
+offset_top = 382.0
+offset_right = 249.66667
+offset_bottom = 410.0
 theme_override_fonts/font = ExtResource("1_yoj64")
 text = "Close"
+
+[connection signal="pressed" from="ColorRect/ScrollContainer/VBoxContainer/CarrotRow/VBoxContainer/BuyButton" to="." method="OnClosePressed "]

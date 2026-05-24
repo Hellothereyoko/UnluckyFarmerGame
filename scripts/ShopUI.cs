@@ -7,25 +7,48 @@ public partial class ShopUI : CanvasLayer
 	private Node gameData;
 
 	public override void _Ready()
-	{
-		gameData = GetNode<Node>("/root/GameData");
+{ 
+	gameData = GetNode<Node>("/root/GameData");
+	goldLabel = GetNode<Label>("ColorRect/Gold");
+	closeButton = GetNode<Button>("ColorRect/CloseButton");
+	closeButton.Pressed += OnClosePressed;
+	GD.Print("Close button connected!");
+	
+	GD.Print("ShopUI _Ready called!");
+var testButton = GetNodeOrNull<Button>("ColorRect/ScrollContainer/VBoxContainer/CarrotRow/VBoxContainer/BuyButton");
+GD.Print($"Carrot button found: {testButton != null}");
+if (testButton != null)
+{
+	testButton.Pressed += () => GD.Print("CARROT BUTTON PRESSED!");
+	GD.Print("Carrot button signal connected!");
+}
 
-		goldLabel = GetNode<Label>("ColorRect/Gold");
-		closeButton = GetNode<Button>("ColorRect/CloseButton");
-		closeButton.Pressed += OnClosePressed;
+	try { GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/CarrotRow/VBoxContainer/BuyButton").Pressed += () => BuySeed("carrot", 2);
+		GD.Print("Carrot connected!"); }
+	catch (System.Exception e) { GD.PrintErr($"Carrot error: {e.Message}"); }
 
-		// Seed buttons
-		GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/CarrotRow/BuyButton").Pressed += () => BuySeed("carrot", 2);
-		GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/StrawberryRow/BuyButton").Pressed += () => BuySeed("strawberry", 4);
-		GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/CauliflowerRow/VBoxContainer/BuyButton").Pressed += () => BuySeed("cauliflower", 5);
-		GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/PumpkinRow/VBoxContainer/BuyButton").Pressed += () => BuySeed("pumpkin", 6);
+	try { GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/StrawberryRow/VBoxContainer/BuyButton").Pressed += () => BuySeed("strawberry", 4);
+		GD.Print("Strawberry connected!"); }
+	catch (System.Exception e) { GD.PrintErr($"Strawberry error: {e.Message}"); }
 
-		// Expansion buttons
-		GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/MediumExpansion/BuyButton").Pressed += () => BuyExpansion(200);
-		GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/LargeExpansion/BuyButton").Pressed += () => BuyExpansion(400);
+	try { GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/CauliflowerRow/VBoxContainer/BuyButton").Pressed += () => BuySeed("cauliflower", 5);
+		GD.Print("Cauliflower connected!"); }
+	catch (System.Exception e) { GD.PrintErr($"Cauliflower error: {e.Message}"); }
 
-		UpdateGold();
-	}
+	try { GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/PumpkinRow/VBoxContainer/BuyButton").Pressed += () => BuySeed("pumpkin", 6);
+		GD.Print("Pumpkin connected!"); }
+	catch (System.Exception e) { GD.PrintErr($"Pumpkin error: {e.Message}"); }
+
+	try { GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/MediumExpansion/BuyButton").Pressed += () => BuyExpansion(200);
+		GD.Print("Medium expansion connected!"); }
+	catch (System.Exception e) { GD.PrintErr($"Medium expansion error: {e.Message}"); }
+
+	try { GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/LargeExpansion/BuyButton").Pressed += () => BuyExpansion(400);
+		GD.Print("Large expansion connected!"); }
+	catch (System.Exception e) { GD.PrintErr($"Large expansion error: {e.Message}"); }
+
+	UpdateGold();
+}
 
 	private void UpdateGold()
 	{
