@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://ch0q707mlyt8n"]
 
+[ext_resource type="PackedScene" uid="uid://bteyamiejdn00" path="res://scenes/Shop.tscn" id="1_7pbjw"]
 [ext_resource type="PackedScene" uid="uid://b2kr41ko2k4xv" path="res://scenes/Chicken.tscn" id="1_cjnv8"]
 [ext_resource type="Texture2D" uid="uid://cblkbdeq8p2xj" path="res://assets/Woolly Lands FREE pack/Tilesets/Set 1.png" id="1_dk8p3"]
 [ext_resource type="PackedScene" uid="uid://dt7tcxuocc87p" path="res://scenes/Crop.tscn" id="2_hiqg4"]
@@ -17,7 +18,7 @@
 [ext_resource type="Resource" uid="uid://dwn34eb50do4d" path="res://strawberry.tres" id="9_2j08t"]
 [ext_resource type="Resource" uid="uid://d3pmqehloikvq" path="res://cauliflower.tres" id="10_13jdd"]
 [ext_resource type="Script" uid="uid://cqqj8tgnkphaw" path="res://scripts/InventoryUI.cs" id="14_j0rrn"]
-[ext_resource type="Script" uid="uid://c5thfd57rgw4i" path="res://HotbarUI.cs" id="15_vjv8i"]
+[ext_resource type="Script" uid="uid://c5thfd57rgw4i" path="res://scripts/HotbarUI.cs" id="15_vjv8i"]
 [ext_resource type="Script" uid="uid://b5rj7brjyliil" path="res://scripts/DayNightCycle.cs" id="16_ek620"]
 [ext_resource type="PackedScene" uid="uid://lg6fcyrbaj1v" path="res://scenes/lemon_tree.tscn" id="19_13jdd"]
 [ext_resource type="PackedScene" uid="uid://cgkbc4vdbw3ba" path="res://scenes/mailbox.tscn" id="20_cjnv8"]
@@ -340,6 +341,10 @@ CauliflowerCrop = ExtResource("10_13jdd")
 [node name="House" parent="." unique_id=1702688911 instance=ExtResource("3_6h7hh")]
 position = Vector2(665, 12)
 
+[node name="Shop" parent="." unique_id=146305738 instance=ExtResource("1_7pbjw")]
+position = Vector2(1118, 25)
+scale = Vector2(3, 3)
+
 [node name="DeliciousFruit(bad)" parent="." unique_id=802498872 instance=ExtResource("5_notapple")]
 position = Vector2(-263, -46)
 
@@ -360,7 +365,7 @@ position = Vector2(668, 185)
 scale = Vector2(1, 1)
 
 [node name="Chicken" parent="LayerOrdering" unique_id=88184386 instance=ExtResource("1_cjnv8")]
-position = Vector2(1415, 119)
+position = Vector2(1286, 88)
 
 [node name="Tree_Node" type="Node2D" parent="LayerOrdering" unique_id=631899351]
 y_sort_enabled = true

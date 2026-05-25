@@ -23,7 +23,7 @@ public partial class FarmManager : TileMapLayer
 	private Node gameData;
 	
 	//farm upgrades
-	private int expansionLevel = 0;
+	public int expansionLevel = 0;
 	private TileMapLayer farmBoundsMed;
 	private TileMapLayer farmBoundsLarge;
 
@@ -39,7 +39,7 @@ public partial class FarmManager : TileMapLayer
 		int startingDay = gameData.Get("day").AsInt32();
 		farmBoundsMed = GetNode<TileMapLayer>("../FarmBounds_Medium");
 		farmBoundsLarge = GetNode<TileMapLayer>("../FarmBounds_Large");
-		
+		ToolManager.CurrentTool = ToolType.None;
 		
 		
    	 	GD.Print($"=== FARM STARTED ===");
@@ -55,16 +55,12 @@ public partial class FarmManager : TileMapLayer
 		{
 			switch (keyEvent.Keycode)
 			{
-				case Key.Key1: ToolManager.CurrentTool = ToolType.Hoe;  GD.Print("Hoe equipped");        break;
-				case Key.Key2: ToolManager.CurrentTool = ToolType.Seeds; GD.Print("Seeds equipped");      break;
-				case Key.Key3: ToolManager.CurrentTool = ToolType.None;  GD.Print("Hands equipped");      break;
-				case Key.Key4: StartingCrop = CarrotCrop;      GD.Print("Carrot selected");       break;
-				case Key.Key5: StartingCrop = PumpkinCrop;     GD.Print("Pumpkin selected");      break;
-				case Key.Key6: StartingCrop = StrawberryCrop;  GD.Print("Strawberry selected");   break;
-				case Key.Key7: StartingCrop = CauliflowerCrop; GD.Print("Cauliflower selected");  break;
-				case Key.Key8:
-				UpgradeFarm();
-				break;
+				case Key.Key1: ToolManager.CurrentTool = ToolType.None; GD.Print("Hands equipped"); break;
+				case Key.Key2: ToolManager.CurrentTool = ToolType.Hoe; GD.Print("Hoe equipped"); break;
+				case Key.Key3: StartingCrop = CarrotCrop; ToolManager.CurrentTool = ToolType.Seeds; GD.Print("Carrot selected"); break;
+				case Key.Key4: StartingCrop = StrawberryCrop; ToolManager.CurrentTool = ToolType.Seeds; GD.Print("Strawberry selected"); break;
+				case Key.Key5: StartingCrop = CauliflowerCrop; ToolManager.CurrentTool = ToolType.Seeds; GD.Print("Cauliflower selected"); break;
+				case Key.Key6: StartingCrop = PumpkinCrop; ToolManager.CurrentTool = ToolType.Seeds; GD.Print("Pumpkin selected"); break;
 			}
 		}
 	}
@@ -76,6 +72,10 @@ public partial class FarmManager : TileMapLayer
 	Player player = GetNode<Player>("../LayerOrdering/Player");
 	GD.Print($"Player world position: {player.GlobalPosition}");
 }
+
+		// Don't farm if shop is open
+		if (GetTree().CurrentScene.FindChild("ShopUi") != null)
+		return;
 		
 		if (Input.IsActionJustPressed("interact"))
 		{
@@ -129,11 +129,9 @@ public partial class FarmManager : TileMapLayer
 	GD.Print($"Tile set at {tilePos}, source ID now: {GetCellSourceId(tilePos)}");
 	GD.Print("Soil tilled!");
 }
-
-	private void PlantCrop(Vector2I tilePos)
+		
+		private void PlantCrop(Vector2I tilePos)
 {
-	GD.Print("PlantCrop called!");
-	
 	if (plantedCrops.ContainsKey(tilePos))
 	{
 		GD.Print("Already a crop here!");
@@ -146,35 +144,40 @@ public partial class FarmManager : TileMapLayer
 	}
 	if (gameData.Get("stamina").AsInt32() <= 0)
 	{
-		GD.Print("Out of Energy : Can't Plant seeds");
-		return;
-	}
-	GD.Print("Attempting to buy seed...");
-	//var gameData = GetNode<Node>("/root/GameData");
-	string cropName = StartingCrop.CropName.ToLower();
-	GD.Print($"Crop name: {cropName}");
-	
-	bool canAfford = gameData.Call("buy_seed", cropName).AsBool();
-	if (!canAfford)
-	{
-		GD.Print("Not enough cash for seeds!");
+		GD.Print("Out of Energy!");
 		return;
 	}
 
-	GD.Print(gameData.Get("stamina").AsInt32());
-	gameData.Set("stamina",gameData.Get("stamina").AsInt32() - 2);
-	GD.Print(gameData.Get("stamina").AsInt32());
+	string cropName = StartingCrop.CropName.ToLower();
+	string seedName = cropName + "_seed";
+
+	GD.Print($"Looking for seed: {seedName}");
+	GD.Print($"Inventory contents: {string.Join(", ", InventoryManager.Instance.Items.Keys)}");
+
+	if (!InventoryManager.Instance.Items.ContainsKey(seedName) || 
+		InventoryManager.Instance.Items[seedName] <= 0)
+	{
+		GD.Print($"No {seedName} in inventory!");
+		return;
+	}
+
+	InventoryManager.Instance.RemoveItem(seedName, 1);
+	GD.Print($"Used 1 {seedName} from inventory!");
+
+	gameData.Set("stamina", gameData.Get("stamina").AsInt32() - 2);
 
 	Crop crop = CropScene.Instantiate<Crop>();
 	crop.Data = StartingCrop;
 	cropContainer.AddChild(crop);
 	crop.GlobalPosition = ToGlobal(MapToLocal(tilePos));
 	plantedCrops.Add(tilePos, crop);
-	GD.Print("Crop planted!");
-	int currentCash = gameData.Get("cash").AsInt32();
-	GD.Print($"Remaining cash: {currentCash}");
-}
 
+	int remaining = InventoryManager.Instance.Items.ContainsKey(seedName) ? InventoryManager.Instance.Items[seedName] : 0;
+	GD.Print($"Remaining {seedName}: {remaining}");
+	
+	GetTree().Root.GetNodeOrNull<HotbarUI>("MainFarm/HotbarUI")?.Refresh();
+}
+	
 	private void HarvestCrop(Vector2I tilePos)
 {
 	if (!plantedCrops.ContainsKey(tilePos))

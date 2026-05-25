@@ -1,10 +1,12 @@
 [gd_resource type="Resource" script_class="CropData" format=3 uid="uid://d3pmqehloikvq"]
 
 [ext_resource type="Script" uid="uid://cfwmxa0tv7cwj" path="res://scripts/CropData.cs" id="1_2e84i"]
+[ext_resource type="Texture2D" uid="uid://bv88yvjgop10i" path="res://assets/CauliflowerPacket (1).png" id="1_a4vut"]
 
 [resource]
 script = ExtResource("1_2e84i")
 CropName = "Cauliflower"
+SeedTexture = ExtResource("1_a4vut")
 SpriteScale = Vector2(1.4, 1.4)
 SpriteOffset = Vector2(0, 4)
 metadata/_custom_type_script = "uid://cfwmxa0tv7cwj"

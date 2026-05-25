@@ -17,7 +17,7 @@ public enum ToolType
 
 public partial class ToolManager : Node
 {
-	public static ToolType CurrentTool = ToolType.Hoe;
+	public static ToolType CurrentTool = ToolType.None;
 
 	public static ToolLevel HoeLevel = ToolLevel.Basic;
 

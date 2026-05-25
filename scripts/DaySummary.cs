@@ -57,10 +57,10 @@ public partial class DaySummary : CanvasLayer
 		eggsLabel.Text = $"Eggs:         {eggGold}g";
 		fruitLabel.Text = $"Fruit:        {fruitGold}g";
 		totalLabel.Text = $"Total Earned: {total}g";
-		interestLabel.Text = $"Interest Added: +{interestAdded}g";
+		interestLabel.Text = $"Interest Added: +{interestAdded}g to loan";
 		penaltyLabel.Text = $"Missed Payment Penalty: +{missedPenalty}g";
 		loanLabel.Text = $"Loan Payment: -{loanPayment}g";
-		lifetimeLabel.Text = $"Lifetime Earnings: {lifetimeEarned}g";
+		lifetimeLabel.Text = $"Current Cash: {lifetimeEarned}g";
 		debtLabel.Text = $"Remaining Debt: {remainingDebt}g";
 	}
 

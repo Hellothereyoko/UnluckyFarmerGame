@@ -9,16 +9,15 @@ public partial class HotbarManager : Node
 	public int ActiveSlot { get; private set; } = 0;
 
 	public override void _Ready()
-	{
-		Instance = this;
-
-		Slots[0] = "Hoe";
-		Slots[1] = "Seeds";
-		Slots[2] = "Hands";
-		Slots[3] = "Carrot";
-		Slots[4] = "Pumpkin";
-		Slots[5] = "Strawberry";
-	}
+{
+	Instance = this;
+	Slots[0] = "Hands";
+	Slots[1] = "Hoe";
+	Slots[2] = "carrot_seed";
+	Slots[3] = "strawberry_seed";
+	Slots[4] = "cauliflower_seed";
+	Slots[5] = "pumpkin_seed";
+}
 
 	public void SetActiveSlot(int slotIndex)
 	{

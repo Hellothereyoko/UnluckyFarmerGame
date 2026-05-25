@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="CropData" format=3 uid="uid://bjw8wdpjj4yps"]
 
+[ext_resource type="Texture2D" uid="uid://c0vnb5prsnwu7" path="res://assets/CarrotPacket.png" id="1_3504l"]
 [ext_resource type="Script" uid="uid://cfwmxa0tv7cwj" path="res://scripts/CropData.cs" id="1_ump5r"]
 
 [resource]
 script = ExtResource("1_ump5r")
 CropName = "Carrot"
+SeedTexture = ExtResource("1_3504l")
 SpriteOffset = Vector2(0, 2)
 metadata/_custom_type_script = "uid://cfwmxa0tv7cwj"
