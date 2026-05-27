@@ -1,8 +1,14 @@
 using Godot;
 using System.Collections.Generic;
 
+
+/*
+* This class handles all player interactions with the farm. 
+* TODO: ISOLATE STAMINA CHECK SO THAT WE AREN'T WRITING THE SAME CODE OVER AND OVER
+*/
 public partial class FarmManager : TileMapLayer
 {
+	//Crop Vars
 	[Export]
 	public PackedScene CropScene;
 	[Export]
@@ -16,10 +22,12 @@ public partial class FarmManager : TileMapLayer
 	[Export]
 	public CropData CauliflowerCrop;
 
+	//Farmable land vars
 	private Node2D cropContainer;
 	private TileMapLayer farmBounds;
 	private Dictionary<Vector2I, Crop> plantedCrops = new();
 
+	//Player vars
 	private Node gameData;
 	private StaminaUI staminaUI;
 	private Player player;
@@ -142,12 +150,14 @@ public partial class FarmManager : TileMapLayer
 			GD.Print("Already tilled!");
 			return;
 		}
+		
+		//TODO: ADD ON SCREEN MSG TELLING PLAYER THEYRE OUT OF STAMINA
 		else if (stamina <= 0)
 		{
 			GD.Print("Out of Energy : Can't Till Field");
 			return;
 		}
-		gameData.Set("stamina", stamina - 1);
+		gameData.Set("stamina", stamina - 1); //STAMINA VAR TILLING
 		staminaUI?.Refresh();
 		SetCell(tilePos, 3, Vector2I.Zero);
 		GD.Print($"Soil tilled! Stamina: {stamina - 1}");
