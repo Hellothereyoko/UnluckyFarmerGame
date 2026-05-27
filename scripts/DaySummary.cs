@@ -65,9 +65,23 @@ public partial class DaySummary : CanvasLayer
 	}
 
 	private void OnContinuePressed()
-	{
-		EmitSignal(SignalName.SummaryClosed);
+{
+	var gameData = GetNode<Node>("/root/GameData");
+	int day = gameData.Get("day").AsInt32();
+	int debt = gameData.Get("debt").AsInt32();
+	int totalEarned = gameData.Get("total_money_earned").AsInt32();
 
+	if (day > 7)
+	{
+		PackedScene endScene = GD.Load<PackedScene>("res://scenes/EndGame.tscn");
+		Node endGame = endScene.Instantiate();
+		GetTree().CurrentScene.AddChild(endGame);
+		endGame.Call("ShowEnding", debt, totalEarned);
 		QueueFree();
+		return;
 	}
+
+	EmitSignal(SignalName.SummaryClosed);
+	QueueFree();
+  }
 }

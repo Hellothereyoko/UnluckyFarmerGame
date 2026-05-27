@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cdje74u7ayu5u" path="res://scripts/ShopUI.cs" id="1_duxfn"]
 [ext_resource type="FontFile" uid="uid://di2401nyimce1" path="res://assets/Pixeloid_Font_1_0/OpenType (.otf)/PixeloidMono.otf" id="1_yoj64"]
-[ext_resource type="Texture2D" uid="uid://c0vnb5prsnwu7" path="res://assets/CarrotPacket.png" id="2_duxfn"]
-[ext_resource type="Texture2D" uid="uid://biknr2smpqnyi" path="res://assets/strawberryPacket.png" id="4_c6qty"]
-[ext_resource type="Texture2D" uid="uid://bv88yvjgop10i" path="res://assets/CauliflowerPacket (1).png" id="5_c6qty"]
-[ext_resource type="Texture2D" uid="uid://dsmbhllu5xat2" path="res://assets/pumpkinPacket.png" id="6_d6x5n"]
+[ext_resource type="Texture2D" uid="uid://1c17gcplucj" path="res://assets/CarrotPacket.png" id="2_duxfn"]
+[ext_resource type="Texture2D" uid="uid://fe3n0kdjs7e7" path="res://assets/strawberryPacket.png" id="4_c6qty"]
+[ext_resource type="Texture2D" uid="uid://ba2o0vxr4afah" path="res://assets/CauliflowerPacket.png" id="5_c6qty"]
+[ext_resource type="Texture2D" uid="uid://cdsbxa48r422u" path="res://assets/PumpkinPacket.png" id="6_d6x5n"]
 
 [node name="ShopUI" type="CanvasLayer" unique_id=1713337037]
 scale = Vector2(1.5, 1.5)

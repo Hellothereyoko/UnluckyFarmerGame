@@ -95,7 +95,7 @@ public partial class HotbarUI : CanvasLayer
 			var countLabel = new Label();
 			countLabel.HorizontalAlignment = HorizontalAlignment.Center;
 			countLabel.Text = $"x{count}";
-			countLabel.AddThemeFontSizeOverride("font_size", 8);
+			countLabel.AddThemeFontSizeOverride("font_size", 12);
 			vbox.AddChild(countLabel);
 		}
 		else

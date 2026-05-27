@@ -214,6 +214,28 @@ public partial class FarmManager : TileMapLayer
 		int remaining = InventoryManager.Instance.Items.ContainsKey(seedName) ? InventoryManager.Instance.Items[seedName] : 0;
 		GD.Print($"Planted {seedName}! Remaining: {remaining}, Stamina: {stamina - 2}");
 
+	int remaining = InventoryManager.Instance.Items.ContainsKey(seedName) ? InventoryManager.Instance.Items[seedName] : 0;
+	GD.Print($"Remaining {seedName}: {remaining}");
+	
+	GetTree().Root.GetNodeOrNull<HotbarUI>("MainFarm/HotbarUI")?.Refresh();
+}
+	
+	private void HarvestCrop(Vector2I tilePos)
+{
+	if (!plantedCrops.ContainsKey(tilePos))
+		return;
+		
+		// Check if crop is fully grown
+	if (!plantedCrops[tilePos].IsReadyToHarvest())
+	{
+		GD.Print("Crop is not ready to harvest yet!");
+		return;
+	}
+		
+	else if (gameData.Get("stamina").AsInt32() <= 0)
+	{
+		GD.Print("Out of Energy : Can't pluck plants");
+		return;
 		hotbarUI?.Refresh();
 	}
 

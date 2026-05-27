@@ -52,4 +52,9 @@ public partial class Crop : Node2D
 
 		QueueFree();
 	}
+	
+	public bool IsReadyToHarvest()
+{
+	return grown;
+}
 }
