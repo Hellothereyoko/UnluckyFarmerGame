@@ -212,3 +212,21 @@ func reloadTrees():
 		scene_.add_child(tree_Object)
 		tree_Object.position = tree_.position
 		tree_.queue_free()
+	
+func reset_game():
+	cash = 75
+	debt = 1500
+	day = 1
+	stamina = 100
+	total_money_earned = 0
+	last_interest = 0
+	last_penalty = 0
+	crop_money_today = 0
+	egg_money_today = 0
+	fruit_money_today = 0
+	last_payment = 0
+	
+	# Reset all inventory
+	for item in basket_inventory.keys():
+		basket_inventory[item]["inventory"] = 0
+		basket_inventory[item]["damageless_bonus"] = 0

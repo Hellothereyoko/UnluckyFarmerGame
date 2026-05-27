@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://b60thbm0tbntd"]
+
+[ext_resource type="Script" uid="uid://dg7e5rusbwp2f" path="res://scripts/EndGame.cs" id="1_i47uf"]
+[ext_resource type="FontFile" uid="uid://di2401nyimce1" path="res://assets/Pixeloid_Font_1_0/OpenType (.otf)/PixeloidMono.otf" id="2_3w24k"]
+
+[node name="EndGame" type="CanvasLayer" unique_id=1053213276]
+script = ExtResource("1_i47uf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2112789310]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.101960786, 0.18039216, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=1801464346]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 88.0
+offset_right = 534.0
+offset_bottom = 275.0
+
+[node name="EndTitle" type="Label" parent="ColorRect/VBoxContainer" unique_id=1967118670]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3w24k")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/VBoxContainer" unique_id=55166560]
+layout_mode = 2
+
+[node name="EndMessage" type="Label" parent="ColorRect/VBoxContainer" unique_id=1913860905]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3w24k")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="ColorRect/VBoxContainer" unique_id=2053343647]
+layout_mode = 2
+
+[node name="DebtLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1200331878]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3w24k")
+horizontal_alignment = 1
+
+[node name="DaysLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1608409846]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3w24k")
+horizontal_alignment = 1
+
+[node name="EarnedLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=1238012013]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3w24k")
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="ColorRect/VBoxContainer" unique_id=1491124011]
+layout_mode = 2
+
+[node name="PlayAgain" type="Button" parent="ColorRect/VBoxContainer" unique_id=644965708]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3w24k")
+text = "Play Again"

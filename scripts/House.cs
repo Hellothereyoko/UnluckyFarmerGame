@@ -29,7 +29,8 @@ public partial class House : StaticBody2D
 		sleeping = true;
 		GD.Print("Sleeping...");
 		
-		int currentDay = (int)scriptNode.Get("day");
+		
+		int currentDay = (int)scriptNode.Get("day");		
 		scriptNode.Call("end_of_day");
 		scriptNode.Call("reloadTrees");
 		

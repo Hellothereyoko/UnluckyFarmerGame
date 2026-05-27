@@ -182,6 +182,14 @@ public partial class FarmManager : TileMapLayer
 {
 	if (!plantedCrops.ContainsKey(tilePos))
 		return;
+		
+		// Check if crop is fully grown
+	if (!plantedCrops[tilePos].IsReadyToHarvest())
+	{
+		GD.Print("Crop is not ready to harvest yet!");
+		return;
+	}
+		
 	else if (gameData.Get("stamina").AsInt32() <= 0)
 	{
 		GD.Print("Out of Energy : Can't pluck plants");

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CropData" format=3 uid="uid://d3pmqehloikvq"]
 
 [ext_resource type="Script" uid="uid://cfwmxa0tv7cwj" path="res://scripts/CropData.cs" id="1_2e84i"]
-[ext_resource type="Texture2D" uid="uid://bv88yvjgop10i" path="res://assets/CauliflowerPacket (1).png" id="1_a4vut"]
+[ext_resource type="Texture2D" uid="uid://c6htihyx75xwl" path="res://assets/CauliflowerPacket.png" id="1_a4vut"]
 
 [resource]
 script = ExtResource("1_2e84i")
