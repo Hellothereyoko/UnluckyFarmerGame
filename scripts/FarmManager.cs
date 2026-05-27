@@ -214,67 +214,54 @@ public partial class FarmManager : TileMapLayer
 		int remaining = InventoryManager.Instance.Items.ContainsKey(seedName) ? InventoryManager.Instance.Items[seedName] : 0;
 		GD.Print($"Planted {seedName}! Remaining: {remaining}, Stamina: {stamina - 2}");
 
-	int remaining = InventoryManager.Instance.Items.ContainsKey(seedName) ? InventoryManager.Instance.Items[seedName] : 0;
+	 remaining = InventoryManager.Instance.Items.ContainsKey(seedName) ? InventoryManager.Instance.Items[seedName] : 0;
 	GD.Print($"Remaining {seedName}: {remaining}");
 	
 	GetTree().Root.GetNodeOrNull<HotbarUI>("MainFarm/HotbarUI")?.Refresh();
 }
 	
-	private void HarvestCrop(Vector2I tilePos)
-{
-	if (!plantedCrops.ContainsKey(tilePos))
-		return;
-		
-		// Check if crop is fully grown
-	if (!plantedCrops[tilePos].IsReadyToHarvest())
-	{
-		GD.Print("Crop is not ready to harvest yet!");
-		return;
-	}
-		
-	else if (gameData.Get("stamina").AsInt32() <= 0)
-	{
-		GD.Print("Out of Energy : Can't pluck plants");
-		return;
-		hotbarUI?.Refresh();
-	}
-
 	/* 
 	* This function handles the harvesting of farm crops. 
 	* @params Vector2I tilePos
 	* @returns stamina, tile, cash on hand, etc
 	*/
 	private void HarvestCrop(Vector2I tilePos)
+{
+	if (!plantedCrops.ContainsKey(tilePos))
+		return;
+
+	// Check if crop is fully grown
+	if (!plantedCrops[tilePos].IsReadyToHarvest())
 	{
-		if (!plantedCrops.ContainsKey(tilePos))
-			return;
-
-		int stamina = gameData.Get("stamina").AsInt32();
-		if (stamina <= 0)
-		{
-			GD.Print("Out of Energy : Can't pluck plants");
-			return;
-		}
-
-		gameData.Set("stamina", stamina - 5);
-		staminaUI?.Refresh();
-
-		plantedCrops[tilePos].Harvest();
-		plantedCrops.Remove(tilePos);
-		EraseCell(tilePos);
-
-		string cropName = StartingCrop.CropName.ToLower();
-		var inventory = gameData.Get("basket_inventory").AsGodotDictionary();
-		if (inventory.ContainsKey(cropName))
-		{
-			var cropEntry = inventory[cropName].AsGodotDictionary();
-			cropEntry["inventory"] = cropEntry["inventory"].AsInt32() + 1;
-			GD.Print($"{cropName} harvested! Total: {cropEntry["inventory"]}, Stamina: {stamina - 5}");
-		}
-
-		GD.Print($"Current cash: {gameData.Get("cash").AsInt32()}");
+		GD.Print("Crop is not ready to harvest yet!");
+		return;
 	}
 
+	int stamina = gameData.Get("stamina").AsInt32();
+	if (stamina <= 0)
+	{
+		GD.Print("Out of Energy : Can't pluck plants");
+		return;
+	}
+
+	gameData.Set("stamina", stamina - 5);
+	staminaUI?.Refresh();
+
+	plantedCrops[tilePos].Harvest();
+	plantedCrops.Remove(tilePos);
+	EraseCell(tilePos);
+
+	string cropName = StartingCrop.CropName.ToLower();
+	var inventory = gameData.Get("basket_inventory").AsGodotDictionary();
+	if (inventory.ContainsKey(cropName))
+	{
+		var cropEntry = inventory[cropName].AsGodotDictionary();
+		cropEntry["inventory"] = cropEntry["inventory"].AsInt32() + 1;
+		GD.Print($"{cropName} harvested! Total: {cropEntry["inventory"]}, Stamina: {stamina - 5}");
+	}
+
+	GD.Print($"Current cash: {gameData.Get("cash").AsInt32()}");
+}
 	/*
 	* This function handles all the upgrades to the farming system. 
 	*/
