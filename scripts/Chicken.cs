@@ -12,7 +12,7 @@ public partial class Chicken : CharacterBody2D
 	private Vector2 moveDirection = Vector2.Zero;
 	private bool isMoving = false;
 
-	// Farm bounds limits - adjust these to match your farm
+	// Farm bounds limits 
 	[Export] public Vector2 FarmMin = new Vector2(300, 200);
 	[Export] public Vector2 FarmMax = new Vector2(700, 500);
 
