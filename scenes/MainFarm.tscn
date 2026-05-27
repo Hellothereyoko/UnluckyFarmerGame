@@ -828,7 +828,7 @@ position = Vector2(668, 185)
 scale = Vector2(1, 1)
 
 [node name="Chicken" parent="LayerOrdering" unique_id=88184386 instance=ExtResource("1_cjnv8")]
-position = Vector2(1286, 88)
+position = Vector2(1197, 715)
 
 [node name="Tree_Node" type="Node2D" parent="LayerOrdering" unique_id=631899351]
 y_sort_enabled = true
