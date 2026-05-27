@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://lg6fcyrbaj1v" path="res://scenes/lemon_tree.tscn" id="19_13jdd"]
 [ext_resource type="PackedScene" uid="uid://cgkbc4vdbw3ba" path="res://scenes/mailbox.tscn" id="20_cjnv8"]
 [ext_resource type="Texture2D" uid="uid://csehfgpf0udye" path="res://assets/clothesline.png" id="26_8im0f"]
+[ext_resource type="Script" uid="uid://w111fkvpaqoa" path="res://StaminaUI.cs" id="29_iulbg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk8p3"]
 texture = ExtResource("1_dk8p3")
@@ -889,7 +890,31 @@ columns = 4
 
 [node name="DebtBar" type="CanvasLayer" parent="." unique_id=1232037191]
 
-[node name="StaminaBar" type="CanvasLayer" parent="." unique_id=246720631]
+[node name="StaminaUI" type="CanvasLayer" parent="." unique_id=246720631]
+script = ExtResource("29_iulbg")
+
+[node name="Panel" type="Panel" parent="StaminaUI" unique_id=836729406]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="StaminaBar" type="ProgressBar" parent="StaminaUI/Panel" unique_id=674246597]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="StaminaLabel" type="Label" parent="StaminaUI/Panel" unique_id=884928123]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 22
+text = "Stamina"
 
 [node name="Mailbox" parent="." unique_id=215827450 instance=ExtResource("20_cjnv8")]
 position = Vector2(511, 101)
