@@ -1,8 +1,14 @@
 using Godot;
 using System.Collections.Generic;
 
+
+/*
+* This class handles all player interactions with the farm. 
+* TODO: ISOLATE STAMINA CHECK SO THAT WE AREN'T WRITING THE SAME CODE OVER AND OVER
+*/
 public partial class FarmManager : TileMapLayer
 {
+	//Crop Vars
 	[Export]
 	public PackedScene CropScene;
 	[Export]
@@ -16,39 +22,54 @@ public partial class FarmManager : TileMapLayer
 	[Export]
 	public CropData CauliflowerCrop;
 
+	//Farmable land vars
 	private Node2D cropContainer;
 	private TileMapLayer farmBounds;
 	private Dictionary<Vector2I, Crop> plantedCrops = new();
 
+	//Player vars
 	private Node gameData;
-	
+	private StaminaUI staminaUI;
+	private Player player;
+	private HotbarUI hotbarUI;
+
 	//farm upgrades
 	public int expansionLevel = 0;
 	private TileMapLayer farmBoundsMed;
 	private TileMapLayer farmBoundsLarge;
 
-
+	//EXEC ON BOOT
 	public override void _Ready()
 	{
 		cropContainer = GetNode<Node2D>("../LayerOrdering/CropContainer");
 		farmBounds = GetNode<TileMapLayer>("../FarmBounds");
-		 // Print starting economy
 		gameData = GetNode<Node>("/root/GameData");
+		player = GetNode<Player>("../LayerOrdering/Player");
+		hotbarUI = GetTree().Root.GetNodeOrNull<HotbarUI>("MainFarm/HotbarUI");
+
 		int startingCash = gameData.Get("cash").AsInt32();
 		int startingDebt = gameData.Get("debt").AsInt32();
 		int startingDay = gameData.Get("day").AsInt32();
+
 		farmBoundsMed = GetNode<TileMapLayer>("../FarmBounds_Medium");
 		farmBoundsLarge = GetNode<TileMapLayer>("../FarmBounds_Large");
 		ToolManager.CurrentTool = ToolType.None;
-		
-		
-   	 	GD.Print($"=== FARM STARTED ===");
+
+		staminaUI = GetTree().Root.GetNodeOrNull<StaminaUI>("MainFarm/StaminaUI");
+		staminaUI?.Refresh();
+
+		GD.Print($"=== FARM STARTED ===");
 		GD.Print($"Day: {startingDay}/{7}");
-  		GD.Print($"Cash: {startingCash}g");
+		GD.Print($"Cash: {startingCash}g");
 		GD.Print($"Debt: {startingDebt}g");
 		GD.Print($"====================");
 	}
 
+	/*
+	* Most of user inputs are handled here 
+	* @params InputEvent @event 
+	* @returns void/ action 
+	*/
 	public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
@@ -65,22 +86,24 @@ public partial class FarmManager : TileMapLayer
 		}
 	}
 
+	/*
+	* Code repeatedly processed during runtime. Mostly input commands, player pos, and other things like that
+	* @params delta 
+	* @returns void
+	*/
 	public override void _Process(double delta)
 	{
 		if (Input.IsActionJustPressed("debug_pos"))
-{
-	Player player = GetNode<Player>("../LayerOrdering/Player");
-	GD.Print($"Player world position: {player.GlobalPosition}");
-}
+		{
+			GD.Print($"Player world position: {player.GlobalPosition}");
+		}
 
-		// Don't farm if shop is open
 		if (GetTree().CurrentScene.FindChild("ShopUi") != null)
-		return;
+			return;
 		
 		if (Input.IsActionJustPressed("interact"))
 		{
 			GD.Print("Interact pressed!");
-			Player player = GetNode<Player>("../LayerOrdering/Player");
 			Vector2I playerTile = LocalToMap(ToLocal(player.GlobalPosition));
 			Vector2I tilePos = playerTile + player.FacingDirection;
 			GD.Print($"Tile pos: {tilePos}, FarmBounds cell: {farmBounds.GetCellSourceId(tilePos)}");
@@ -88,6 +111,11 @@ public partial class FarmManager : TileMapLayer
 		}
 	}
 
+	/*
+	* Used for determining if a tile is interactable with the tilling, planting, and other farming functions.
+	* @params Vector2I tilePos
+	* @returns valid state?, tilePos
+	*/
 	private void HandleTileInteraction(Vector2I tilePos)
 	{
 		if (farmBounds.GetCellSourceId(tilePos) == -1)
@@ -109,135 +137,153 @@ public partial class FarmManager : TileMapLayer
 		}
 	}
 
+	/*
+	* This function handles the tilling of the soil in prep for the crops
+	* @params Vector2I tilePos
+	* @returns soil state, tilePos, stamina, etc.
+	*/
 	private void TillSoil(Vector2I tilePos)
-{
-	//var gameData = GetNode<Node>("/root/GameData");
-	int current_stamina = gameData.Get("stamina").AsInt32();
-	if (GetCellSourceId(tilePos) != -1)
 	{
-		GD.Print("Already tilled!");
-		return;
-	} else if (current_stamina <= 0)
-	{
-		GD.Print("Out of Energy : Can't Till Field");
-		return;
-	}
-	GD.Print(current_stamina);
-	gameData.Set("stamina",current_stamina- 1);
-	GD.Print(gameData.Get("stamina").AsInt32());
-	SetCell(tilePos, 3, Vector2I.Zero);
-	GD.Print($"Tile set at {tilePos}, source ID now: {GetCellSourceId(tilePos)}");
-	GD.Print("Soil tilled!");
-}
+		int stamina = gameData.Get("stamina").AsInt32();
+		if (GetCellSourceId(tilePos) != -1)
+		{
+			GD.Print("Already tilled!");
+			return;
+		}
 		
-		private void PlantCrop(Vector2I tilePos)
-{
-	if (plantedCrops.ContainsKey(tilePos))
-	{
-		GD.Print("Already a crop here!");
-		return;
-	}
-	if (GetCellSourceId(tilePos) == -1)
-	{
-		GD.Print("Soil not tilled!");
-		return;
-	}
-	if (gameData.Get("stamina").AsInt32() <= 0)
-	{
-		GD.Print("Out of Energy!");
-		return;
+		//TODO: ADD ON SCREEN MSG TELLING PLAYER THEYRE OUT OF STAMINA
+		else if (stamina <= 0)
+		{
+			GD.Print("Out of Energy : Can't Till Field");
+			return;
+		}
+		gameData.Set("stamina", stamina - 1); //STAMINA VAR TILLING
+		staminaUI?.Refresh();
+		SetCell(tilePos, 3, Vector2I.Zero);
+		GD.Print($"Soil tilled! Stamina: {stamina - 1}");
 	}
 
-	string cropName = StartingCrop.CropName.ToLower();
-	string seedName = cropName + "_seed";
-
-	GD.Print($"Looking for seed: {seedName}");
-	GD.Print($"Inventory contents: {string.Join(", ", InventoryManager.Instance.Items.Keys)}");
-
-	if (!InventoryManager.Instance.Items.ContainsKey(seedName) || 
-		InventoryManager.Instance.Items[seedName] <= 0)
+	/*
+	* This function is mainly responsible for planting crops. Updates the current stamina according to predefined actions.
+	* @params Vector2I tilePos
+	* @returns tilePos, stamina, etc.
+	*/
+	private void PlantCrop(Vector2I tilePos)
 	{
-		GD.Print($"No {seedName} in inventory!");
-		return;
+		if (plantedCrops.ContainsKey(tilePos))
+		{
+			GD.Print("Already a crop here!");
+			return;
+		}
+		if (GetCellSourceId(tilePos) == -1)
+		{
+			GD.Print("Soil not tilled!");
+			return;
+		}
+
+		int stamina = gameData.Get("stamina").AsInt32();
+		if (stamina <= 0)
+		{
+			GD.Print("Out of Energy!");
+			return;
+		}
+
+		string cropName = StartingCrop.CropName.ToLower();
+		string seedName = cropName + "_seed";
+
+		GD.Print($"Looking for seed: {seedName}");
+		GD.Print($"Inventory contents: {string.Join(", ", InventoryManager.Instance.Items.Keys)}");
+
+		if (!InventoryManager.Instance.Items.ContainsKey(seedName) || 
+			InventoryManager.Instance.Items[seedName] <= 0)
+		{
+			GD.Print($"No {seedName} in inventory!");
+			return;
+		}
+
+		InventoryManager.Instance.RemoveItem(seedName, 1);
+		gameData.Set("stamina", stamina - 2);
+		staminaUI?.Refresh();
+
+		Crop crop = CropScene.Instantiate<Crop>();
+		crop.Data = StartingCrop;
+		cropContainer.AddChild(crop);
+		crop.GlobalPosition = ToGlobal(MapToLocal(tilePos));
+		plantedCrops.Add(tilePos, crop);
+
+		int remaining = InventoryManager.Instance.Items.ContainsKey(seedName) ? InventoryManager.Instance.Items[seedName] : 0;
+		GD.Print($"Planted {seedName}! Remaining: {remaining}, Stamina: {stamina - 2}");
+
+		hotbarUI?.Refresh();
 	}
 
-	InventoryManager.Instance.RemoveItem(seedName, 1);
-	GD.Print($"Used 1 {seedName} from inventory!");
-
-	gameData.Set("stamina", gameData.Get("stamina").AsInt32() - 2);
-
-	Crop crop = CropScene.Instantiate<Crop>();
-	crop.Data = StartingCrop;
-	cropContainer.AddChild(crop);
-	crop.GlobalPosition = ToGlobal(MapToLocal(tilePos));
-	plantedCrops.Add(tilePos, crop);
-
-	int remaining = InventoryManager.Instance.Items.ContainsKey(seedName) ? InventoryManager.Instance.Items[seedName] : 0;
-	GD.Print($"Remaining {seedName}: {remaining}");
-	
-	GetTree().Root.GetNodeOrNull<HotbarUI>("MainFarm/HotbarUI")?.Refresh();
-}
-	
+	/* 
+	* This function handles the harvesting of farm crops. 
+	* @params Vector2I tilePos
+	* @returns stamina, tile, cash on hand, etc
+	*/
 	private void HarvestCrop(Vector2I tilePos)
-{
-	if (!plantedCrops.ContainsKey(tilePos))
-		return;
-	else if (gameData.Get("stamina").AsInt32() <= 0)
 	{
-		GD.Print("Out of Energy : Can't pluck plants");
-		return;
+		if (!plantedCrops.ContainsKey(tilePos))
+			return;
+
+		int stamina = gameData.Get("stamina").AsInt32();
+		if (stamina <= 0)
+		{
+			GD.Print("Out of Energy : Can't pluck plants");
+			return;
+		}
+
+		gameData.Set("stamina", stamina - 5);
+		staminaUI?.Refresh();
+
+		plantedCrops[tilePos].Harvest();
+		plantedCrops.Remove(tilePos);
+		EraseCell(tilePos);
+
+		string cropName = StartingCrop.CropName.ToLower();
+		var inventory = gameData.Get("basket_inventory").AsGodotDictionary();
+		if (inventory.ContainsKey(cropName))
+		{
+			var cropEntry = inventory[cropName].AsGodotDictionary();
+			cropEntry["inventory"] = cropEntry["inventory"].AsInt32() + 1;
+			GD.Print($"{cropName} harvested! Total: {cropEntry["inventory"]}, Stamina: {stamina - 5}");
+		}
+
+		GD.Print($"Current cash: {gameData.Get("cash").AsInt32()}");
 	}
-	GD.Print(gameData.Get("stamina").AsInt32());
-	gameData.Set("stamina",gameData.Get("stamina").AsInt32() - 5);
-	GD.Print(gameData.Get("stamina").AsInt32());
 
-	plantedCrops[tilePos].Harvest();
-	plantedCrops.Remove(tilePos);
-	EraseCell(tilePos);
-
-	//var gameData = GetNode<Node>("/root/GameData");
-	string cropName = StartingCrop.CropName.ToLower();
-	
-	var inventory = gameData.Get("basket_inventory").AsGodotDictionary();
-	if (inventory.ContainsKey(cropName))
-	{
-		var cropEntry = inventory[cropName].AsGodotDictionary();
-		cropEntry["inventory"] = cropEntry["inventory"].AsInt32() + 1;
-		GD.Print($"{cropName} harvested! Total: {cropEntry["inventory"]}");
-	}
-
-	
-	int currentCash = gameData.Get("cash").AsInt32();
-	GD.Print($"Current cash: {currentCash}");
-}
+	/*
+	* This function handles all the upgrades to the farming system. 
+	*/
 	public void UpgradeFarm()
-{
-	GD.Print($"UpgradeFarm called! Current level: {expansionLevel}");
-	expansionLevel++;
-	
-	if (expansionLevel == 1)
 	{
-		farmBounds.Enabled = false;
-		farmBounds.Visible = false;
-		farmBoundsMed.Enabled = true;
-		farmBoundsMed.Visible = true;
-		farmBounds = farmBoundsMed;
-		GD.Print($"farmBounds now has {farmBounds.GetUsedCells().Count} cells");
-		GD.Print("Farm expanded to medium!");
+		GD.Print($"UpgradeFarm called! Current level: {expansionLevel}");
+		expansionLevel++;
+		
+		if (expansionLevel == 1)
+		{
+			farmBounds.Enabled = false;
+			farmBounds.Visible = false;
+			farmBoundsMed.Enabled = true;
+			farmBoundsMed.Visible = true;
+			farmBounds = farmBoundsMed;
+			GD.Print($"farmBounds now has {farmBounds.GetUsedCells().Count} cells");
+			GD.Print("Farm expanded to medium!");
+		}
+		else if (expansionLevel == 2)
+		{
+			farmBoundsMed.Enabled = false;
+			farmBoundsMed.Visible = false;
+			farmBoundsLarge.Enabled = true;
+			farmBoundsLarge.Visible = true;
+			farmBounds = farmBoundsLarge;
+			GD.Print($"farmBounds now has {farmBounds.GetUsedCells().Count} cells");
+			GD.Print("Farm expanded to large!");
+		}
+		else
+		{
+			GD.Print("Farm is already at max size!");
+		}
 	}
-	else if (expansionLevel == 2)
-	{
-		farmBoundsMed.Enabled = false;
-		farmBoundsMed.Visible = false;
-		farmBoundsLarge.Enabled = true;
-		farmBoundsLarge.Visible = true;
-		farmBounds = farmBoundsLarge;
-		GD.Print($"farmBounds now has {farmBounds.GetUsedCells().Count} cells");
-		GD.Print("Farm expanded to large!");
-	}
-	else
-	{
-		GD.Print("Farm is already at max size!");
-	}
-}
 }
