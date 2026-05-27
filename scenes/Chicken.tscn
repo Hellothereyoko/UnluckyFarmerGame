@@ -267,7 +267,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_anojv"]
-radius = 3.1622777
+radius = 5.343781
 
 [node name="Chicken" type="CharacterBody2D" unique_id=88184386]
 texture_filter = 1
@@ -275,12 +275,14 @@ position = Vector2(900, 500)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_6kyny")
 EggScene = ExtResource("2_0g8gh")
+FarmMin = Vector2(1053, 253)
+FarmMax = Vector2(1796, 476)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=988604784]
 sprite_frames = SubResource("SpriteFrames_25dbn")
 animation = &"eating_left"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D" unique_id=1142349905]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1142349905]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_anojv")
 
