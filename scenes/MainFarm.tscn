@@ -34,6 +34,7 @@
 [ext_resource type="AudioStream" uid="uid://d0oloh82hkl0h" path="res://assets/freesound_crunchpixstudio-harvest-farm-398836.mp3" id="32_2cnlb"]
 [ext_resource type="AudioStream" uid="uid://dcjmyofqbelih" path="res://assets/freesound_community-digging-v1-27585 (mp3cut.net).mp3" id="33_rwnis"]
 [ext_resource type="AudioStream" uid="uid://c5w6m1133wcis" path="res://assets/virtual_vibes-soft-pop-sound-383739 (mp3cut.net).mp3" id="34_t141i"]
+[ext_resource type="AudioStream" uid="uid://d0gbprpyhr2j" path="res://assets/soundshelfstudio-ui-menu-slide-out-516941.mp3" id="35_xiysf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk8p3"]
 texture = ExtResource("1_dk8p3")
@@ -941,3 +942,6 @@ volume_db = 10.0
 [node name="PlantSound" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1792272342]
 stream = ExtResource("34_t141i")
 volume_db = 10.0
+
+[node name="StaminaEmptySound" type="AudioStreamPlayer2D" parent="Sounds" unique_id=643507139]
+stream = ExtResource("35_xiysf")

@@ -26,7 +26,7 @@ public partial class FarmManager : TileMapLayer
 	private AudioStreamPlayer2D harvestSound;
 	private AudioStreamPlayer2D tillSound;
 	private AudioStreamPlayer2D plantSound;
-	
+	private AudioStreamPlayer2D staminaEmptySound;
 
 	//Farmable land vars
 	private Node2D cropContainer;
@@ -56,7 +56,7 @@ public partial class FarmManager : TileMapLayer
 		harvestSound = GetNode<AudioStreamPlayer2D>("../Sounds/HarvestSound");
 		tillSound = GetNode<AudioStreamPlayer2D>("../Sounds/TillSound");
 		plantSound = GetNode<AudioStreamPlayer2D>("../Sounds/PlantSound");
-		
+		staminaEmptySound = GetNode<AudioStreamPlayer2D>("../Sounds/StaminaEmptySound");
 
 		int startingCash = gameData.Get("cash").AsInt32();
 		int startingDebt = gameData.Get("debt").AsInt32();
@@ -165,6 +165,7 @@ public partial class FarmManager : TileMapLayer
 		//TODO: ADD ON SCREEN MSG TELLING PLAYER THEYRE OUT OF STAMINA
 		else if (stamina <= 0)
 		{
+			staminaEmptySound?.Play();
 			GD.Print("Out of Energy : Can't Till Field");
 			return;
 		}
@@ -196,6 +197,7 @@ public partial class FarmManager : TileMapLayer
 		int stamina = gameData.Get("stamina").AsInt32();
 		if (stamina <= 0)
 		{
+			staminaEmptySound?.Play();
 			GD.Print("Out of Energy!");
 			return;
 		}
@@ -253,6 +255,7 @@ public partial class FarmManager : TileMapLayer
 	int stamina = gameData.Get("stamina").AsInt32();
 	if (stamina <= 0)
 	{
+		staminaEmptySound?.Play();
 		GD.Print("Out of Energy : Can't pluck plants");
 		return;
 	}
