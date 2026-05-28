@@ -22,6 +22,10 @@ public partial class FarmManager : TileMapLayer
 	[Export]
 	public CropData CauliflowerCrop;
 
+	// audio cues
+	private AudioStreamPlayer2D harvestSound;
+	private AudioStreamPlayer2D tillSound;
+
 	//Farmable land vars
 	private Node2D cropContainer;
 	private TileMapLayer farmBounds;
@@ -46,6 +50,8 @@ public partial class FarmManager : TileMapLayer
 		gameData = GetNode<Node>("/root/GameData");
 		player = GetNode<Player>("../LayerOrdering/Player");
 		hotbarUI = GetTree().Root.GetNodeOrNull<HotbarUI>("MainFarm/HotbarUI");
+		harvestSound = GetNode<AudioStreamPlayer2D>("../Sounds/HarvestSound");
+		tillSound = GetNode<AudioStreamPlayer2D>("../Sounds/TillSound");
 
 		int startingCash = gameData.Get("cash").AsInt32();
 		int startingDebt = gameData.Get("debt").AsInt32();
@@ -160,6 +166,7 @@ public partial class FarmManager : TileMapLayer
 		gameData.Set("stamina", stamina - 1); //STAMINA VAR TILLING
 		staminaUI?.Refresh();
 		SetCell(tilePos, 3, Vector2I.Zero);
+		tillSound?.Play();
 		GD.Print($"Soil tilled! Stamina: {stamina - 1}");
 	}
 
@@ -250,6 +257,8 @@ public partial class FarmManager : TileMapLayer
 	plantedCrops[tilePos].Harvest();
 	plantedCrops.Remove(tilePos);
 	EraseCell(tilePos);
+	harvestSound?.Play();
+	GD.Print("Harvest sound played!");
 
 	string cropName = StartingCrop.CropName.ToLower();
 	var inventory = gameData.Get("basket_inventory").AsGodotDictionary();
