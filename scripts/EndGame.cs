@@ -44,7 +44,7 @@ public partial class EndGame : CanvasLayer
 			endMessage.Text = "The men in suits have arrived.\nYour farm has been repossessed.";
 		}
 
-		debtLabel.Text = remainingDebt <= 0 ? "Debt: PAID OFF! 🎉" : $"Remaining Debt: {remainingDebt}g";
+		debtLabel.Text = remainingDebt <= 0 ? "Debt: PAID OFF!" : $"Remaining Debt: {remainingDebt}g";
 		daysLabel.Text = "Days Survived: 7";
 		earnedLabel.Text = $"Total Earned: {totalEarned}g";
 	}
