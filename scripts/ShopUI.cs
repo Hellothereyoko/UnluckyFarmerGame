@@ -9,9 +9,13 @@ public partial class ShopUI : CanvasLayer
 	// Store buttons so we can disable them
 	private Button carrotBtn, strawberryBtn, cauliflowerBtn, pumpkinBtn;
 	private Button medBtn, largeBtn;
+	
+	// sound effect
+	private AudioStreamPlayer2D purchaseSound;
 
 	public override void _Ready()
 	{
+		
 		gameData = GetNode<Node>("/root/GameData");
 		farmManager = GetTree().CurrentScene.GetNode<FarmManager>("FarmTileMap");
 
@@ -25,6 +29,8 @@ public partial class ShopUI : CanvasLayer
 		pumpkinBtn = GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/PumpkinRow/VBoxContainer/BuyButton");
 		medBtn = GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/MediumExpansion/BuyButton");
 		largeBtn = GetNode<Button>("ColorRect/ScrollContainer/VBoxContainer/LargeExpansion/BuyButton");
+	
+		purchaseSound = GetNode<AudioStreamPlayer2D>("PurchaseSound");
 
 		carrotBtn.Pressed += () => BuySeed("carrot", 2);
 		strawberryBtn.Pressed += () => BuySeed("strawberry", 4);
@@ -67,6 +73,7 @@ public partial class ShopUI : CanvasLayer
 	int cash = gameData.Get("cash").AsInt32();
 	if (cash < cost) return;
 	gameData.Set("cash", cash - cost);
+	purchaseSound?.Play();
 	InventoryManager.Instance.AddItem(seedName + "_seed", 1);
 	GD.Print($"Bought {seedName} seeds!");
 	UpdateGold();
@@ -80,6 +87,7 @@ public partial class ShopUI : CanvasLayer
 		int cash = gameData.Get("cash").AsInt32();
 		if (cash < cost) return;
 		gameData.Set("cash", cash - cost);
+		purchaseSound?.Play();
 		farmManager.UpgradeFarm();
 		GD.Print("Farm expanded!");
 		UpdateGold();
