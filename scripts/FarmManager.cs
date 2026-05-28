@@ -25,6 +25,8 @@ public partial class FarmManager : TileMapLayer
 	// audio cues
 	private AudioStreamPlayer2D harvestSound;
 	private AudioStreamPlayer2D tillSound;
+	private AudioStreamPlayer2D plantSound;
+	
 
 	//Farmable land vars
 	private Node2D cropContainer;
@@ -50,8 +52,11 @@ public partial class FarmManager : TileMapLayer
 		gameData = GetNode<Node>("/root/GameData");
 		player = GetNode<Player>("../LayerOrdering/Player");
 		hotbarUI = GetTree().Root.GetNodeOrNull<HotbarUI>("MainFarm/HotbarUI");
+		
 		harvestSound = GetNode<AudioStreamPlayer2D>("../Sounds/HarvestSound");
 		tillSound = GetNode<AudioStreamPlayer2D>("../Sounds/TillSound");
+		plantSound = GetNode<AudioStreamPlayer2D>("../Sounds/PlantSound");
+		
 
 		int startingCash = gameData.Get("cash").AsInt32();
 		int startingDebt = gameData.Get("debt").AsInt32();
@@ -217,6 +222,7 @@ public partial class FarmManager : TileMapLayer
 		cropContainer.AddChild(crop);
 		crop.GlobalPosition = ToGlobal(MapToLocal(tilePos));
 		plantedCrops.Add(tilePos, crop);
+		plantSound?.Play();
 
 		int remaining = InventoryManager.Instance.Items.ContainsKey(seedName) ? InventoryManager.Instance.Items[seedName] : 0;
 		GD.Print($"Planted {seedName}! Remaining: {remaining}, Stamina: {stamina - 2}");
