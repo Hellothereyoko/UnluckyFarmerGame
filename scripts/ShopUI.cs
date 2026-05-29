@@ -66,7 +66,7 @@ public partial class ShopUI : CanvasLayer
 		// Disable expansion buttons if already at max level
 		int level = farmManager.expansionLevel;
 		medBtn.Disabled = level >= 1 || cash < 400;
-		largeBtn.Disabled = level < 1 || level >= 2 || cash < 700;
+		largeBtn.Disabled = level < 1 || level >= 2 || cash < 7sa00;
 	}
 
 	private void BuySeed(string seedName, int cost)
