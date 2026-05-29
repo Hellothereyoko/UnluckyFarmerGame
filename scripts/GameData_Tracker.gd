@@ -7,7 +7,7 @@ extends Node
 ## --> scriptNode.Call("selling_crops");
 
 ##This tracks all the money data
-var cash : int = 75 # starting gold
+var cash : int = 100 # starting gold
 var debt : int = 1500
 var total_money_earned : int = 0
 var last_interest : int = 0
@@ -18,8 +18,8 @@ var fruit_money_today : int = 0
 var last_payment: int = 0
 var day : int = 1
 const MAX_DAYS: int = 7
-const DAILY_INTEREST : float = 0.015
-const MINIMUM_PAYMENT : int = 60
+const DAILY_INTEREST : float = 0.01
+const MINIMUM_PAYMENT : int = 150
 const PENALTY_AMOUNT : int = 3
 
 ##Stamina Tracker

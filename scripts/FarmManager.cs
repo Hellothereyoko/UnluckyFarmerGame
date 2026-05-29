@@ -275,7 +275,7 @@ public partial class FarmManager : TileMapLayer
 	{
 		var cropEntry = inventory[cropName].AsGodotDictionary();
 		cropEntry["inventory"] = cropEntry["inventory"].AsInt32() + 1;
-		GD.Print($"{cropName} harvested! Total: {cropEntry["inventory"]}, Stamina: {stamina - 5}");
+		GD.Print($"{cropName} harvested! Total: {cropEntry["inventory"]}, Stamina: {stamina - 2}");
 	}
 
 	GD.Print($"Current cash: {gameData.Get("cash").AsInt32()}");
