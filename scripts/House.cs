@@ -52,6 +52,13 @@ public partial class House : StaticBody2D
 		);
 
 		scriptNode.Set("stamina", 100);
+		
+		var campfire = GetTree().CurrentScene.GetNodeOrNull<Campfire>("Campfire");
+		if (campfire != null) campfire.restsToday = 0;
+		
+		// Refresh stamina UI
+		var staminaUI = GetTree().Root.GetNodeOrNull<StaminaUI>("MainFarm/StaminaUI");
+		staminaUI?.Refresh();
 
 		try
 		{

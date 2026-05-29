@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_3nnvf")
 CropName = "Strawberry"
+GrowTime = 60.0
 SeedTexture = ExtResource("1_4g28s")
 SpriteScale = Vector2(1.2, 1.2)
 SpriteOffset = Vector2(0, 4)

@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_2e84i")
 CropName = "Cauliflower"
+GrowTime = 90.0
 SeedTexture = ExtResource("1_a4vut")
 SpriteScale = Vector2(1.4, 1.4)
 SpriteOffset = Vector2(0, 4)

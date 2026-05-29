@@ -216,7 +216,7 @@ public partial class FarmManager : TileMapLayer
 		}
 
 		InventoryManager.Instance.RemoveItem(seedName, 1);
-		gameData.Set("stamina", stamina - 2);
+		gameData.Set("stamina", stamina - 1);
 		staminaUI?.Refresh();
 
 		Crop crop = CropScene.Instantiate<Crop>();
@@ -260,7 +260,7 @@ public partial class FarmManager : TileMapLayer
 		return;
 	}
 
-	gameData.Set("stamina", stamina - 5);
+	gameData.Set("stamina", stamina - 2);
 	staminaUI?.Refresh();
 
 	plantedCrops[tilePos].Harvest();

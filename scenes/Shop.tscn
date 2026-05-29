@@ -5,10 +5,10 @@
 [ext_resource type="FontFile" uid="uid://di2401nyimce1" path="res://assets/Pixeloid_Font_1_0/OpenType (.otf)/PixeloidMono.otf" id="3_t4md6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ec5oe"]
-size = Vector2(25, 3.9657404)
+size = Vector2(71.66667, 16.649538)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4md6"]
-size = Vector2(44.125, 21.25)
+size = Vector2(80, 21.25)
 
 [node name="Shop" type="StaticBody2D" unique_id=146305738]
 scale = Vector2(3, 3)
@@ -16,19 +16,20 @@ script = ExtResource("1_t4md6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1529517861]
 texture_filter = 1
+scale = Vector2(3, 3)
 texture = ExtResource("1_rgcs7")
 region_enabled = true
 region_rect = Rect2(0, 180, 32, 28)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1645445728]
-position = Vector2(0.5, 8.01713)
+position = Vector2(0.49999875, 25.008566)
 shape = SubResource("RectangleShape2D_ec5oe")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1123672210]
 position = Vector2(0, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=558282968]
-position = Vector2(2, 8)
+position = Vector2(1.6666667, 30.666668)
 shape = SubResource("RectangleShape2D_t4md6")
 
 [node name="Label" type="Label" parent="." unique_id=1514112790]
@@ -37,7 +38,7 @@ offset_left = 14.0
 offset_top = 2.0
 offset_right = 93.0
 offset_bottom = 25.0
-theme_override_constants/outline_size = 2
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_t4md6")
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 18
 text = "Press [E] to shop"
