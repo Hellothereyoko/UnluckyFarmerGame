@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://bjw8wdpjj4yps" path="res://Carrot.tres" id="5_j0rrn"]
 [ext_resource type="PackedScene" uid="uid://cfxg8cmytirw0" path="res://scenes/NotApple.tscn" id="5_notapple"]
 [ext_resource type="PackedScene" uid="uid://c8rv8o8ost3ti" path="res://scenes/Collect_Apples.tscn" id="6_collect"]
+[ext_resource type="FontFile" uid="uid://di2401nyimce1" path="res://assets/Pixeloid_Font_1_0/OpenType (.otf)/PixeloidMono.otf" id="6_mxh56"]
 [ext_resource type="Resource" uid="uid://dflvpc1dpbytk" path="res://pumpkin.tres" id="8_ek620"]
 [ext_resource type="Resource" uid="uid://dwn34eb50do4d" path="res://strawberry.tres" id="9_2j08t"]
 [ext_resource type="Resource" uid="uid://d3pmqehloikvq" path="res://cauliflower.tres" id="10_13jdd"]
@@ -359,12 +360,16 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tt3jl"]
+radius = 19.849434
 
 [sub_resource type="Gradient" id="Gradient_2miio"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_iulbg"]
 gradient = SubResource("Gradient_2miio")
 fill = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_orht8"]
+radius = 22.36068
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_13jdd"]
 texture = ExtResource("3_2lacs")
@@ -743,25 +748,52 @@ tile_set = SubResource("TileSet_j0rrn")
 [node name="Campfire" type="StaticBody2D" parent="." unique_id=1331812347]
 texture_filter = 1
 position = Vector2(413.99997, 634)
-scale = Vector2(2.5, 2.5)
 script = ExtResource("4_2miio")
 
 [node name="Campfiresprite" type="AnimatedSprite2D" parent="Campfire" unique_id=275153353]
+scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_r25hx")
 animation = &"fire"
 frame = 2
 frame_progress = 0.53976774
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Campfire" unique_id=1549719716]
-position = Vector2(0, 10)
+position = Vector2(3, 23)
 shape = SubResource("CircleShape2D_tt3jl")
 
 [node name="PointLight2D" type="PointLight2D" parent="Campfire" unique_id=225768524]
-position = Vector2(0.40000072, 9.199996)
-scale = Vector2(0.071874976, 0.06250013)
+position = Vector2(1.3249941, 23.200016)
+scale = Vector2(0.17734411, 0.1625003)
 color = Color(1, 0.41960785, 0, 1)
 energy = 1.5
 texture = SubResource("GradientTexture2D_iulbg")
+
+[node name="Area2D" type="Area2D" parent="Campfire" unique_id=578029233]
+position = Vector2(-20, 2.399994)
+scale = Vector2(0.9999998, 0.9999998)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Campfire/Area2D" unique_id=1347202155]
+position = Vector2(20.000002, 20.600002)
+scale = Vector2(1.0000001, 1.0000001)
+shape = SubResource("CircleShape2D_orht8")
+
+[node name="InteractionLabel" type="Label" parent="Campfire" unique_id=1119665411]
+texture_filter = 1
+offset_left = 4.0
+offset_top = -5.199997
+offset_right = 124.0
+offset_bottom = 17.800003
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("6_mxh56")
+theme_override_font_sizes/font_size = 14
+text = "Press [E] to rest"
+
+[node name="FeebackLabel" type="Label" parent="Campfire" unique_id=109281147]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("6_mxh56")
+theme_override_font_sizes/font_size = 12
 
 [node name="FarmBounds_Medium" type="TileMapLayer" parent="." unique_id=763858112]
 visible = false
@@ -829,6 +861,7 @@ position = Vector2(665, 12)
 
 [node name="Shop" parent="." unique_id=146305738 instance=ExtResource("1_7pbjw")]
 position = Vector2(1118, 25)
+scale = Vector2(1, 1)
 
 [node name="DeliciousFruit(bad)" parent="." unique_id=802498872 instance=ExtResource("5_notapple")]
 position = Vector2(234, 265)

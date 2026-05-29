@@ -216,7 +216,7 @@ public partial class FarmManager : TileMapLayer
 		}
 
 		InventoryManager.Instance.RemoveItem(seedName, 1);
-		gameData.Set("stamina", stamina - 2);
+		gameData.Set("stamina", stamina - 1);
 		staminaUI?.Refresh();
 
 		Crop crop = CropScene.Instantiate<Crop>();
@@ -260,7 +260,7 @@ public partial class FarmManager : TileMapLayer
 		return;
 	}
 
-	gameData.Set("stamina", stamina - 5);
+	gameData.Set("stamina", stamina - 3);
 	staminaUI?.Refresh();
 
 	plantedCrops[tilePos].Harvest();
@@ -275,7 +275,7 @@ public partial class FarmManager : TileMapLayer
 	{
 		var cropEntry = inventory[cropName].AsGodotDictionary();
 		cropEntry["inventory"] = cropEntry["inventory"].AsInt32() + 1;
-		GD.Print($"{cropName} harvested! Total: {cropEntry["inventory"]}, Stamina: {stamina - 5}");
+		GD.Print($"{cropName} harvested! Total: {cropEntry["inventory"]}, Stamina: {stamina - 2}");
 	}
 
 	GD.Print($"Current cash: {gameData.Get("cash").AsInt32()}");

@@ -40,29 +40,40 @@ public partial class DaySummary : CanvasLayer
 	}
 
 	public void ShowSummary(
-		int day,
-		int cropGold,
-		int eggGold,
-		int fruitGold,
-		int loanPayment,
-		int interestAdded,
-		int missedPenalty,
-		int lifetimeEarned,
-		int remainingDebt)
-	{
-		int total = cropGold + eggGold + fruitGold;
+	int day,
+	int cropGold,
+	int eggGold,
+	int fruitGold,
+	int loanPayment,
+	int interestAdded,
+	int missedPenalty,
+	int lifetimeEarned,
+	int remainingDebt)
+{
+	int total = cropGold + eggGold + fruitGold;
+	dayLabel.Text = $"— Day {day} of 7 —";
+	cropsLabel.Text = $"Crops Sold:    +{cropGold}g";
+	eggsLabel.Text = $"Eggs Sold:     +{eggGold}g";
+	fruitLabel.Text = $"Fruit Sold:    +{fruitGold}g";
+	totalLabel.Text = $"Total Earned:  +{total}g";
+	interestLabel.Text = $"Loan Interest: +{interestAdded}g added to debt";
+	loanLabel.Text = $"Loan Payment:  {loanPayment}g";
 
-		dayLabel.Text = $"Day {day} of 7";
-		cropsLabel.Text = $"Crops:        {cropGold}g";
-		eggsLabel.Text = $"Eggs:         {eggGold}g";
-		fruitLabel.Text = $"Fruit:        {fruitGold}g";
-		totalLabel.Text = $"Total Earned: {total}g";
-		interestLabel.Text = $"Interest Added: +{interestAdded}g to loan";
-		penaltyLabel.Text = $"Missed Payment Penalty: +{missedPenalty}g";
-		loanLabel.Text = $"Loan Payment: -{loanPayment}g";
-		lifetimeLabel.Text = $"Current Cash: {lifetimeEarned}g";
-		debtLabel.Text = $"Remaining Debt: {remainingDebt}g";
+	if (missedPenalty > 0)
+	{
+		penaltyLabel.Visible = true;
+		penaltyLabel.Text = $"Short by:      -{missedPenalty}g (negative cash!)";
 	}
+	else
+	{
+		penaltyLabel.Visible = false;
+	}
+
+	lifetimeLabel.Text = lifetimeEarned < 0
+		? $"Current Cash:  {lifetimeEarned}g ⚠️"
+		: $"Current Cash:  +{lifetimeEarned}g";
+	debtLabel.Text = $"Remaining Debt: {remainingDebt}g";
+}
 
 	private void OnContinuePressed()
 {

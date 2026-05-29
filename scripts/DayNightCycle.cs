@@ -21,7 +21,8 @@ public partial class DayNightCycle : CanvasModulate
 		float progress = Mathf.Clamp(time / DAY_LENGTH, 0.0f, 1.0f);
 
 		// Calculate how dark the world should be based on the time of day
-		float darkness = Mathf.Lerp(0.0f, 0.67f, progress);
+		float darknessProgress = Mathf.Clamp((progress - 0.5f) / 0.5f, 0.0f, 1.0f);
+		float darkness = Mathf.Lerp(0.0f, 0.67f, darknessProgress);
 
 		// Apply darkness to world
 		Color = new Color(

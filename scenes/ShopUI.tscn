@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://1c17gcplucj" path="res://assets/CarrotPacket.png" id="2_duxfn"]
 [ext_resource type="Texture2D" uid="uid://fe3n0kdjs7e7" path="res://assets/strawberryPacket.png" id="4_c6qty"]
 [ext_resource type="Texture2D" uid="uid://ba2o0vxr4afah" path="res://assets/CauliflowerPacket.png" id="5_c6qty"]
-[ext_resource type="Texture2D" uid="uid://r8ye4f4yhnql" path="res://assets/PumpkinPacket.png" id="6_d6x5n"]
+[ext_resource type="Texture2D" uid="uid://r8ye4f4yhnql" path="res://assets/pumpkinPacket.png" id="6_d6x5n"]
 [ext_resource type="AudioStream" uid="uid://cxwyr3fnhlkyo" path="res://assets/ribhavagrawal-purchase-succesful-ingame-230550.mp3" id="7_d6x5n"]
 
 [node name="ShopUI" type="CanvasLayer" unique_id=1713337037]
@@ -86,7 +86,7 @@ text = "Carrot Seeds"
 [node name="CarrotPrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/CarrotRow/VBoxContainer" unique_id=613400184]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
-text = "2g"
+text = "3g"
 
 [node name="BuyButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/CarrotRow/VBoxContainer" unique_id=389531533]
 layout_mode = 2
@@ -111,7 +111,7 @@ text = "Strawberry Seeds"
 [node name="StrawPrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/StrawberryRow/VBoxContainer" unique_id=2106385212]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
-text = "4g"
+text = "10g"
 
 [node name="BuyButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/StrawberryRow/VBoxContainer" unique_id=2092614304]
 layout_mode = 2
@@ -136,7 +136,7 @@ text = "Cauliflower Seeds"
 [node name="CauliPrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/CauliflowerRow/VBoxContainer" unique_id=1736693271]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
-text = "5g"
+text = "12g"
 
 [node name="BuyButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/CauliflowerRow/VBoxContainer" unique_id=682326786]
 layout_mode = 2
@@ -161,7 +161,7 @@ text = "Pumpkin Seeds"
 [node name="PumpPrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/PumpkinRow/VBoxContainer" unique_id=302683621]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
-text = "6g"
+text = "20g"
 
 [node name="BuyButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/PumpkinRow/VBoxContainer" unique_id=1402254225]
 layout_mode = 2
