@@ -40,7 +40,7 @@ public partial class Campfire : StaticBody2D
 				return;
 			}
 
-			int newStamina = Mathf.Min(stamina + 20, 100);
+			int newStamina = Mathf.Min(stamina + 10, 100);
 			gameData.Set("stamina", newStamina);
 			restsToday++;
 
