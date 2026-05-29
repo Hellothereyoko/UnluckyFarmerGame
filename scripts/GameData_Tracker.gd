@@ -18,7 +18,7 @@ var fruit_money_today : int = 0
 var last_payment: int = 0
 var day : int = 1
 const MAX_DAYS: int = 7
-const DAILY_INTEREST : float = 0.01
+const DAILY_INTEREST : float = 0.02
 const MINIMUM_PAYMENT : int = 250
 const PENALTY_AMOUNT : int = 3
 
@@ -34,7 +34,7 @@ var basket_inventory = {
 	"apple" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,
-		"sell_value" = 2,
+		"sell_value" = 1,
 		"bonus_value" = 1,
 		"crop_count" = 3,
 	},
@@ -162,11 +162,12 @@ func end_of_day():
 		last_penalty = 0
 		print("Minimum payment made! Debt: ", debt)
 	else:
-		# Penalty — can't make minimum payment
-		last_payment = 0
-		last_penalty = MINIMUM_PAYMENT
-		print("Could not make minimum payment! Penalty applied!")
-		debt += MINIMUM_PAYMENT
+		# Only pay what player has
+		last_penalty = MINIMUM_PAYMENT - cash
+		last_payment = cash
+		debt -= cash
+		cash -= MINIMUM_PAYMENT
+		print("Could not make full payment! Paid: ", last_payment)
 	
 	# Advance day
 	day += 1
@@ -175,7 +176,9 @@ func end_of_day():
 	# Check game over
 	if day > MAX_DAYS:
 		print("Game Over! Days expired!")
-		# TODO: trigger game over screen
+		# TODO: trigger game over screen	
+
+		
 
 func damageless_penalty():
 	for item in basket_inventory.keys():
@@ -214,7 +217,7 @@ func reloadTrees():
 		tree_.queue_free()
 	
 func reset_game():
-	cash = 200
+	cash = 100
 	debt = 1500
 	day = 1
 	stamina = 100
