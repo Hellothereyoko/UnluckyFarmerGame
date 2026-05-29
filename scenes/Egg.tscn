@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b2c8npqhly4jf" path="res://assets/Chicken/Goodegg.png" id="2_3ibgg"]
 [ext_resource type="Texture2D" uid="uid://c8sqdgdx5hv83" path="res://assets/Chicken/Goldenegg.png" id="3_1tmvx"]
 [ext_resource type="Texture2D" uid="uid://fl3l3os5gre8" path="res://assets/Chicken/Badegg.png" id="4_kkcx1"]
+[ext_resource type="AudioStream" uid="uid://dcemh6cws6ue8" path="res://assets/freesound_community-item-pick-up-38258.mp3" id="5_kkcx1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1tmvx"]
 radius = 5.0
@@ -22,3 +23,7 @@ texture = ExtResource("2_3ibgg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D" unique_id=1050981320]
 position = Vector2(-4, -12)
 shape = SubResource("CapsuleShape2D_1tmvx")
+
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="." unique_id=198821207]
+stream = ExtResource("5_kkcx1")
+volume_db = -2.0

@@ -22,6 +22,12 @@ public partial class FarmManager : TileMapLayer
 	[Export]
 	public CropData CauliflowerCrop;
 
+	// audio cues
+	private AudioStreamPlayer2D harvestSound;
+	private AudioStreamPlayer2D tillSound;
+	private AudioStreamPlayer2D plantSound;
+	private AudioStreamPlayer2D staminaEmptySound;
+
 	//Farmable land vars
 	private Node2D cropContainer;
 	private TileMapLayer farmBounds;
@@ -46,6 +52,11 @@ public partial class FarmManager : TileMapLayer
 		gameData = GetNode<Node>("/root/GameData");
 		player = GetNode<Player>("../LayerOrdering/Player");
 		hotbarUI = GetTree().Root.GetNodeOrNull<HotbarUI>("MainFarm/HotbarUI");
+		
+		harvestSound = GetNode<AudioStreamPlayer2D>("../Sounds/HarvestSound");
+		tillSound = GetNode<AudioStreamPlayer2D>("../Sounds/TillSound");
+		plantSound = GetNode<AudioStreamPlayer2D>("../Sounds/PlantSound");
+		staminaEmptySound = GetNode<AudioStreamPlayer2D>("../Sounds/StaminaEmptySound");
 
 		int startingCash = gameData.Get("cash").AsInt32();
 		int startingDebt = gameData.Get("debt").AsInt32();
@@ -154,12 +165,14 @@ public partial class FarmManager : TileMapLayer
 		//TODO: ADD ON SCREEN MSG TELLING PLAYER THEYRE OUT OF STAMINA
 		else if (stamina <= 0)
 		{
+			staminaEmptySound?.Play();
 			GD.Print("Out of Energy : Can't Till Field");
 			return;
 		}
 		gameData.Set("stamina", stamina - 1); //STAMINA VAR TILLING
 		staminaUI?.Refresh();
 		SetCell(tilePos, 3, Vector2I.Zero);
+		tillSound?.Play();
 		GD.Print($"Soil tilled! Stamina: {stamina - 1}");
 	}
 
@@ -184,6 +197,7 @@ public partial class FarmManager : TileMapLayer
 		int stamina = gameData.Get("stamina").AsInt32();
 		if (stamina <= 0)
 		{
+			staminaEmptySound?.Play();
 			GD.Print("Out of Energy!");
 			return;
 		}
@@ -210,6 +224,7 @@ public partial class FarmManager : TileMapLayer
 		cropContainer.AddChild(crop);
 		crop.GlobalPosition = ToGlobal(MapToLocal(tilePos));
 		plantedCrops.Add(tilePos, crop);
+		plantSound?.Play();
 
 		int remaining = InventoryManager.Instance.Items.ContainsKey(seedName) ? InventoryManager.Instance.Items[seedName] : 0;
 		GD.Print($"Planted {seedName}! Remaining: {remaining}, Stamina: {stamina - 2}");
@@ -240,6 +255,7 @@ public partial class FarmManager : TileMapLayer
 	int stamina = gameData.Get("stamina").AsInt32();
 	if (stamina <= 0)
 	{
+		staminaEmptySound?.Play();
 		GD.Print("Out of Energy : Can't pluck plants");
 		return;
 	}
@@ -250,6 +266,8 @@ public partial class FarmManager : TileMapLayer
 	plantedCrops[tilePos].Harvest();
 	plantedCrops.Remove(tilePos);
 	EraseCell(tilePos);
+	harvestSound?.Play();
+	GD.Print("Harvest sound played!");
 
 	string cropName = StartingCrop.CropName.ToLower();
 	var inventory = gameData.Get("basket_inventory").AsGodotDictionary();

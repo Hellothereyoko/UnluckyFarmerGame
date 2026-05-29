@@ -5,7 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://1c17gcplucj" path="res://assets/CarrotPacket.png" id="2_duxfn"]
 [ext_resource type="Texture2D" uid="uid://fe3n0kdjs7e7" path="res://assets/strawberryPacket.png" id="4_c6qty"]
 [ext_resource type="Texture2D" uid="uid://ba2o0vxr4afah" path="res://assets/CauliflowerPacket.png" id="5_c6qty"]
-[ext_resource type="Texture2D" uid="uid://cdsbxa48r422u" path="res://assets/PumpkinPacket.png" id="6_d6x5n"]
+[ext_resource type="Texture2D" uid="uid://r8ye4f4yhnql" path="res://assets/PumpkinPacket.png" id="6_d6x5n"]
+[ext_resource type="AudioStream" uid="uid://cxwyr3fnhlkyo" path="res://assets/ribhavagrawal-purchase-succesful-ingame-230550.mp3" id="7_d6x5n"]
 
 [node name="ShopUI" type="CanvasLayer" unique_id=1713337037]
 scale = Vector2(1.5, 1.5)
@@ -216,5 +217,8 @@ offset_right = 671.0
 offset_bottom = 335.3333
 theme_override_fonts/font = ExtResource("1_yoj64")
 text = "Close"
+
+[node name="PurchaseSound" type="AudioStreamPlayer2D" parent="." unique_id=914078485]
+stream = ExtResource("7_d6x5n")
 
 [connection signal="pressed" from="ColorRect/ScrollContainer/VBoxContainer/CarrotRow/VBoxContainer/BuyButton" to="." method="OnClosePressed "]

@@ -7,6 +7,10 @@ public partial class EndGame : CanvasLayer
 	private Label daysLabel;
 	private Label earnedLabel;
 	private Button playAgainButton;
+	
+	// music
+	private AudioStreamPlayer2D winSound;
+	private AudioStreamPlayer2D loseSound;
 
 	public override void _Ready()
 	{
@@ -18,6 +22,8 @@ public partial class EndGame : CanvasLayer
 		earnedLabel = GetNode<Label>("ColorRect/VBoxContainer/EarnedLabel");
 		playAgainButton = GetNode<Button>("ColorRect/VBoxContainer/PlayAgain");
 		playAgainButton.Pressed += OnPlayAgainPressed;
+		winSound = GetNode<AudioStreamPlayer2D>("WinSound");
+		loseSound = GetNode<AudioStreamPlayer2D>("LoseSound");
 	}
 
 	public void ShowEnding(int remainingDebt, int totalEarned)
@@ -26,17 +32,19 @@ public partial class EndGame : CanvasLayer
 		if (remainingDebt <= 0)
 		{
 			// WIN
+			winSound?.Play();
 			endTitle.Text = "You Saved The Farm!";
 			endMessage.Text = "The men in suits turned away.\nYour farm is yours to keep.";
 		}
 		else
 		{
 			// LOSE
+			loseSound?.Play();
 			endTitle.Text = "*knock knock*\n\"Time's up, farmer.\"";
 			endMessage.Text = "The men in suits have arrived.\nYour farm has been repossessed.";
 		}
 
-		debtLabel.Text = remainingDebt <= 0 ? "Debt: PAID OFF! 🎉" : $"Remaining Debt: {remainingDebt}g";
+		debtLabel.Text = remainingDebt <= 0 ? "Debt: PAID OFF!" : $"Remaining Debt: {remainingDebt}g";
 		daysLabel.Text = "Days Survived: 7";
 		earnedLabel.Text = $"Total Earned: {totalEarned}g";
 	}

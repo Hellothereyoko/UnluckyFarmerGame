@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5w6m1133wcis"
+path="res://.godot/imported/virtual_vibes-soft-pop-sound-383739 (mp3cut.net).mp3-9e6a6e76e096294c866e085b6865985a.mp3str"
+
+[deps]
+
+source_file="res://assets/virtual_vibes-soft-pop-sound-383739 (mp3cut.net).mp3"
+dest_files=["res://.godot/imported/virtual_vibes-soft-pop-sound-383739 (mp3cut.net).mp3-9e6a6e76e096294c866e085b6865985a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

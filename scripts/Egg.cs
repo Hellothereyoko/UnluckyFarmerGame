@@ -11,10 +11,14 @@ public partial class Egg : Area2D
 	
 	private bool collected = false;
 	private Sprite2D sprite;
+	
+	//soundeffect
+	private AudioStreamPlayer2D collectSound;
 
 	public override void _Ready()
 	{
 		sprite = GetNode<Sprite2D>("Sprite2D");
+		collectSound = GetNode<AudioStreamPlayer2D>("CollectSound");
 		Monitoring = true;
 		Monitorable = true;
 		
@@ -47,6 +51,13 @@ public partial class Egg : Area2D
 	}
 private void CollectEgg()
 {
+	collected = true;
+	collectSound?.Play();
+	// Wait for sound then free
+	GetTree().CreateTimer(collectSound.Stream.GetLength()).Timeout += () => QueueFree();
+	// hide egg immediately
+	sprite.Visible = false;
+	
 	var gameData = GetNode<Node>("/root/GameData");
 	var inventory = gameData.Get("basket_inventory").AsGodotDictionary();
 
@@ -70,7 +81,7 @@ private void CollectEgg()
 			GD.Print("Bad egg! -20g");
 			break;
 	}
-	QueueFree();
+	
 }
 }
 	

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dg7e5rusbwp2f" path="res://scripts/EndGame.cs" id="1_i47uf"]
 [ext_resource type="FontFile" uid="uid://di2401nyimce1" path="res://assets/Pixeloid_Font_1_0/OpenType (.otf)/PixeloidMono.otf" id="2_3w24k"]
+[ext_resource type="AudioStream" uid="uid://6nbghpxfrp4d" path="res://assets/soulfuljamtracks-happy-music-loop-500008.mp3" id="3_ho1j5"]
+[ext_resource type="AudioStream" uid="uid://ctq44tj5vabe1" path="res://assets/freesound_community-verloren-89595.mp3" id="4_w2lcc"]
 
 [node name="EndGame" type="CanvasLayer" unique_id=1053213276]
 script = ExtResource("1_i47uf")
@@ -59,3 +61,9 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_3w24k")
 text = "Play Again"
+
+[node name="WinSound" type="AudioStreamPlayer2D" parent="." unique_id=1235540728]
+stream = ExtResource("3_ho1j5")
+
+[node name="LoseSound" type="AudioStreamPlayer2D" parent="." unique_id=400214248]
+stream = ExtResource("4_w2lcc")
