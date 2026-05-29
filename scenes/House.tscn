@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bm0hchotuo8uo"]
 
 [ext_resource type="Script" uid="uid://y0q5pwdkjnfy" path="res://scripts/House.cs" id="1_8twys"]
-[ext_resource type="Texture2D" uid="uid://3vhl4f4liypx" path="res://assets/Woolly Lands FREE pack/House_Doors/Houses.png" id="1_d7po0"]
+[ext_resource type="Texture2D" uid="uid://bs74crcobw0t2" path="res://assets/Houses.png" id="2_r2usd"]
 [ext_resource type="FontFile" uid="uid://bpwt4sukyxelt" path="res://assets/Pixeloid_Font_1_0/Web Open Font Format (.woff)/PixeloidMono.woff" id="3_r2usd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtlar"]
@@ -16,7 +16,7 @@ script = ExtResource("1_8twys")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1560874525]
 texture_filter = 1
-texture = ExtResource("1_d7po0")
+texture = ExtResource("2_r2usd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=386937679]
 position = Vector2(-1, 31.71875)
