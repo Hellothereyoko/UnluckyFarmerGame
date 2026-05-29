@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cgkbc4vdbw3ba"]
 
 [ext_resource type="Texture2D" uid="uid://dt0ylro1g0g8b" path="res://assets/Tileset/Exterior_Tileset.png" id="1_3eaje"]
-[ext_resource type="Script" uid="uid://boe70fnoug1nv" path="res://scenes/mailbox.gd" id="1_80nar"]
+[ext_resource type="Script" uid="uid://boe70fnoug1nv" path="res://scripts/mailbox.gd" id="1_80nar"]
 [ext_resource type="FontFile" uid="uid://di2401nyimce1" path="res://assets/Pixeloid_Font_1_0/OpenType (.otf)/PixeloidMono.otf" id="3_276df"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3eaje"]

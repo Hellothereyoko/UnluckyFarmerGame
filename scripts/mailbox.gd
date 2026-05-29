@@ -10,7 +10,8 @@ var letter_keys = []
 var letters_from_the_mail ={
 	"day_1" = {
 		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png",
-		"mail_2" = "res://assets/Mailbox Letters/Day_1_Tips.png"
+		"mail_2" = "res://assets/Mailbox Letters/Day_1_Tips.png",
+		"aaaa" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
 	},
 	"day_2" = {
 		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
@@ -35,11 +36,8 @@ var letters_from_the_mail ={
 
 func _ready():
 	##Get Data for Mail here
-	match GameData.day:
-		1:
-			letters_in_mail = letters_from_the_mail.day_1
-		2:
-			letters_in_mail = letters_from_the_mail.day_2
+
+	letters_in_mail = letters_from_the_mail.day_1
 	for i in letters_in_mail.keys():
 		letter_keys.append(i)
 	$"Text Prompt".hide()
@@ -49,8 +47,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	if Input.is_action_just_pressed("interact"):
 		#print(str(letters_index) + " / " + str(letters_in_mail.size()))
+		match GameData.day:
+			1:
+				letters_in_mail = letters_from_the_mail.day_1
+			2:
+				letters_in_mail = letters_from_the_mail.day_2
+		
 		if letters_index < letters_in_mail.size():
 			$"Text Prompt".hide()
 			var aaa = letters_in_mail[letter_keys[letters_index]]

@@ -7,7 +7,7 @@ const rare_orange = preload("res://scenes/Collect_Oranges.tscn")
 var x_position : int = 0;
 var y_position : int = 90;
 
-const maximum_amount : int = 7;
+const maximum_amount : int = 3;
 
 var appleTimer : int = 1000
 
