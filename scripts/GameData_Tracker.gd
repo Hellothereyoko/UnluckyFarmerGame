@@ -7,7 +7,7 @@ extends Node
 ## --> scriptNode.Call("selling_crops");
 
 ##This tracks all the money data
-var cash : int = 100 # starting gold
+var cash : int = 200 # starting gold
 var debt : int = 1500
 var total_money_earned : int = 0
 var last_interest : int = 0
@@ -18,8 +18,8 @@ var fruit_money_today : int = 0
 var last_payment: int = 0
 var day : int = 1
 const MAX_DAYS: int = 7
-const DAILY_INTEREST : float = 0.01
-const MINIMUM_PAYMENT : int = 150
+const DAILY_INTEREST : float = 0.05
+const MINIMUM_PAYMENT : int = 250
 const PENALTY_AMOUNT : int = 3
 
 ##Stamina Tracker
@@ -72,19 +72,19 @@ var basket_inventory = {
 	"carrot" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,
-		"sell_value" = 10,
+		"sell_value" = 8,
 		"bonus_value" = 5,
 	},
 	"pumpkin" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,
-		"sell_value" = 25,
+		"sell_value" = 40,
 		"bonus_value" = 5,
 		},
 	"strawberry" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,
-		"sell_value" = 16,
+		"sell_value" = 20,
 		"bonus_value" = 5,
 	},
 	"egg" = {
@@ -115,10 +115,10 @@ var basket_inventory = {
 
 # Seed costs
 var seed_costs = {
-	"carrot" : 2,
-	"strawberry" : 4,
-	"pumpkin" : 6,
-	"cauliflower" : 5,
+	"carrot" : 3,
+	"strawberry" : 10,
+	"pumpkin" : 20,
+	"cauliflower" : 12,
 }
 func selling_crops():
 
@@ -214,7 +214,7 @@ func reloadTrees():
 		tree_.queue_free()
 	
 func reset_game():
-	cash = 75
+	cash = 200
 	debt = 1500
 	day = 1
 	stamina = 100

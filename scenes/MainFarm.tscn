@@ -762,8 +762,8 @@ position = Vector2(3, 23)
 shape = SubResource("CircleShape2D_tt3jl")
 
 [node name="PointLight2D" type="PointLight2D" parent="Campfire" unique_id=225768524]
-position = Vector2(0.40000072, 9.199996)
-scale = Vector2(0.071874976, 0.06250013)
+position = Vector2(1.3249941, 23.200016)
+scale = Vector2(0.17734411, 0.1625003)
 color = Color(1, 0.41960785, 0, 1)
 energy = 1.5
 texture = SubResource("GradientTexture2D_iulbg")
@@ -773,7 +773,7 @@ position = Vector2(-20, 2.399994)
 scale = Vector2(0.9999998, 0.9999998)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Campfire/Area2D" unique_id=1347202155]
-position = Vector2(23.000002, 20.600002)
+position = Vector2(20.000002, 20.600002)
 scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("CircleShape2D_orht8")
 

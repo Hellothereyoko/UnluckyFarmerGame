@@ -32,13 +32,14 @@ public partial class ShopUI : CanvasLayer
 	
 		purchaseSound = GetNode<AudioStreamPlayer2D>("PurchaseSound");
 
-		carrotBtn.Pressed += () => BuySeed("carrot", 2);
-		strawberryBtn.Pressed += () => BuySeed("strawberry", 4);
-		cauliflowerBtn.Pressed += () => BuySeed("cauliflower", 5);
-		pumpkinBtn.Pressed += () => BuySeed("pumpkin", 6);
-		medBtn.Pressed += () => BuyExpansion(200);
-		largeBtn.Pressed += () => BuyExpansion(400);
+		carrotBtn.Pressed += () => BuySeed("carrot", 3);
+		strawberryBtn.Pressed += () => BuySeed("strawberry", 10);
+		cauliflowerBtn.Pressed += () => BuySeed("cauliflower", 12);	
+		pumpkinBtn.Pressed += () => BuySeed("pumpkin", 20);
+		medBtn.Pressed += () => BuyExpansion(400);
+		largeBtn.Pressed += () => BuyExpansion(700);
 
+		UpdateShopAvailability();
 		UpdateGold();
 	}
 
@@ -55,17 +56,17 @@ public partial class ShopUI : CanvasLayer
 		goldLabel.Text = $"Gold: {cash}g";
 
 		// Disable buttons when not enough gold
-		carrotBtn.Disabled = cash < 2;
-		strawberryBtn.Disabled = cash < 4;
-		cauliflowerBtn.Disabled = cash < 5;
-		pumpkinBtn.Disabled = cash < 6;
-		medBtn.Disabled = cash < 200;
-		largeBtn.Disabled = cash < 400;
+		carrotBtn.Disabled = cash < 3;
+		strawberryBtn.Disabled = cash < 10;
+		cauliflowerBtn.Disabled = cash < 12;
+		pumpkinBtn.Disabled = cash < 20;
+		medBtn.Disabled = cash < 400;
+		largeBtn.Disabled = cash < 700;
 
 		// Disable expansion buttons if already at max level
 		int level = farmManager.expansionLevel;
-		medBtn.Disabled = level >= 1 || cash < 200;
-		largeBtn.Disabled = level < 1 || level >= 2 || cash < 400;
+		medBtn.Disabled = level >= 1 || cash < 400;
+		largeBtn.Disabled = level < 1 || level >= 2 || cash < 700;
 	}
 
 	private void BuySeed(string seedName, int cost)
@@ -97,4 +98,17 @@ public partial class ShopUI : CanvasLayer
 	{
 		QueueFree();
 	}
+	
+	private void UpdateShopAvailability()
+{
+	int day = gameData.Get("day").AsInt32();
+	
+	// Cauliflower unlocks day 3
+	var cauliRow = GetNode<Control>("ColorRect/ScrollContainer/VBoxContainer/CauliflowerRow");
+	cauliRow.Visible = day >= 3;
+	
+	// Pumpkin unlocks day 4
+	var pumpkinRow = GetNode<Control>("ColorRect/ScrollContainer/VBoxContainer/PumpkinRow");
+	pumpkinRow.Visible = day >= 4;
+}
 }

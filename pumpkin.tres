@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_eghpu")
 CropName = "Pumpkin"
-GrowTime = 120.0
+GrowTime = 60.0
 SeedTexture = ExtResource("1_ksnot")
 SpriteScale = Vector2(1.5, 1.5)
 SpriteOffset = Vector2(3, 8)

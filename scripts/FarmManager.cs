@@ -260,7 +260,7 @@ public partial class FarmManager : TileMapLayer
 		return;
 	}
 
-	gameData.Set("stamina", stamina - 2);
+	gameData.Set("stamina", stamina - 3);
 	staminaUI?.Refresh();
 
 	plantedCrops[tilePos].Harvest();
