@@ -16,6 +16,12 @@ var crop_money_today : int = 0
 var egg_money_today : int = 0
 var fruit_money_today : int = 0
 var last_payment: int = 0
+
+##upgrades
+var carrot_upgraded : bool = false
+var strawberry_upgraded : bool = false
+var vendor_upgraded : bool = false
+
 var day : int = 1
 const MAX_DAYS: int = 7
 const DAILY_INTEREST : float = 0.02
@@ -24,6 +30,7 @@ const PENALTY_AMOUNT : int = 3
 
 ##Stamina Tracker
 var stamina : int = 100
+var max_stamina : int = 100
 
 ##This tracks all the produce collected during the day
 ##When the player collects fruit, both total and fresh increases.
@@ -66,7 +73,7 @@ var basket_inventory = {
 	"cauliflower" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,
-		"sell_value" = 25,
+		"sell_value" = 22,
 		"bonus_value" = 5,
 	},
 	"carrot" = {
@@ -78,13 +85,13 @@ var basket_inventory = {
 	"pumpkin" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,
-		"sell_value" = 40,
+		"sell_value" = 32,
 		"bonus_value" = 5,
 		},
 	"strawberry" = {
 		"inventory" = 0,
 		"damageless_bonus" = 0,
-		"sell_value" = 20,
+		"sell_value" = 18,
 		"bonus_value" = 5,
 	},
 	"egg" = {
@@ -116,7 +123,7 @@ var basket_inventory = {
 # Seed costs
 var seed_costs = {
 	"carrot" : 3,
-	"strawberry" : 10,
+	"strawberry" : 8,
 	"pumpkin" : 20,
 	"cauliflower" : 12,
 }
@@ -173,13 +180,17 @@ func end_of_day():
 	day += 1
 	print("Day: ", day, " | Cash: ", cash, " | Debt: ", debt)
 	
+	# Increase seed prices on day 4
+	if day == 4:
+		seed_costs["carrot"] += 1
+		seed_costs["strawberry"] += 1
+		seed_costs["pumpkin"] += 1
+		seed_costs["cauliflower"] += 1
+		print("Seed prices increased!")
+	
 	# Check game over
 	if day > MAX_DAYS:
 		print("Game Over! Days expired!")
-		# TODO: trigger game over screen	
-
-		
-
 func damageless_penalty():
 	for item in basket_inventory.keys():
 		basket_inventory[item]["damageless_bonus"] /= PENALTY_AMOUNT
@@ -220,6 +231,7 @@ func reset_game():
 	cash = 100
 	debt = 1500
 	day = 1
+	max_stamina = 100
 	stamina = 100
 	total_money_earned = 0
 	last_interest = 0
@@ -228,6 +240,9 @@ func reset_game():
 	egg_money_today = 0
 	fruit_money_today = 0
 	last_payment = 0
+	carrot_upgraded = false
+	strawberry_upgraded = false
+	vendor_upgraded = false
 	
 	# Reset all inventory
 	for item in basket_inventory.keys():
