@@ -171,7 +171,7 @@ text = "Purchase"
 [node name="Land" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer" unique_id=382410900]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
-text = "        --Land--"
+text = "        --Land Upgrades--"
 
 [node name="MediumExpansion" type="HBoxContainer" parent="ColorRect/ScrollContainer/VBoxContainer" unique_id=163066224]
 layout_mode = 2
@@ -184,7 +184,7 @@ text = "Medium Crop Expansion"
 [node name="MediumPrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/MediumExpansion" unique_id=496113004]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
-text = "200g"
+text = "400g"
 
 [node name="BuyButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/MediumExpansion" unique_id=37312794]
 layout_mode = 2
@@ -202,9 +202,73 @@ text = "Large Crop Expansion"
 [node name="LargePrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/LargeExpansion" unique_id=768110798]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
-text = "400g"
+text = "700g"
 
 [node name="BuyButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/LargeExpansion" unique_id=858705847]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yoj64")
+text = "Purchase"
+
+[node name="CropUpgrades" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer" unique_id=1001705278]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yoj64")
+text = "        --Crop Upgrades--"
+
+[node name="CarrotUpgradeRow" type="HBoxContainer" parent="ColorRect/ScrollContainer/VBoxContainer" unique_id=1633524948]
+layout_mode = 2
+
+[node name="CarrotUpgradeLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/CarrotUpgradeRow" unique_id=1530652430]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yoj64")
+text = "Carrot 3x Yield"
+
+[node name="CarrotUpgradePrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/CarrotUpgradeRow" unique_id=2114699968]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yoj64")
+text = "200g"
+
+[node name="CarrotUpgradeBtn" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/CarrotUpgradeRow" unique_id=958047510]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yoj64")
+text = "Purchase"
+
+[node name="StrawUpgradeRow" type="HBoxContainer" parent="ColorRect/ScrollContainer/VBoxContainer" unique_id=857373095]
+layout_mode = 2
+
+[node name="StrawUpgradeLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/StrawUpgradeRow" unique_id=835560421]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yoj64")
+text = "Strawberry 2x Yield"
+
+[node name="StrawUpgradePrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/StrawUpgradeRow" unique_id=1622386157]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yoj64")
+text = "250g"
+
+[node name="StrawUpgradeBtn" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/StrawUpgradeRow" unique_id=2100077866]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yoj64")
+text = "Purchase"
+
+[node name="VendorUpgrade" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer" unique_id=1310697345]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yoj64")
+text = "        --Vendor Upgrade--"
+
+[node name="VendorUpgradeRow" type="HBoxContainer" parent="ColorRect/ScrollContainer/VBoxContainer" unique_id=525758458]
+layout_mode = 2
+
+[node name="VendorUpgradeLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/VendorUpgradeRow" unique_id=35315493]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yoj64")
+text = "Better Market Prices"
+
+[node name="VendorUpgradePrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/VendorUpgradeRow" unique_id=25318996]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yoj64")
+text = "600g"
+
+[node name="VendorUpgradeBtn" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/VendorUpgradeRow" unique_id=1618143070]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
 text = "Purchase"

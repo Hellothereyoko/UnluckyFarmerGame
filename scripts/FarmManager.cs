@@ -245,7 +245,6 @@ public partial class FarmManager : TileMapLayer
 	if (!plantedCrops.ContainsKey(tilePos))
 		return;
 
-	// Check if crop is fully grown
 	if (!plantedCrops[tilePos].IsReadyToHarvest())
 	{
 		GD.Print("Crop is not ready to harvest yet!");
@@ -267,15 +266,27 @@ public partial class FarmManager : TileMapLayer
 	plantedCrops.Remove(tilePos);
 	EraseCell(tilePos);
 	harvestSound?.Play();
-	GD.Print("Harvest sound played!");
 
 	string cropName = StartingCrop.CropName.ToLower();
 	var inventory = gameData.Get("basket_inventory").AsGodotDictionary();
 	if (inventory.ContainsKey(cropName))
 	{
 		var cropEntry = inventory[cropName].AsGodotDictionary();
-		cropEntry["inventory"] = cropEntry["inventory"].AsInt32() + 1;
-		GD.Print($"{cropName} harvested! Total: {cropEntry["inventory"]}, Stamina: {stamina - 2}");
+
+		int harvestAmount = 1;
+		if (cropName == "carrot" && gameData.Get("carrot_upgraded").AsBool())
+		{
+			harvestAmount = 3;
+			GD.Print("Carrot upgrade active! Harvesting 3!");
+		}
+		else if (cropName == "strawberry" && gameData.Get("strawberry_upgraded").AsBool())
+		{
+			harvestAmount = 2;
+			GD.Print("Strawberry upgrade active! Harvesting 2!");
+		}
+
+		cropEntry["inventory"] = cropEntry["inventory"].AsInt32() + harvestAmount;
+		GD.Print($"{cropName} harvested x{harvestAmount}! Total: {cropEntry["inventory"]}");
 	}
 
 	GD.Print($"Current cash: {gameData.Get("cash").AsInt32()}");
@@ -284,33 +295,43 @@ public partial class FarmManager : TileMapLayer
 	* This function handles all the upgrades to the farming system. 
 	*/
 	public void UpgradeFarm()
+{
+	GD.Print($"UpgradeFarm called! Current level: {expansionLevel}");
+	expansionLevel++;
+	
+	if (expansionLevel == 1)
 	{
-		GD.Print($"UpgradeFarm called! Current level: {expansionLevel}");
-		expansionLevel++;
-		
-		if (expansionLevel == 1)
-		{
-			farmBounds.Enabled = false;
-			farmBounds.Visible = false;
-			farmBoundsMed.Enabled = true;
-			farmBoundsMed.Visible = true;
-			farmBounds = farmBoundsMed;
-			GD.Print($"farmBounds now has {farmBounds.GetUsedCells().Count} cells");
-			GD.Print("Farm expanded to medium!");
-		}
-		else if (expansionLevel == 2)
-		{
-			farmBoundsMed.Enabled = false;
-			farmBoundsMed.Visible = false;
-			farmBoundsLarge.Enabled = true;
-			farmBoundsLarge.Visible = true;
-			farmBounds = farmBoundsLarge;
-			GD.Print($"farmBounds now has {farmBounds.GetUsedCells().Count} cells");
-			GD.Print("Farm expanded to large!");
-		}
-		else
-		{
-			GD.Print("Farm is already at max size!");
-		}
+		farmBounds.Enabled = false;
+		farmBounds.Visible = false;
+		farmBoundsMed.Enabled = true;
+		farmBoundsMed.Visible = true;
+		farmBounds = farmBoundsMed;
+
+		int newMaxStamina = gameData.Get("max_stamina").AsInt32() + 15;
+		gameData.Set("max_stamina", newMaxStamina);
+		gameData.Set("stamina", newMaxStamina);
+		staminaUI?.Refresh();
+		GD.Print("Farm expanded to medium! Max stamina now: " + newMaxStamina);
 	}
+	else if (expansionLevel == 2)
+	{
+		farmBoundsMed.Enabled = false;
+		farmBoundsMed.Visible = false;
+		farmBoundsLarge.Enabled = true;
+		farmBoundsLarge.Visible = true;
+		farmBounds = farmBoundsLarge;
+
+		int newMaxStamina = gameData.Get("max_stamina").AsInt32() + 30;
+		gameData.Set("max_stamina", newMaxStamina);
+		gameData.Set("stamina", newMaxStamina);
+		GD.Print($"Max stamina set to: {newMaxStamina}");
+		GD.Print($"StaminaUI is null: {staminaUI == null}");
+		staminaUI?.Refresh();
+		GD.Print("Farm expanded to large! Max stamina now: " + newMaxStamina);
+	}
+	else
+	{
+		GD.Print("Farm is already at max size!");
+	}
+ }
 }
