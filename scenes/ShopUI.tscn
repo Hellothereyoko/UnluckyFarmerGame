@@ -184,7 +184,7 @@ text = "Medium Crop Expansion"
 [node name="MediumPrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/MediumExpansion" unique_id=496113004]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
-text = "50g"
+text = "450g"
 
 [node name="BuyButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/MediumExpansion" unique_id=37312794]
 layout_mode = 2
@@ -225,7 +225,7 @@ text = "Carrot 3x Yield"
 [node name="CarrotUpgradePrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/CarrotUpgradeRow" unique_id=2114699968]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
-text = "200g"
+text = "500g"
 
 [node name="CarrotUpgradeBtn" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/CarrotUpgradeRow" unique_id=958047510]
 layout_mode = 2
@@ -243,7 +243,7 @@ text = "Strawberry 2x Yield"
 [node name="StrawUpgradePrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/StrawUpgradeRow" unique_id=1622386157]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
-text = "250g"
+text = "450g"
 
 [node name="StrawUpgradeBtn" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/StrawUpgradeRow" unique_id=2100077866]
 layout_mode = 2

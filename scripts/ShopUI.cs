@@ -38,7 +38,7 @@ public partial class ShopUI : CanvasLayer
 		pumpkinBtn.Pressed += () => BuySeed("pumpkin");
 		medBtn.Pressed += () => BuyExpansion(350);
 		largeBtn.Pressed += () => BuyExpansion(550);
-		carrotUpgradeBtn.Pressed += () => BuyUpgrade("carrot_upgraded", 400);
+		carrotUpgradeBtn.Pressed += () => BuyUpgrade("carrot_upgraded", 500);
 		strawUpgradeBtn.Pressed += () => BuyUpgrade("strawberry_upgraded", 450);
 		vendorUpgradeBtn.Pressed += () => BuyVendorUpgrade(600);
 
@@ -73,7 +73,7 @@ public partial class ShopUI : CanvasLayer
 		bool strawUpgraded = gameData.Get("strawberry_upgraded").AsBool();
 		bool vendorUpgraded = gameData.Get("vendor_upgraded").AsBool();
 
-		carrotUpgradeBtn.Disabled = carrotUpgraded || cash < 400;
+		carrotUpgradeBtn.Disabled = carrotUpgraded || cash < 500;
 		strawUpgradeBtn.Disabled = strawUpgraded || cash < 450;
 		vendorUpgradeBtn.Disabled = vendorUpgraded || cash < 600;
 
