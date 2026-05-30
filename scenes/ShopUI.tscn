@@ -184,7 +184,7 @@ text = "Medium Crop Expansion"
 [node name="MediumPrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/MediumExpansion" unique_id=496113004]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
-text = "400g"
+text = "50g"
 
 [node name="BuyButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/MediumExpansion" unique_id=37312794]
 layout_mode = 2
@@ -202,7 +202,7 @@ text = "Large Crop Expansion"
 [node name="LargePrice" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/LargeExpansion" unique_id=768110798]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yoj64")
-text = "700g"
+text = "550g"
 
 [node name="BuyButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/LargeExpansion" unique_id=858705847]
 layout_mode = 2

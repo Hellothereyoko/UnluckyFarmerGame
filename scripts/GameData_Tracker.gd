@@ -7,7 +7,7 @@ extends Node
 ## --> scriptNode.Call("selling_crops");
 
 ##This tracks all the money data
-var cash : int = 1000 # starting gold
+var cash : int = 100 # starting gold
 var debt : int = 1500
 var total_money_earned : int = 0
 var last_interest : int = 0
