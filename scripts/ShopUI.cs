@@ -36,8 +36,8 @@ public partial class ShopUI : CanvasLayer
 		strawberryBtn.Pressed += () => BuySeed("strawberry");
 		cauliflowerBtn.Pressed += () => BuySeed("cauliflower");
 		pumpkinBtn.Pressed += () => BuySeed("pumpkin");
-		medBtn.Pressed += () => BuyExpansion(400);
-		largeBtn.Pressed += () => BuyExpansion(700);
+		medBtn.Pressed += () => BuyExpansion(350);
+		largeBtn.Pressed += () => BuyExpansion(550);
 		carrotUpgradeBtn.Pressed += () => BuyUpgrade("carrot_upgraded", 400);
 		strawUpgradeBtn.Pressed += () => BuyUpgrade("strawberry_upgraded", 450);
 		vendorUpgradeBtn.Pressed += () => BuyVendorUpgrade(600);
@@ -66,8 +66,8 @@ public partial class ShopUI : CanvasLayer
 		pumpkinBtn.Disabled = cash < seedCosts["pumpkin"].AsInt32();
 
 		int level = farmManager.expansionLevel;
-		medBtn.Disabled = level >= 1 || cash < 400;
-		largeBtn.Disabled = level < 1 || level >= 2 || cash < 700;
+		medBtn.Disabled = level >= 1 || cash < 350;
+		largeBtn.Disabled = level < 1 || level >= 2 || cash < 550;
 
 		bool carrotUpgraded = gameData.Get("carrot_upgraded").AsBool();
 		bool strawUpgraded = gameData.Get("strawberry_upgraded").AsBool();
@@ -131,6 +131,15 @@ public partial class ShopUI : CanvasLayer
 		UpdateGold();
 	}
 
+	/*
+	* Handles the purchase of the Vendor Upgrade.
+	* This is a one time purchase that improves all crop economics:
+	*   - Reduces all seed costs by 20% (multiplied by 0.8)
+	*   - Increases all crop sell values by 10% (multiplied by 1.1)
+	* If bought after day 4, seed prices are already +1g so the
+	* discount brings them below original prices — rewarding late buyers!
+	* @params int cost - the gold cost of the vendor upgrade (600g)
+	*/
 	private void BuyVendorUpgrade(int cost)
 	{
 		int cash = gameData.Get("cash").AsInt32();

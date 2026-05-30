@@ -276,13 +276,15 @@ public partial class FarmManager : TileMapLayer
 		int harvestAmount = 1;
 		if (cropName == "carrot" && gameData.Get("carrot_upgraded").AsBool())
 		{
-			harvestAmount = 3;
-			GD.Print("Carrot upgrade active! Harvesting 3!");
+			 // 40% chance of 3x, otherwise 2x
+			harvestAmount = GD.Randf() < 0.4f ? 3 : 2;
+			GD.Print("Carrot upgrade active!");
 		}
 		else if (cropName == "strawberry" && gameData.Get("strawberry_upgraded").AsBool())
 		{
-			harvestAmount = 2;
-			GD.Print("Strawberry upgrade active! Harvesting 2!");
+			 // 40% chance of 3x, otherwise 2x
+			harvestAmount = GD.Randf() < 0.4f ? 3 : 2;
+			GD.Print("Carrot upgrade active!");
 		}
 
 		cropEntry["inventory"] = cropEntry["inventory"].AsInt32() + harvestAmount;
