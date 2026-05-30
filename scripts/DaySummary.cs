@@ -60,14 +60,14 @@ public partial class DaySummary : CanvasLayer
 	loanLabel.Text = $"Loan Payment:  {loanPayment}g";
 
 	if (missedPenalty > 0)
-	{
-		penaltyLabel.Visible = true;
-		penaltyLabel.Text = $"Short by:      -{missedPenalty}g (negative cash!)";
-	}
-	else
-	{
-		penaltyLabel.Visible = false;
-	}
+{
+	penaltyLabel.Visible = true;
+	penaltyLabel.Text = $"Missed Payment: +{missedPenalty}g to debt";
+}
+else
+{
+	penaltyLabel.Visible = false;
+}
 
 	lifetimeLabel.Text = lifetimeEarned < 0
 		? $"Current Cash:  {lifetimeEarned}g ⚠️"

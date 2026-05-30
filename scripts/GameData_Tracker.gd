@@ -169,12 +169,11 @@ func end_of_day():
 		last_penalty = 0
 		print("Minimum payment made! Debt: ", debt)
 	else:
-		# Only pay what player has
-		last_penalty = MINIMUM_PAYMENT - cash
-		last_payment = cash
-		debt -= cash
-		cash -= MINIMUM_PAYMENT
-		print("Could not make full payment! Paid: ", last_payment)
+		# Can't make minimum payment - penalty added to debt
+		last_payment = 0
+		last_penalty = MINIMUM_PAYMENT
+		debt += MINIMUM_PAYMENT
+		print("Could not make minimum payment! Penalty applied!")
 	
 	# Advance day
 	day += 1
