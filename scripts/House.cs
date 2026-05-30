@@ -51,7 +51,8 @@ public partial class House : StaticBody2D
 			(int)scriptNode.Get("debt")
 		);
 
-		scriptNode.Set("stamina", 100);
+		int maxStamina = (int)scriptNode.Get("max_stamina");
+		scriptNode.Set("stamina", maxStamina);
 		
 		var campfire = GetTree().CurrentScene.GetNodeOrNull<Campfire>("Campfire");
 		if (campfire != null) campfire.restsToday = 0;
