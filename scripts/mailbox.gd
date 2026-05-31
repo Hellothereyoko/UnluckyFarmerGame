@@ -31,7 +31,7 @@ var letters_from_the_mail ={
 		"mail_1" = "res://assets/Mailbox Letters/Day_6_Letter.png"
 	},
 	"day_7" = {
-		mail_1 = "res://assets/Mailbox Letters/Day_1_Tutorial.png"		
+		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"		
 	},
 }
 
