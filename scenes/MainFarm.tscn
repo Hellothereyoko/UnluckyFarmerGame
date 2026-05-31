@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://lg6fcyrbaj1v" path="res://scenes/lemon_tree.tscn" id="19_13jdd"]
 [ext_resource type="PackedScene" uid="uid://cgkbc4vdbw3ba" path="res://scenes/mailbox.tscn" id="20_cjnv8"]
 [ext_resource type="Texture2D" uid="uid://csehfgpf0udye" path="res://assets/clothesline.png" id="26_8im0f"]
+[ext_resource type="PackedScene" uid="uid://1loebjapwuef" path="res://scenes/boring_tree.tscn" id="26_r25hx"]
 [ext_resource type="Script" uid="uid://w111fkvpaqoa" path="res://StaminaUI.cs" id="29_iulbg"]
 [ext_resource type="AudioStream" uid="uid://njxrngphblpg" path="res://assets/On the Farm.wav" id="31_ycfvf"]
 [ext_resource type="AudioStream" uid="uid://d0oloh82hkl0h" path="res://assets/freesound_crunchpixstudio-harvest-farm-398836.mp3" id="32_2cnlb"]
@@ -862,6 +863,18 @@ position = Vector2(350, 300)
 
 [node name="LemonTree" parent="LayerOrdering/Tree_Node" unique_id=1122597337 instance=ExtResource("19_13jdd")]
 position = Vector2(1488, 34)
+
+[node name="BoringTree" parent="LayerOrdering/Tree_Node" unique_id=457205878 instance=ExtResource("26_r25hx")]
+position = Vector2(334, 577)
+
+[node name="BoringTree2" parent="LayerOrdering/Tree_Node" unique_id=1081806019 instance=ExtResource("26_r25hx")]
+position = Vector2(984, 249)
+
+[node name="BoringTree3" parent="LayerOrdering/Tree_Node" unique_id=1908032463 instance=ExtResource("26_r25hx")]
+position = Vector2(1197, 492)
+
+[node name="BoringTree4" parent="LayerOrdering/Tree_Node" unique_id=161631294 instance=ExtResource("26_r25hx")]
+position = Vector2(791, 646)
 
 [node name="DayNightCycl" type="CanvasModulate" parent="." unique_id=255116171]
 script = ExtResource("16_ek620")

@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://1loebjapwuef"]
+
+[ext_resource type="Texture2D" uid="uid://cagjdcyjk5s13" path="res://assets/Woolly Lands FREE pack/Trees/1 Tree Hit Sheets.png" id="1_u6if6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omb14"]
+atlas = ExtResource("1_u6if6")
+region = Rect2(0, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_874r4"]
+atlas = ExtResource("1_u6if6")
+region = Rect2(64, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvbew"]
+atlas = ExtResource("1_u6if6")
+region = Rect2(128, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gtcl"]
+atlas = ExtResource("1_u6if6")
+region = Rect2(192, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0kve"]
+atlas = ExtResource("1_u6if6")
+region = Rect2(256, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i8fu"]
+atlas = ExtResource("1_u6if6")
+region = Rect2(320, 0, 64, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nird3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omb14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_874r4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvbew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gtcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0kve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2i8fu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aml8a"]
+size = Vector2(10, 16)
+
+[node name="BoringTree" type="Node2D" unique_id=457205878]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=183479772]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_nird3")
+offset = Vector2(0, -14.405)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="AnimatedSprite2D" unique_id=1840078173]
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/StaticBody2D" unique_id=1041059111]
+position = Vector2(0, 16)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_aml8a")

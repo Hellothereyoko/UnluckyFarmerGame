@@ -198,16 +198,35 @@ func reloadTrees():
 	scene_ = scene_.get_node("LayerOrdering").get_node("Tree_Node")
 	var tree_instance
 	var tree_Object 
+	
+	var appleTreeSkip : int = 0
+	var lemonTreeSkip : bool = false
+
 	for tree_ in scene_.get_children():
 		
-		match tree_.scene_file_path:
-			"res://scenes/AppleTree.tscn":
-				tree_instance = preload("res://scenes/AppleTree.tscn")
-				tree_Object = tree_instance.instantiate()
-			"res://scenes/lemon_tree.tscn":
-				tree_instance = preload("res://scenes/lemon_tree.tscn")
-				tree_Object = tree_instance.instantiate()
-			
+		if appleTreeSkip < 3 && randi_range(0,1) == 1:
+			tree_instance = preload("res://scenes/boring_tree.tscn")
+			tree_Object = tree_instance.instantiate()
+			appleTreeSkip += 1
+		else:
+			tree_instance = preload("res://scenes/AppleTree.tscn")
+			tree_Object = tree_instance.instantiate()
+		
+		if lemonTreeSkip == false && randi_range(0,2) == 0:
+			tree_instance = preload("res://scenes/lemon_tree.tscn")
+			tree_Object = tree_instance.instantiate()
+			lemonTreeSkip = true
+		
+		#match tree_.scene_file_path:
+			#"res://scenes/AppleTree.tscn":
+				#tree_instance = preload("res://scenes/AppleTree.tscn")
+				#tree_Object = tree_instance.instantiate()
+			#"res://scenes/lemon_tree.tscn":
+				#tree_instance = preload("res://scenes/lemon_tree.tscn")
+				#tree_Object = tree_instance.instantiate()
+			#"res://scenes/boring_tree.tscn":
+				#tree_instance = preload("res://scenes/boring_tree.tscn")
+				#tree_Object = tree_instance.instantiate()
 		
 		scene_.add_child(tree_Object)
 		tree_Object.position = tree_.position

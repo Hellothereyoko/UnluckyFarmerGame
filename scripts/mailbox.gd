@@ -11,25 +11,27 @@ var letters_from_the_mail ={
 	"day_1" = {
 		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png",
 		"mail_2" = "res://assets/Mailbox Letters/Day_1_Tips.png",
-		"aaaa" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
 	},
 	"day_2" = {
-		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+		"mail_1" = "res://assets/Mailbox Letters/Day_2_Letter.png",
+		"mail_2" = "res://assets/Mailbox Letters/Day_2_Tips.png"
 	},
 	"day_3"= {
-		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+		"mail_1" = "res://assets/Mailbox Letters/Day_3_Letter.png",
+		"mail_2" = "res://assets/Mailbox Letters/Day_3_Tips.png"
 	},
 	"day_4" = {
-		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+		"mail_1" = "res://assets/Mailbox Letters/Day_4B_Letter.png",
+		"mail_2" = "res://assets/Mailbox Letters/Day_4_Tips.png"
 	},
 	"day_5" = {
-		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+		"mail_1" = "res://assets/Mailbox Letters/IDK_It_Sounded_Funny.png"
 	},
 	"day_6" = {
-		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+		"mail_1" = "res://assets/Mailbox Letters/Day_6_Letter.png"
 	},
 	"day_7" = {
-		"mail_1" = "res://assets/Mailbox Letters/Day_1_Tutorial.png"
+		
 	},
 }
 
@@ -55,6 +57,16 @@ func _process(delta):
 				letters_in_mail = letters_from_the_mail.day_1
 			2:
 				letters_in_mail = letters_from_the_mail.day_2
+			3:
+				letters_in_mail = letters_from_the_mail.day_3
+			4:
+				letters_in_mail = letters_from_the_mail.day_4
+			5:
+				letters_in_mail = letters_from_the_mail.day_5
+			6:
+				letters_in_mail = letters_from_the_mail.day_6
+			7:
+				letters_in_mail = letters_from_the_mail.day_7
 		
 		if letters_index < letters_in_mail.size():
 			$"Text Prompt".hide()
