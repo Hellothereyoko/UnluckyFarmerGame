@@ -793,7 +793,7 @@ theme_override_fonts/font = ExtResource("6_mxh56")
 theme_override_font_sizes/font_size = 14
 text = "Press [E] to rest"
 
-[node name="FeebackLabel" type="Label" parent="Campfire" unique_id=109281147]
+[node name="FeedbackLabel" type="Label" parent="Campfire" unique_id=109281147]
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_constants/outline_size = 2
