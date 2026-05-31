@@ -1,22 +1,87 @@
 [gd_scene format=3 uid="uid://lg6fcyrbaj1v"]
 
-[ext_resource type="Script" uid="uid://bqadayeat5upb" path="res://scenes/lemon_tree.gd" id="1_v5co6"]
-[ext_resource type="Texture2D" uid="uid://cvhngjvf8ni7f" path="res://assets/Woolly Lands FREE pack/Trees/Cut Tree.png" id="1_yejql"]
+[ext_resource type="Script" uid="uid://bqadayeat5upb" path="res://scripts/lemon_tree.gd" id="1_v5co6"]
+[ext_resource type="Texture2D" uid="uid://bn7p6p5kaay17" path="res://assets/Custom Sprites/LemonTree.png" id="2_6uerw"]
 [ext_resource type="FontFile" uid="uid://di2401nyimce1" path="res://assets/Pixeloid_Font_1_0/OpenType (.otf)/PixeloidMono.otf" id="3_6uerw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v5co6"]
-atlas = ExtResource("1_yejql")
-region = Rect2(0, 0, 64, 79)
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfk34"]
+atlas = ExtResource("2_6uerw")
+region = Rect2(384, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qny5n"]
+atlas = ExtResource("2_6uerw")
+region = Rect2(64, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbpup"]
+atlas = ExtResource("2_6uerw")
+region = Rect2(128, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ifl7"]
+atlas = ExtResource("2_6uerw")
+region = Rect2(0, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6uerw"]
+atlas = ExtResource("2_6uerw")
+region = Rect2(256, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sdmq"]
+atlas = ExtResource("2_6uerw")
+region = Rect2(128, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvtyf"]
+atlas = ExtResource("2_6uerw")
+region = Rect2(320, 0, 64, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6uerw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v5co6")
+"texture": SubResource("AtlasTexture_dfk34")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Burnt Out",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qny5n")
+}],
+"loop": true,
+"name": &"Danger 1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbpup")
+}],
+"loop": true,
+"name": &"Danger 2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ifl7")
+}],
+"loop": true,
+"name": &"Initial",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6uerw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sdmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvtyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sdmq")
+}],
+"loop": true,
+"name": &"Zapped Tree",
+"speed": 20.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ifl7"]
@@ -32,6 +97,7 @@ script = ExtResource("1_v5co6")
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6uerw")
+animation = &"Zapped Tree"
 offset = Vector2(0, -20)
 
 [node name="Tree Colission" type="StaticBody2D" parent="." unique_id=1720469652]
