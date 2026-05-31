@@ -894,21 +894,20 @@ position = Vector2(100, 300)
 [node name="Tree2" parent="LayerOrdering/Tree_Node" unique_id=2070512598 instance=ExtResource("4_tree")]
 position = Vector2(322, 70)
 
-[node name="LemonTree" parent="LayerOrdering/Tree_Node" unique_id=1122597337 instance=ExtResource("19_13jdd")]
-position = Vector2(1488, 34)
-script = null
-
 [node name="BoringTree" parent="LayerOrdering/Tree_Node" unique_id=457205878 instance=ExtResource("26_r25hx")]
 position = Vector2(100, 577)
 
 [node name="BoringTree2" parent="LayerOrdering/Tree_Node" unique_id=1081806019 instance=ExtResource("26_r25hx")]
-position = Vector2(100, 803)
+position = Vector2(111, 750)
 
 [node name="BoringTree3" parent="LayerOrdering/Tree_Node" unique_id=1908032463 instance=ExtResource("26_r25hx")]
-position = Vector2(410, 819)
+position = Vector2(410, 773)
 
 [node name="BoringTree4" parent="LayerOrdering/Tree_Node" unique_id=161631294 instance=ExtResource("26_r25hx")]
 position = Vector2(1497, 546)
+
+[node name="LemonTree" parent="LayerOrdering/Tree_Node" unique_id=1122597337 instance=ExtResource("19_13jdd")]
+position = Vector2(1466, 33)
 
 [node name="DayNightCycl" type="CanvasModulate" parent="." unique_id=255116171]
 script = ExtResource("16_ek620")
