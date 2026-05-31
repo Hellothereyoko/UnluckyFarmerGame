@@ -197,10 +197,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -11.5
-offset_right = 150.0
-offset_bottom = 11.5
+offset_left = -246.5
+offset_top = -174.0
+offset_right = 252.0
+offset_bottom = 113.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "** I'm a Placeholder for Instructions **"
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 15
+text = "
+WASD moves around the farm 
+TAB to open your inventory
+Use 1,2,3,4,5,6 to use your hotbar
+Use E to interact with objects
+
+
+
+
+Settle your debt, save the farm! 
+You only have one week to make it happen."
+horizontal_alignment = 1

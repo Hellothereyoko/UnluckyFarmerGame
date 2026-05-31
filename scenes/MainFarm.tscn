@@ -32,8 +32,11 @@
 [ext_resource type="Texture2D" uid="uid://csehfgpf0udye" path="res://assets/clothesline.png" id="26_8im0f"]
 [ext_resource type="PackedScene" uid="uid://1loebjapwuef" path="res://scenes/boring_tree.tscn" id="26_r25hx"]
 [ext_resource type="Script" uid="uid://w111fkvpaqoa" path="res://StaminaUI.cs" id="29_iulbg"]
+[ext_resource type="Script" uid="uid://cwl16j3vjidf2" path="res://DayCounterUI.cs" id="31_orht8"]
 [ext_resource type="AudioStream" uid="uid://njxrngphblpg" path="res://assets/On the Farm.wav" id="31_ycfvf"]
 [ext_resource type="AudioStream" uid="uid://d0oloh82hkl0h" path="res://assets/freesound_crunchpixstudio-harvest-farm-398836.mp3" id="32_2cnlb"]
+[ext_resource type="FontFile" uid="uid://cpnl32p472uvf" path="res://assets/Pixeloid_Font_1_0/TrueType (.ttf)/PixeloidMono.ttf" id="32_fo8ub"]
+[ext_resource type="Script" uid="uid://b5kciay1gbuy" path="res://FinanceHUD.cs" id="33_3u2r8"]
 [ext_resource type="AudioStream" uid="uid://dcjmyofqbelih" path="res://assets/freesound_community-digging-v1-27585 (mp3cut.net).mp3" id="33_rwnis"]
 [ext_resource type="AudioStream" uid="uid://c5w6m1133wcis" path="res://assets/virtual_vibes-soft-pop-sound-383739 (mp3cut.net).mp3" id="34_t141i"]
 [ext_resource type="AudioStream" uid="uid://d0gbprpyhr2j" path="res://assets/soundshelfstudio-ui-menu-slide-out-516941.mp3" id="35_xiysf"]
@@ -908,6 +911,7 @@ position = Vector2(1497, 546)
 
 [node name="LemonTree" parent="LayerOrdering/Tree_Node" unique_id=1122597337 instance=ExtResource("19_13jdd")]
 position = Vector2(1466, 33)
+script = null
 
 [node name="DayNightCycl" type="CanvasModulate" parent="." unique_id=255116171]
 script = ExtResource("16_ek620")
@@ -953,9 +957,67 @@ offset_right = 40.0
 offset_bottom = 40.0
 columns = 4
 
-[node name="DayBar" type="CanvasLayer" parent="." unique_id=1892966719]
+[node name="DayUICanvas" type="CanvasLayer" parent="." unique_id=512049515]
+layer = 2
+script = ExtResource("31_orht8")
+
+[node name="Panel" type="Panel" parent="DayUICanvas" unique_id=316563029]
+offset_right = 202.0
+offset_bottom = 76.0
+
+[node name="DayLabel" type="Label" parent="DayUICanvas/Panel" unique_id=1880004452]
+layout_mode = 0
+offset_right = 202.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("32_fo8ub")
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+
+[node name="DayValueLabel" type="Label" parent="DayUICanvas/Panel" unique_id=1696598933]
+layout_mode = 0
+offset_top = 25.0
+offset_right = 202.0
+offset_bottom = 70.0
+theme_override_fonts/font = ExtResource("32_fo8ub")
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
 
 [node name="DebtBar" type="CanvasLayer" parent="." unique_id=1232037191]
+layer = 2
+script = ExtResource("33_3u2r8")
+
+[node name="Panel" type="Panel" parent="DebtBar" unique_id=347298707]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = -0.038580246
+offset_left = -218.0
+offset_top = 2.0
+offset_right = 276.0
+offset_bottom = 98.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CashLabel" type="Label" parent="DebtBar/Panel" unique_id=2037295997]
+layout_mode = 0
+offset_top = -6.0
+offset_right = 227.0
+offset_bottom = 99.0
+theme_override_fonts/font = ExtResource("32_fo8ub")
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DebtLabel" type="Label" parent="DebtBar/Panel" unique_id=851221456]
+layout_mode = 0
+offset_left = 251.0
+offset_top = -1.0
+offset_right = 492.0
+offset_bottom = 95.0
+theme_override_fonts/font = ExtResource("32_fo8ub")
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StaminaUI" type="CanvasLayer" parent="." unique_id=246720631]
 script = ExtResource("29_iulbg")
@@ -980,6 +1042,7 @@ offset_bottom = 27.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("32_fo8ub")
 theme_override_font_sizes/font_size = 22
 text = "Stamina"
 
