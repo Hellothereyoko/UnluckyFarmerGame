@@ -323,7 +323,7 @@ public partial class FarmManager : TileMapLayer
 		farmBoundsLarge.Visible = true;
 		farmBounds = farmBoundsLarge;
 
-		int newMaxStamina = gameData.Get("max_stamina").AsInt32() + 30;
+		int newMaxStamina = gameData.Get("max_stamina").AsInt32() + 15;
 		gameData.Set("max_stamina", newMaxStamina);
 		gameData.Set("stamina", newMaxStamina);
 		GD.Print($"Max stamina set to: {newMaxStamina}");
