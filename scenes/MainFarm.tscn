@@ -953,7 +953,6 @@ offset_bottom = 40.0
 columns = 4
 
 [node name="DayUICanvas" type="CanvasLayer" parent="." unique_id=512049515]
-layer = 2
 script = ExtResource("31_orht8")
 
 [node name="Panel" type="Panel" parent="DayUICanvas" unique_id=316563029]
@@ -978,7 +977,6 @@ theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 
 [node name="DebtBar" type="CanvasLayer" parent="." unique_id=1232037191]
-layer = 2
 script = ExtResource("33_3u2r8")
 
 [node name="Panel" type="Panel" parent="DebtBar" unique_id=347298707]

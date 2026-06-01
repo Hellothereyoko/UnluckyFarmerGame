@@ -1,7 +1,11 @@
 using Godot;
+using System; // Required for C# Actions
 
 public partial class Shop : StaticBody2D
 {
+	// 1. Define a static event that any script can listen to
+	public static event Action<bool> OnShopStateChanged;
+
 	private bool playerNearby = false;
 	private bool shopOpen = false;
 	private Label interactionLabel;
@@ -16,24 +20,28 @@ public partial class Shop : StaticBody2D
 	}
 
 	public override void _Process(double delta)
-{
-	if (GetTree().CurrentScene.FindChild("ShopUI") != null)
-		return;
-
-	shopOpen = false;
-
-	if (playerNearby && !shopOpen && Input.IsActionJustPressed("interact"))
 	{
-		shopOpen = true;
-		GD.Print("Shop opened!");
-		PackedScene shopScene = GD.Load<PackedScene>("res://scenes/ShopUI.tscn");
-		GD.Print($"Shop scene loaded: {shopScene != null}");
-		Node shop = shopScene.Instantiate();
-		GD.Print($"Shop instantiated: {shop != null}");
-		GetTree().CurrentScene.AddChild(shop);
-		GD.Print("Shop added to scene!");
+		if (GetTree().CurrentScene.FindChild("ShopUI") != null)
+			return;
+
+		// 2. Catch the exact moment the shop closes
+		if (shopOpen) 
+		{
+			shopOpen = false;
+			OnShopStateChanged?.Invoke(false); // Broadcast: Shop is closed
+		}
+
+		if (playerNearby && !shopOpen && Input.IsActionJustPressed("interact"))
+		{
+			shopOpen = true;
+			OnShopStateChanged?.Invoke(true); // Broadcast: Shop is open
+			
+			GD.Print("Shop opened!");
+			PackedScene shopScene = GD.Load<PackedScene>("res://scenes/ShopUI.tscn");
+			Node shop = shopScene.Instantiate();
+			GetTree().CurrentScene.AddChild(shop);
+		}
 	}
-}
 
 	private void OnBodyEntered(Node body)
 	{
