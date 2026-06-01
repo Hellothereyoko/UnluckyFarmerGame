@@ -34,7 +34,7 @@ public partial class House : StaticBody2D
 			scriptNode.Call("end_of_day");
 			scriptNode.Call("reloadTrees");
 			
-			PackedScene summaryScene = GD.Load<PackedScene>("res://Scenes/DaySummary.tscn");
+			PackedScene summaryScene = GD.Load<PackedScene>("res://scenes/DaySummary.tscn");
 			DaySummary summary = summaryScene.Instantiate<DaySummary>();
 			GetTree().CurrentScene.AddChild(summary);
 
