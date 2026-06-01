@@ -27,7 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://bptqxqt4142ia" path="res://assets/Shop.png" id="15_fmkhw"]
 [ext_resource type="Script" uid="uid://c5thfd57rgw4i" path="res://scripts/HotbarUI.cs" id="15_vjv8i"]
 [ext_resource type="Script" uid="uid://b5rj7brjyliil" path="res://scripts/DayNightCycle.cs" id="16_ek620"]
-[ext_resource type="PackedScene" uid="uid://lg6fcyrbaj1v" path="res://scenes/lemon_tree.tscn" id="19_13jdd"]
 [ext_resource type="PackedScene" uid="uid://cgkbc4vdbw3ba" path="res://scenes/mailbox.tscn" id="20_cjnv8"]
 [ext_resource type="Texture2D" uid="uid://csehfgpf0udye" path="res://assets/clothesline.png" id="26_8im0f"]
 [ext_resource type="PackedScene" uid="uid://1loebjapwuef" path="res://scenes/boring_tree.tscn" id="26_r25hx"]
@@ -909,10 +908,6 @@ position = Vector2(410, 773)
 [node name="BoringTree4" parent="LayerOrdering/Tree_Node" unique_id=161631294 instance=ExtResource("26_r25hx")]
 position = Vector2(1497, 546)
 
-[node name="LemonTree" parent="LayerOrdering/Tree_Node" unique_id=1122597337 instance=ExtResource("19_13jdd")]
-position = Vector2(1466, 33)
-script = null
-
 [node name="DayNightCycl" type="CanvasModulate" parent="." unique_id=255116171]
 script = ExtResource("16_ek620")
 
@@ -989,6 +984,7 @@ script = ExtResource("33_3u2r8")
 [node name="Panel" type="Panel" parent="DebtBar" unique_id=347298707]
 anchors_preset = -1
 anchor_left = 0.5
+anchor_top = -0.038580246
 anchor_right = 0.5
 anchor_bottom = -0.038580246
 offset_left = -218.0
@@ -1070,3 +1066,6 @@ volume_db = 10.0
 
 [node name="StaminaEmptySound" type="AudioStreamPlayer2D" parent="Sounds" unique_id=643507139]
 stream = ExtResource("35_xiysf")
+
+[node name="BoringTree" parent="." unique_id=408262295 instance=ExtResource("26_r25hx")]
+position = Vector2(1437, 54)
