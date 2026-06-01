@@ -15,7 +15,7 @@ A game about an unlucky farmer out to discover the truth behind their family's c
 
 ## Downloading the Game:
 
-Go to the releases page and select your OS, then download the corresponding zip file containing the binary. We support both Windows & Linux platforms currently, MacOS could theoretically run the Linux binary but that is untested at this time.
+Go to the releases page and select your OS, then download the corresponding zip file containing the binary. Unzip the folder and open the game by clicking the executable labeled UnluckyFarmer. For Linux, chmod +x the executable and run it like any other Linux binary file from the terminal. For more support, go to ubuntu's help page. We support both Windows & Linux platforms currently, MacOS could theoretically run the Linux binary but that is untested at this time.
 
   <br>
 
