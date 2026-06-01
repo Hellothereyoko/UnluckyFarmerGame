@@ -8,17 +8,34 @@ public partial class FinanceHUD : CanvasLayer
 	private Node _gameData;
 
 	public override void _Ready()
-	{
-		_gameData = GetNode("/root/GameData");
+{
+	_gameData = GetNode("/root/GameData");
 
-		_cashLabel = GetNode<Label>("Panel/CashLabel");
-		_debtLabel = GetNode<Label>("Panel/DebtLabel");
+	_cashLabel = GetNode<Label>("Panel/CashLabel");
+	_debtLabel = GetNode<Label>("Panel/DebtLabel");
 
-		UpdateUI();
-	}
+	// Listen to the shop event
+	Shop.OnShopStateChanged += ToggleVisibility;
+
+	UpdateUI();
+}
+
+// Unsubscribe when the node is destroyed
+public override void _ExitTree()
+{
+	Shop.OnShopStateChanged -= ToggleVisibility;
+}
+
+private void ToggleVisibility(bool isShopOpen)
+{
+	Visible = !isShopOpen;
+}
 
 	public override void _Process(double delta)
 	{
+		// Hides the UI if "ShopUI" exists, shows it if it doesn't
+		Visible = GetTree().CurrentScene.FindChild("ShopUI") == null;
+	
 		UpdateUI();
 	}
 
